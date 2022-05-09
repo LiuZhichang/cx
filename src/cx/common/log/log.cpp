@@ -11,7 +11,7 @@
 
 namespace cx {
 
-std::string cx::LoggerManager::m_log_dir = "./runtime_log";
+std::string cx::LoggerManager::m_log_dir = "runtime_log";
 
 const std::string LogLevel::toString(Level level) {
   switch (level) {
@@ -335,7 +335,8 @@ void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
     else {
       std::cerr << "[FATAL]"
                 << "\t"
-                << "Runtime Error : log appender is empty"
+                << "[" << m_name << "]"
+                << "\tRuntime Error : log appender is empty"
                 << "\t" << __FILE__ << "\t" << __LINE__ << "\n";
     }
   }

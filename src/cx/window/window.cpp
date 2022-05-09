@@ -2,7 +2,7 @@
 
 #include <GLFW/glfw3.h>
 #include <cx/common/error.h>
-#include <cx/utils/log/log.h>
+#include <cx/common/log/log.h>
 
 static auto engine = CX_LOGGER("engine");
 static auto core = CX_LOGGER("core");
@@ -25,6 +25,7 @@ cx::Window::Window(const Attribute& attribute) : m_attribute(attribute) {
 }
 
 cx::Window::~Window() {
+  close();
   ::glfwDestroyWindow(m_whandle);
   ::glfwTerminate();
 }
@@ -39,20 +40,27 @@ void cx::Window::initWindow() {
   }
 
   ::glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-
   ::glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-  m_whandle = ::glfwCreateWindow(width(), height(), title(), nullptr, nullptr);
+  m_whandle =
+      ::glfwCreateWindow(width(), height(), title().c_str(), nullptr, nullptr);
 
   if (!m_whandle) {
-    ::glfwTerminate();
     Engine_error(Error::eWindowCreateFailed);
+    ::glfwTerminate();
   }
+
+  ::glfwSetWindowAttrib(m_whandle, GLFW_RESIZABLE, resizeable());
 
   ::glfwShowWindow(m_whandle);
 }
 
-void cx::Window::update() { glfwPollEvents(); }
+void cx::Window::set_title(const std::string& title) {
+  m_attribute.title = title;
+  ::glfwSetWindowTitle(m_whandle, title.c_str());
+}
+
+void cx::Window::update() { ::glfwPollEvents(); }
 
 void cx::Window::resize(const Vector2ui& size) {
   m_attribute.size = size;
@@ -61,6 +69,8 @@ void cx::Window::resize(const Vector2ui& size) {
 
   w = std::min(w, m_desktop_size.w);
   h = std::min(h, m_desktop_size.h);
+
+  ::glfwSetWindowSize(m_whandle, w, h);
 }
 
 const void cx::Window::set_position(uint32_t x, uint32_t y) {
@@ -81,10 +91,17 @@ const void cx::Window::set_position(const Vector2ui& pos) {
   set_position(pos.x, pos.y);
 }
 
-std::pair<const char**, uint32_t> cx::Window::get_inst_extension() const {
+std::pair<const char**, uint32_t> cx::Window::get_inst_extensions_kv() const {
   std::pair<const char**, uint32_t> result;
   result.first = ::glfwGetRequiredInstanceExtensions(&result.second);
   return result;
+}
+
+std::vector<const char*>&& cx::Window::get_inst_extensions() const {
+  uint32_t count = 0;
+  const char** extensions = ::glfwGetRequiredInstanceExtensions(&count);
+
+  return std::move(std::vector<const char*>(extensions, extensions + count));
 }
 
 std::pair<vk::SurfaceKHR, vk::Result> cx::Window::create_surface(

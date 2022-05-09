@@ -3,12 +3,15 @@
 #include <cx/common/common.h>
 #include <cx/common/internal.h>
 #include <cx/common/noncopyable.h>
+#include <cx/engine/engine.h>
 
 #include <string>
 
 namespace cx {
 
 class App : public Noncopyable {
+  friend Engine;
+
  public:
   struct Arguments {
     int argc;
@@ -16,8 +19,13 @@ class App : public Noncopyable {
   };
 
   explicit App(const std::string name, const Arguments& arg,
-               const Version& version = {1, 0, 0});
-  virtual ~App();
+               const Version& version = {1, 0, 0})
+      : m_name(std::move(name)),
+        m_version(version),
+        m_arguments(arg),
+        m_running(false) {}
+
+  virtual ~App() {}
 
   virtual CX_API void run() = 0;
   virtual CX_API void update() = 0;
@@ -32,9 +40,14 @@ class App : public Noncopyable {
 
   const Arguments& arguments() const { return m_arguments; }
 
+  bool is_running() const { return m_running; }
+  void stop() { m_running = false; }
+
  protected:
   std::string m_name;
   Version m_version;
   Arguments m_arguments;
+
+  bool m_running;
 };
 }  // namespace cx

@@ -17,7 +17,7 @@
 #include <iostream>
 #include <type_traits>
 
-#include "internal.h"
+#include "common.h"
 
 namespace cx {
 
@@ -40,116 +40,116 @@ class Flags {
    * @brief 重定义类型
    */
   using enum_type = typename std::decay<E>::type;
-  using underlying_type = typename std::underlying_type<E>::type;
-  using impl_type = typename std::make_unsigned<underlying_type>::type;
+  using under_type = typename std::underlying_type<E>::type;
+
+  // constructors
+  CX_CONSTEXPR Flags() CX_NOEXCEPT : m_value(0) {}
+
+  CX_CONSTEXPR
+  Flags(const enum_type &bit) CX_NOEXCEPT
+      : m_value(static_cast<under_type>(bit)) {}
+
+  CX_CONSTEXPR Flags(const Flags<enum_type> &rhs) CX_NOEXCEPT = default;
+
+  CX_CONSTEXPR explicit Flags(under_type flags) CX_NOEXCEPT : m_value(flags) {}
 
  public:
-  /**
-   * @brief 无参构造
-   */
-  Flags() RCO_NOEXCEPT { reset(); }
-
-  Flags(const Flags &flag) RCO_NOEXCEPT = default;
-  Flags(Flags &&flag) RCO_NOEXCEPT = default;
-
-  Flags &operator=(const Flags &flag) RCO_NOEXCEPT = default;
-  Flags &operator=(Flags &&flag) RCO_NOEXCEPT = default;
-
-  /**
-   * @brief 接受枚举类型的构造函数
-   *
-   * @param[in] e 枚举类型
-   *
-   */
-  RCO_CONSTEXPR Flags(enum_type e) RCO_NOEXCEPT
-      : value(static_cast<impl_type>(e)) {}
-
-  Flags &operator=(enum_type e) RCO_NOEXCEPT {
-    value = static_cast<impl_type>(e);
+  Flags &operator=(const enum_type &e) CX_NOEXCEPT {
+    m_value = static_cast<under_type>(e);
     return *this;
   }
 
-  RCO_CONSTEXPR explicit operator bool() const RCO_NOEXCEPT {
-    return value != 0;
+  CX_CONSTEXPR operator bool() const CX_NOEXCEPT { return m_value != 0; }
+
+  CX_CONSTEXPR bool operator!() const CX_NOEXCEPT { return !m_value; }
+
+  friend CX_CONSTEXPR bool operator==(const Flags<enum_type> &fl1,
+                                      const Flags<enum_type> &fl2) {
+    return fl1.m_value == fl2.m_value;
   }
 
-  RCO_CONSTEXPR bool operator!() const RCO_NOEXCEPT { return !value; }
-
-  friend RCO_CONSTEXPR bool operator==(Flags fl1, Flags fl2) {
-    return fl1.value == fl2.value;
+  friend CX_CONSTEXPR bool operator!=(const Flags<enum_type> &fl1,
+                                      const Flags<enum_type> &fl2) {
+    return fl1.m_value != fl2.m_value;
   }
 
-  friend RCO_CONSTEXPR bool operator!=(Flags fl1, Flags fl2) {
-    return fl1.vaule != fl2.value;
+  CX_CONSTEXPR Flags<enum_type> operator~() const CX_NOEXCEPT {
+    return Flags<enum_type>(~m_value);
   }
 
-  RCO_CONSTEXPR Flags operator~() const RCO_NOEXCEPT { return Flags(~value); }
-
-  Flags &operator|=(const Flags &fl) RCO_NOEXCEPT {
-    value |= fl.value;
+  CX_CONSTEXPR Flags<enum_type> operator|=(const Flags<enum_type> &fl)
+      CX_NOEXCEPT {
+    m_value |= fl.m_value;
     return *this;
   }
 
-  Flags &operator&=(const Flags &fl) RCO_NOEXCEPT {
-    value &= fl.value;
+  CX_CONSTEXPR Flags<enum_type> operator&=(const Flags<enum_type> &fl)
+      CX_NOEXCEPT {
+    m_value &= fl.m_value;
     return *this;
   }
 
-  Flags &operator^=(const Flags &fl) RCO_NOEXCEPT {
-    value ^= fl.value;
+  CX_CONSTEXPR Flags<enum_type> operator^=(const Flags<enum_type> &fl)
+      CX_NOEXCEPT {
+    m_value ^= fl.m_value;
     return *this;
   }
 
-  Flags &operator|=(enum_type e) RCO_NOEXCEPT {
-    value |= static_cast<impl_type>(e);
-    return *this;
+  // CX_CONSTEXPR Flags<enum_type> operator|=(enum_type e) CX_NOEXCEPT {
+  //   m_value |= static_cast<under_type>(e);
+  //   return *this;
+  // }
+
+  // CX_CONSTEXPR Flags<enum_type> operator&=(enum_type e) CX_NOEXCEPT {
+  //   m_value &= static_cast<under_type>(e);
+  //   return *this;
+  // }
+
+  // CX_CONSTEXPR Flags<enum_type> operator^=(enum_type e) CX_NOEXCEPT {
+  //   m_value ^= static_cast<under_type>(e);
+  //   return *this;
+  // }
+
+  CX_CONSTEXPR Flags<enum_type> operator|(const Flags<enum_type> &f) const
+      CX_NOEXCEPT {
+    return Flags<enum_type>{static_cast<enum_type>(m_value | f.m_value)};
   }
 
-  Flags &operator&=(enum_type e) RCO_NOEXCEPT {
-    value &= static_cast<impl_type>(e);
-    return *this;
+  CX_CONSTEXPR Flags<enum_type> operator&(const Flags<enum_type> &f) const
+      CX_NOEXCEPT {
+    return Flags{static_cast<enum_type>(m_value & f.m_value)};
   }
 
-  Flags &operator^=(enum_type e) RCO_NOEXCEPT {
-    value ^= static_cast<impl_type>(e);
-    return *this;
+  CX_CONSTEXPR Flags<enum_type> operator^(const Flags<enum_type> &f) const
+      CX_NOEXCEPT {
+    return Flags<enum_type>{static_cast<enum_type>(m_value ^ f.m_value)};
   }
 
-  RCO_CONSTEXPR Flags operator|(Flags f) RCO_NOEXCEPT {
-    return Flags{static_cast<enum_type>(value | f.value)};
+  void swap(Flags<enum_type> &fl) CX_NOEXCEPT {
+    std::swap(m_value, fl.m_value);
   }
 
-  RCO_CONSTEXPR Flags operator&(Flags f) RCO_NOEXCEPT {
-    return Flags{static_cast<enum_type>(value & f.value)};
+  CX_CONSTEXPR under_type underlying_value() const CX_NOEXCEPT {
+    return static_cast<under_type>(m_value);
   }
 
-  RCO_CONSTEXPR Flags operator^(Flags f) RCO_NOEXCEPT {
-    return Flags{static_cast<enum_type>(value ^ f.value)};
+  CX_INLINE CX_CONSTEXPR CX_STATIC std::size_t bit_size() {
+    return sizeof(under_type) * 8;
   }
 
-  void swap(Flags &fl) RCO_NOEXCEPT { std::swap(value, fl.value); }
-
-  RCO_CONSTEXPR underlying_type underlying_value() const RCO_NOEXCEPT {
-    return static_cast<underlying_type>(value);
-  }
-
-  RCO_INLINE RCO_CONSTEXPR RCO_STATIC std::size_t bit_size() {
-    return sizeof(impl_type) * 8;
-  }
-
-  RCO_CONSTEXPR explicit operator std::bitset<Flags<E>::bit_size()>() const
-      RCO_NOEXCEPT {
+  CX_CONSTEXPR explicit operator std::bitset<Flags<enum_type>::bit_size()>()
+      const CX_NOEXCEPT {
     return to_bitset();
   }
 
-  RCO_CONSTEXPR std::bitset<rco::Flags<E>::bit_size()> to_bitset() const
-      RCO_NOEXCEPT {
-    return {value};
+  CX_CONSTEXPR std::bitset<cx::Flags<enum_type>::bit_size()> to_bitset() const
+      CX_NOEXCEPT {
+    return {m_value};
   }
 
-  RCO_INLINE void reset() { value = 0; }
+  CX_INLINE void reset() { m_value = 0; }
 
  private:
-  impl_type value;
+  under_type m_value;
 };
 }  // namespace cx

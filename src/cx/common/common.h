@@ -12,6 +12,8 @@
 
 #include <cstdint>
 
+#include "internal.h"
+
 namespace cx {
 
 /**
@@ -22,6 +24,13 @@ struct Version {
   Version(uint8_t major, uint8_t minor, uint8_t patch)
       : major(major), minor(minor), patch(patch) {}
   uint8_t major, minor, patch;
+
+  CX_INLINE const uint32_t num() const {
+    return ((((uint32_t)(major)) << 22) | (((uint32_t)(minor)) << 12) |
+            ((uint32_t)(patch)));
+  }
 };
+
+CX_INLINE const uint32_t CX_CONSTEXPR BIT(int i) { return (1 << i); }
 
 }  // namespace cx

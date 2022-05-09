@@ -1,20 +1,49 @@
 #include "engine.h"
 
 #include <cx/common/internal.h>
-#include <cx/editor/window.h>
-#include <cx/utils/log/log.h>
+#include <cx/window/window.h>
 
 #include "application.h"
 
 static auto engine = CX_LOGGER("engine");
 
-cx::Engine::Engine() : m_app(nullptr), m_version{1, 0, 0}, m_running(true) {}
+cx::Engine::Engine() : m_app(nullptr), m_version{1, 0, 0}, m_running(true) {
+  // 记录已经创建的模块
+  std::vector<TypeID> created;
+  for (;;) {
+    bool postponed = false;
+    // 遍历注册管理器，获取全部已经注册过的模块信息
+    for (const auto &[moduleId, moduleVal] : Module::Registry()) {
+      // 如果已经创建则略过
+      if (std::find(created.begin(), created.end(), moduleId) != created.end())
+        continue;
+      bool this_postponed = false;
+      for (const auto &requireId : moduleVal.require) {
+        if (std::find(created.begin(), created.end(), requireId) ==
+            created.end()) {
+          this_postponed = true;
+          break;
+        }
+      }
+      if (this_postponed) {
+        postponed = true;
+        continue;
+      }
+      // 生成模块
+      auto &&module = moduleVal.generator();
+      m_modules.emplace_back(std::move(module));
+      // 记录已经生成的模块
+      created.emplace_back(moduleId);
+    }
+    if (!postponed) break;
+  }
+}
 
 cx::Engine::~Engine() {
   if (m_app) delete m_app;
 }
 
-void cx::Engine::load(App* app) {
+void cx::Engine::load(App *app) {
   if (m_app == app) return;
   if (m_app) {
     delete m_app;
@@ -30,12 +59,18 @@ void cx::Engine::load(App* app) {
 void cx::Engine::run() {
   while (m_running) {
     if (m_app) {
-      m_app->run();
-      m_app->update();
+      if (!m_app->m_running) {
+        m_app->run();
+        m_app->m_running = true;
+      }
 
-      // Window::Self()->update();
+      m_app->update();
     }
 
-    m_running = false;
+    Window::Get()->update();
   }
+
+  m_running = false;
 }
+
+void cx::Engine::stage_verdict(Module::Stage stage) {}

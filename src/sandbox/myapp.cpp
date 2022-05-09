@@ -1,19 +1,29 @@
 #include "myapp.h"
 
-#include <cx/utils/log/log.h>
+#include <cx/common/log/log.h>
+#include <cx/window/window.h>
+
+class Test {
+ public:
+};
+
+cx::App* CX_CreateApp(int argc, char** argv) { return new MyApp({argc, argv}); }
 
 auto core = CX_LOGGER("core");
 auto engine = CX_LOGGER("engine");
 
 int MyApp::counter = 1;
 
-void MyApp::run() {
-  { LOG_INFO(core) << "Application run:"; }
+MyApp::MyApp(const Arguments& args) : App("CX Engine", args, {1, 0, 0}) {
+  LOG_INFO(core) << "Application init";
+  initEngine();
+  initWindow();
 }
+
+void MyApp::run() { LOG_INFO(engine) << "App Run"; }
 
 void MyApp::update() {}
 
-cx::App* CX_CreateApp(int argc, char** argv) {
-  cx::Engine::Self()->set_version({1, 1, 1});
-  return new MyApp({argc, argv});
-}
+void MyApp::initWindow() {}
+
+void MyApp::initEngine() { cx::Engine::Self()->set_version({1, 1, 1}); }

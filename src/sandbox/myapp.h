@@ -2,10 +2,14 @@
 
 class MyApp : public cx::App {
  public:
-  MyApp(const Arguments& args) : cx::App("CX Engine", args, {1, 0, 0}) {}
+  MyApp(const Arguments& args);
 
   void run() override;
   void update() override;
+
+ private:
+  void initWindow();
+  void initEngine();
 
  private:
   static int counter;

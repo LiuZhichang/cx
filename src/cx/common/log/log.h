@@ -8,6 +8,7 @@
 #ifndef log_hpp
 #define log_hpp
 
+#include <cx/common/internal.h>
 #include <cx/common/singleton.h>
 #include <cx/utils/sync/spink_lock.h>
 
@@ -557,7 +558,7 @@ class LogWrap {
 /**
  * @brief 日志管理器
  */
-class LoggerManager {
+class LoggerManager : public SingletonPtr<LoggerManager> {
  public:
   typedef SpinkLock lock_t;
   typedef std::lock_guard<lock_t> lock_guard;
@@ -569,13 +570,6 @@ class LoggerManager {
     m_root.reset(new Logger);
     m_root->addAppender(StdOutLogAppender::Create());
     m_loggers[m_root->getName()] = m_root;
-
-    auto core = getLogger("core");
-    auto engine = getLogger("engine");
-
-    std::string target_log = CheckLogDir();
-    core->addAppender(FileLogAppender::Create(target_log.c_str()));
-    engine->addAppender(StdOutLogAppender::Create());
   }
 
   /**
@@ -602,6 +596,21 @@ class LoggerManager {
   Logger::ptr getRoot() const { return m_root; }
 
   static void SetLogDir(const std::string& dir) { m_log_dir = dir; }
+
+  static void EnableEngineLogger() {
+    auto core = Self()->getLogger("core");
+    auto engine = Self()->getLogger("engine");
+
+    std::string target_log = CheckLogDir();
+
+#if defined(CX_DEBUG_MODE)
+    std::cout << "[Prompt]\t[LOG]\tINFO: log file save to " << target_log
+              << std::endl;
+#endif
+
+    core->addAppender(FileLogAppender::Create(target_log.c_str()));
+    engine->addAppender(StdOutLogAppender::Create());
+  }
 
  private:
   static std::string CheckLogDir() {
@@ -634,7 +643,7 @@ class LoggerManager {
   static std::string m_log_dir;
 };
 
-typedef SingletonPtr<LoggerManager> LogManager;
+typedef LoggerManager LogManager;
 
 }  // namespace cx
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cx/common/common.h>
+#include <cx/common/module.h>
 #include <cx/common/noncopyable.h>
 #include <cx/common/singleton.h>
 
@@ -25,10 +26,13 @@ class Engine : public Noncopyable, public Singleton<Engine> {
  private:
   Engine();
 
+  void stage_verdict(Module::Stage stage);
+
  private:
   App* m_app;
   Version m_version;
 
+  std::vector<std::unique_ptr<Module>> m_modules;
   bool m_running;
 };
 

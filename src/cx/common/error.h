@@ -2,7 +2,12 @@
 
 namespace cx {
 
-enum class Error { eGLFWInitFailed, eNoSupportVulkan, eWindowCreateFailed };
+enum class Error {
+  eGLFWInitFailed,
+  eNoSupportVulkan,
+  eWindowCreateFailed,
+  eNoSupportExtension
+};
 
 const char* strerror(Error error) {
   switch (error) {
@@ -12,6 +17,8 @@ const char* strerror(Error error) {
       return "current env not support vulkan!";
     case Error::eWindowCreateFailed:
       return "window create failed!";
+    case Error::eNoSupportExtension:
+      return "engine exsist extension not supported!";
     default:
       return "unknown error";
       break;

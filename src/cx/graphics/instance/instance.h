@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cx/common/common.h>
+
 #include <vector>
 #include <vulkan/vulkan.hpp>
 

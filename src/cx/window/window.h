@@ -10,8 +10,10 @@
  */
 #pragma once
 
+#include <cx/common/common.h>
+#include <cx/common/flags.h>
+#include <cx/common/internal.h>
 #include <cx/common/module.h>
-#include <cx/common/singleton.h>
 #include <cx/maths/vector2.h>
 
 #include <cstdint>
@@ -25,27 +27,39 @@ namespace cx {
  * @brief 窗口类，引擎的编辑界面, 这里继承单例只是为了使用Self函数
  *
  */
-class Window : public Module, public Singleton<Window> {
+class Window : public Module::Registrar<Window> {
+  CX_INLINE CX_STATIC const bool Rgistered = Register(Stage::ePre);
+
  public:
+  /**
+   * @brief 窗口状态
+   *
+   */
+  enum class Status : uint32_t {
+    eFullScreen = BIT(0),  // 尺寸是否充满屏幕
+    eResizeable = BIT(1),  // 窗口是否可以更改大小
+    eFocused = BIT(2),     // 是否可以获取焦点
+    eClosed = BIT(3),      // 窗口是否关闭
+    eAll = eFullScreen | eResizeable | eFocused
+  };
+  typedef Flags<Status> StatusFlags;
+
+  /**
+   * @brief 窗口属性
+   *
+   */
   struct Attribute {
-    char* title;
+    std::string title;
     Vector2ui size;
     Vector2ui pos;
-    bool fullscreen;
-    bool resizeable;
-    bool focused;
+    StatusFlags status;
 
     Attribute()
-        : title("window"),
-          size(0),
-          pos(0),
-          fullscreen(false),
-          resizeable(false),
-          focused(false) {}
+        : title("window"), size(800, 600), pos(0), status(Status::eAll) {}
     Attribute(const Attribute& oth) { *this = oth; }
 
     Attribute& operator=(const Attribute& oth) {
-      ::strcpy(title, oth.title);
+      title = oth.title;
       size = oth.size;
       pos = oth.pos;
 
@@ -57,12 +71,12 @@ class Window : public Module, public Singleton<Window> {
   Window(const Attribute& attribute);
   ~Window();
 
-  void set_attribute(const Attribute& attribute) { m_attribute = attribute; }
+  void set_attribute(Attribute attribute) { m_attribute = attribute; }
   const Attribute& attribute() const { return m_attribute; }
 
-  const char* title() const { return m_attribute.title; }
-  void set_title(const char* title) { ::strcpy(m_attribute.title, title); }
-  void set_title(const std::string& title) { set_title(title.c_str()); }
+  const std::string& title() const { return m_attribute.title; }
+
+  void set_title(const std::string& title);
 
   uint32_t width() const { return m_attribute.size.w; }
   void set_width(uint32_t width) { m_attribute.size.w = width; }
@@ -83,6 +97,19 @@ class Window : public Module, public Singleton<Window> {
   const void set_position(uint32_t x, uint32_t y);
   const void set_position(const Vector2ui& pos);
 
+  bool fullscreen() const {
+    return (m_attribute.status & Status::eFullScreen);
+  };
+
+  bool resizeable() const { return (m_attribute.status & Status::eResizeable); }
+
+  bool closed() const { return (m_attribute.status & Status::eClosed); }
+
+  void close() {
+    if (closed()) return;
+    m_attribute.status |= Status::eClosed;
+  }
+
   void update() override;
 
   float aspect_ratio() const {
@@ -90,7 +117,8 @@ class Window : public Module, public Singleton<Window> {
            static_cast<float>(m_attribute.size.h);
   }
 
-  std::pair<const char**, uint32_t> get_inst_extension() const;
+  std::pair<const char**, uint32_t> get_inst_extensions_kv() const;
+  std::vector<const char*>&& get_inst_extensions() const;
 
   std::pair<vk::SurfaceKHR, vk::Result> create_surface(
       const vk::Instance& inst,
