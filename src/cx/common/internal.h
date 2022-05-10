@@ -39,3 +39,4 @@
 #define CX_STATIC static
 #define CX_NOEXCEPT noexcept
 #define CX_CONSTEXPR constexpr
+#define CX_ENTRY_POINT

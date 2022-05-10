@@ -1,9 +1,9 @@
 #include "instance.h"
 
 #include <cx/common/internal.h>
-#include <cx/window/window.h>
 #include <cx/engine/application.h>
 #include <cx/engine/engine.h>
+#include <cx/window/window.h>
 
 cx::GInstance::GInstance() {
   auto extensions = std::move(Window::Get()->get_inst_extensions());

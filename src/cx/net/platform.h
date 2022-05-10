@@ -1,5 +1,14 @@
+/**
+ * @file platform.h
+ * @author liuzhichang (lzc3318619633@163.com)
+ * @brief 解决平台差异性
+ * @version 0.1
+ * @date 2022-05-10
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 #pragma once
-
 
 #if defined(CX_PLATFORM_WINDOWS)
 

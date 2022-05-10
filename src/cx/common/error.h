@@ -1,7 +1,21 @@
+/**
+ * @file error.h
+ * @author liuzhichang (lzc3318619633@163.com)
+ * @brief 引擎内部错误码
+ * @version 0.1
+ * @date 2022-05-10
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 #pragma once
 
 namespace cx {
 
+/**
+ * @brief 错误码定义
+ *
+ */
 enum class Error {
   eGLFWInitFailed,
   eNoSupportVulkan,
@@ -9,6 +23,12 @@ enum class Error {
   eNoSupportExtension
 };
 
+/**
+ * @brief 将对应的错误码转为具体释义
+ *
+ * @param error 错误码
+ * @return const char* 具体释义
+ */
 const char* strerror(Error error) {
   switch (error) {
     case Error::eGLFWInitFailed:

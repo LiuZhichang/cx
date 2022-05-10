@@ -1,3 +1,14 @@
+/**
+ * @file application.h
+ * @author liuzhichang (lzc3318619633@163.com)
+ * @brief 应用程序类，用于自定义app
+ * @version 0.1
+ * @date 2022-05-10
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
 #pragma once
 
 #include <cx/common/common.h>

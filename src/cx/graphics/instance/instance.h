@@ -1,3 +1,13 @@
+/**
+ * @file instance.h
+ * @author liuzhichang (lzc3318619633@163.com)
+ * @brief vulkan实例类
+ * @version 0.1
+ * @date 2022-05-10
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 #pragma once
 
 #include <cx/common/common.h>
@@ -22,7 +32,7 @@ class GInstance {
 
   ~GInstance();
 
-  const vk::Instance& get() const { return m_instance; }
+  const vk::Instance& handle() const { return m_instance; }
 
   bool isEnableValidations() const;
 

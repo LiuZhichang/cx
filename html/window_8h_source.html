@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: src/cx/window/window.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_2606237343c0a9efb8ef90c8768719c0.html">cx</a></li><li class="navelem"><a class="el" href="dir_08223b801f18ae73ec8db749df99837c.html">window</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">window.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="window_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="common_8h.html">cx/common/common.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="flags_8h.html">cx/common/flags.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="internal_8h.html">cx/common/internal.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="module_8h.html">cx/common/module.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="vector2_8h.html">cx/maths/vector2.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;vulkan/vulkan.hpp&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">struct </span>GLFWwindow;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span>cx {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_window.html">Window</a> : <span class="keyword">public</span> Module::Registrar&lt;Window&gt; {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  CX_INLINE CX_STATIC <span class="keyword">const</span> <span class="keywordtype">bool</span> Rgistered = Register(Stage::ePre);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a2bfb84762ae707c074096634092f3e07">   38</a></span>  <span class="keyword">enum class</span> <a class="code hl_enumeration" href="classcx_1_1_window.html#a2bfb84762ae707c074096634092f3e07">Status</a> : uint32_t {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    eFullScreen = BIT(0),  <span class="comment">// 尺寸是否充满屏幕</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    eResizeable = BIT(1),  <span class="comment">// 窗口是否可以更改大小</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    eFocused = BIT(2),     <span class="comment">// 是否可以获取焦点</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    eClosed = BIT(3),      <span class="comment">// 窗口是否关闭</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    eAll = eFullScreen | eResizeable | eFocused</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  };</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="classcx_1_1_flags.html">Flags&lt;Status&gt;</a> StatusFlags;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structcx_1_1_window_1_1_attribute.html">   51</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a> {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::string title;   <span class="comment">// 窗口标题</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_class" href="classcx_1_1_vector2.html">Vector2ui</a> size;      <span class="comment">// 窗口大小</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classcx_1_1_vector2.html">Vector2ui</a> pos;       <span class="comment">// 窗口位置</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_class" href="classcx_1_1_flags.html">StatusFlags</a> status;  <span class="comment">// 窗口状态</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a>()</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        : title(<span class="stringliteral">&quot;window&quot;</span>), size(800, 600), pos(0), status(Status::eAll) {}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a>&amp; oth) { *<span class="keyword">this</span> = oth; }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a>&amp; oth) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      title = oth.title;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      size = oth.size;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      pos = oth.pos;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  };</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <a class="code hl_class" href="classcx_1_1_window.html">Window</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <a class="code hl_class" href="classcx_1_1_window.html">Window</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a>&amp; <a class="code hl_function" href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">attribute</a>);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <a class="code hl_class" href="classcx_1_1_window.html">~Window</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#a8b32720dcfb97dec19d354a8cd7327c3">set_attribute</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a>&amp; <a class="code hl_function" href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">attribute</a>);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">   86</a></span>  <span class="keyword">const</span> <a class="code hl_struct" href="structcx_1_1_window_1_1_attribute.html">Attribute</a>&amp; <a class="code hl_function" href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">attribute</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_attribute; }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a18299c05d05622e1ebf050fc0e5171da">   93</a></span>  <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classcx_1_1_window.html#a18299c05d05622e1ebf050fc0e5171da">title</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_attribute.title; }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#af53d4a228959c4c34a9d8fd7ddcbd743">set_title</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classcx_1_1_window.html#a18299c05d05622e1ebf050fc0e5171da">title</a>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">  107</a></span>  uint32_t <a class="code hl_function" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">width</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_attribute.size.w; }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a8df43f3a832e712746440c0ed4090879">  114</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#a8df43f3a832e712746440c0ed4090879">set_width</a>(uint32_t <a class="code hl_function" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">width</a>) { m_attribute.size.w = <a class="code hl_function" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">width</a>; }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">  121</a></span>  uint32_t <a class="code hl_function" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">height</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_attribute.size.h; }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a4df9cd7ddcdc719dfdf585deb25102a7">  128</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#a4df9cd7ddcdc719dfdf585deb25102a7">set_height</a>(uint32_t <a class="code hl_function" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">height</a>) { m_attribute.size.h = <a class="code hl_function" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">height</a>; }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#aa6e00ee86063731205ef54c0c1b94e6c">  135</a></span>  <span class="keyword">const</span> <a class="code hl_class" href="classcx_1_1_vector2.html">Vector2ui</a>&amp; <a class="code hl_function" href="classcx_1_1_window.html#aa6e00ee86063731205ef54c0c1b94e6c">desktop_size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_desktop_size; }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29">  142</a></span>  <span class="keyword">const</span> <a class="code hl_class" href="classcx_1_1_vector2.html">Vector2ui</a>&amp; <a class="code hl_function" href="classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_attribute.size; }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a5033101d20c418968cd9b84e09af4bf6">  150</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#a5033101d20c418968cd9b84e09af4bf6">resize</a>(uint32_t <a class="code hl_function" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">width</a>, uint32_t <a class="code hl_function" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">height</a>) {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    m_attribute.size.w = <a class="code hl_function" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">width</a>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    m_attribute.size.y = <a class="code hl_function" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">height</a>;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  }</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#a5033101d20c418968cd9b84e09af4bf6">resize</a>(<span class="keyword">const</span> <a class="code hl_class" href="classcx_1_1_vector2.html">Vector2ui</a>&amp; <a class="code hl_function" href="classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29">size</a>);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a5fa82f42d58cdc183d9c5a61c8e92555">  167</a></span>  <span class="keyword">const</span> <a class="code hl_class" href="classcx_1_1_vector2.html">Vector2ui</a>&amp; <a class="code hl_function" href="classcx_1_1_window.html#a5fa82f42d58cdc183d9c5a61c8e92555">position</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_attribute.pos; }</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#a9f62a9bc735e60629d55b67ff56d6341">set_position</a>(uint32_t x, uint32_t y);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#a9f62a9bc735e60629d55b67ff56d6341">set_position</a>(<span class="keyword">const</span> <a class="code hl_class" href="classcx_1_1_vector2.html">Vector2ui</a>&amp; pos);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a818e7739af7f725e2ade9524c73e726c">  190</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classcx_1_1_window.html#a818e7739af7f725e2ade9524c73e726c">fullscreen</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">return</span> (m_attribute.status &amp; Status::eFullScreen);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  };</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#afe987754e6b72dfa20c60cd35aea950c">  200</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classcx_1_1_window.html#afe987754e6b72dfa20c60cd35aea950c">resizeable</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (m_attribute.status &amp; Status::eResizeable); }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">  208</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classcx_1_1_window.html#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">closed</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (m_attribute.status &amp; Status::eClosed); }</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#a998807d6657a1a0b8c3467bc5091ffdd">  214</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#a998807d6657a1a0b8c3467bc5091ffdd">close</a>() {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classcx_1_1_window.html#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">closed</a>()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    m_attribute.status |= Status::eClosed;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#ac3385fe8a9851231024641c34a11c4f7">update</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classcx_1_1_window.html#acaf4685d49fc68b67c709890688174a4">  230</a></span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classcx_1_1_window.html#acaf4685d49fc68b67c709890688174a4">aspect_ratio</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(m_attribute.size.w) /</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>           <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(m_attribute.size.h);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  std::pair&lt;const char**, uint32_t&gt; <a class="code hl_function" href="classcx_1_1_window.html#afd692c0d955d1c3ae82f155930b7ebb5">get_inst_extensions_kv</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  std::vector&lt;const char*&gt;&amp;&amp; <a class="code hl_function" href="classcx_1_1_window.html#adde1c8ac5da3faa39becfe1fed35f505">get_inst_extensions</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  std::pair&lt;vk::SurfaceKHR, vk::Result&gt; <a class="code hl_function" href="classcx_1_1_window.html#a645deeb9b078b2b5e671af489d044efb">create_surface</a>(</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>      <span class="keyword">const</span> vk::Instance&amp; inst,</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      <span class="keyword">const</span> vk::AllocationCallbacks* allocator = <span class="keyword">nullptr</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  vk::Result <a class="code hl_function" href="classcx_1_1_window.html#a645deeb9b078b2b5e671af489d044efb">create_surface</a>(</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      <span class="keyword">const</span> vk::Instance&amp; inst, vk::SurfaceKHR&amp; surface,</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      <span class="keyword">const</span> vk::AllocationCallbacks* allocator = <span class="keyword">nullptr</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_window.html#aba901bb0434ad74b24ecfc25dd273b5a">check_error</a>(uint32_t result);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  <span class="keywordtype">void</span> init_Window();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  <span class="keywordtype">void</span> update_window();</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  <span class="keywordtype">void</span> register_callback();</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* result_tostring(uint32_t result);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  GLFWwindow* m_whandle;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  Attribute m_attribute;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  <a class="code hl_class" href="classcx_1_1_vector2.html">Vector2ui</a> m_desktop_size;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>};</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>}  <span class="comment">// namespace cx</span></div>
+<div class="ttc" id="aclasscx_1_1_flags_html"><div class="ttname"><a href="classcx_1_1_flags.html">cx::Flags&lt; Status &gt;</a></div></div>
+<div class="ttc" id="aclasscx_1_1_vector2_html"><div class="ttname"><a href="classcx_1_1_vector2.html">cx::Vector2&lt; uint32_t &gt;</a></div></div>
+<div class="ttc" id="aclasscx_1_1_window_html"><div class="ttname"><a href="classcx_1_1_window.html">cx::Window</a></div><div class="ttdoc">窗口类，引擎的主界面</div><div class="ttdef"><b>Definition:</b> window.h:30</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a04623158d8192c12562cb39637eb7e7c"><div class="ttname"><a href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">cx::Window::width</a></div><div class="ttdeci">uint32_t width() const</div><div class="ttdoc">获取窗口宽度</div><div class="ttdef"><b>Definition:</b> window.h:107</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a18299c05d05622e1ebf050fc0e5171da"><div class="ttname"><a href="classcx_1_1_window.html#a18299c05d05622e1ebf050fc0e5171da">cx::Window::title</a></div><div class="ttdeci">const std::string &amp; title() const</div><div class="ttdoc">获取窗口标题</div><div class="ttdef"><b>Definition:</b> window.h:93</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a2bfb84762ae707c074096634092f3e07"><div class="ttname"><a href="classcx_1_1_window.html#a2bfb84762ae707c074096634092f3e07">cx::Window::Status</a></div><div class="ttdeci">Status</div><div class="ttdoc">窗口状态</div><div class="ttdef"><b>Definition:</b> window.h:38</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a4df9cd7ddcdc719dfdf585deb25102a7"><div class="ttname"><a href="classcx_1_1_window.html#a4df9cd7ddcdc719dfdf585deb25102a7">cx::Window::set_height</a></div><div class="ttdeci">void set_height(uint32_t height)</div><div class="ttdoc">设置窗口高度</div><div class="ttdef"><b>Definition:</b> window.h:128</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a5033101d20c418968cd9b84e09af4bf6"><div class="ttname"><a href="classcx_1_1_window.html#a5033101d20c418968cd9b84e09af4bf6">cx::Window::resize</a></div><div class="ttdeci">void resize(uint32_t width, uint32_t height)</div><div class="ttdoc">重设窗口大小</div><div class="ttdef"><b>Definition:</b> window.h:150</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a581841dbb1870198c77eb064b0892dc5"><div class="ttname"><a href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">cx::Window::attribute</a></div><div class="ttdeci">const Attribute &amp; attribute() const</div><div class="ttdoc">获取窗口属性</div><div class="ttdef"><b>Definition:</b> window.h:86</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a5fa82f42d58cdc183d9c5a61c8e92555"><div class="ttname"><a href="classcx_1_1_window.html#a5fa82f42d58cdc183d9c5a61c8e92555">cx::Window::position</a></div><div class="ttdeci">const Vector2ui &amp; position() const</div><div class="ttdoc">获取窗口位置</div><div class="ttdef"><b>Definition:</b> window.h:167</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a645deeb9b078b2b5e671af489d044efb"><div class="ttname"><a href="classcx_1_1_window.html#a645deeb9b078b2b5e671af489d044efb">cx::Window::create_surface</a></div><div class="ttdeci">std::pair&lt; vk::SurfaceKHR, vk::Result &gt; create_surface(const vk::Instance &amp;inst, const vk::AllocationCallbacks *allocator=nullptr) const</div><div class="ttdoc">创建surface，用于呈现图像</div><div class="ttdef"><b>Definition:</b> window.cpp:129</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a818e7739af7f725e2ade9524c73e726c"><div class="ttname"><a href="classcx_1_1_window.html#a818e7739af7f725e2ade9524c73e726c">cx::Window::fullscreen</a></div><div class="ttdeci">bool fullscreen() const</div><div class="ttdoc">窗口是否充满屏幕</div><div class="ttdef"><b>Definition:</b> window.h:190</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a8b32720dcfb97dec19d354a8cd7327c3"><div class="ttname"><a href="classcx_1_1_window.html#a8b32720dcfb97dec19d354a8cd7327c3">cx::Window::set_attribute</a></div><div class="ttdeci">void set_attribute(const Attribute &amp;attribute)</div><div class="ttdoc">设置窗口属性</div><div class="ttdef"><b>Definition:</b> window.cpp:74</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a8c2a9e97728ec186a5a5caf7e792f1ea"><div class="ttname"><a href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">cx::Window::height</a></div><div class="ttdeci">uint32_t height() const</div><div class="ttdoc">获取窗口高度</div><div class="ttdef"><b>Definition:</b> window.h:121</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a8c6128e072dd1ee9a62d66815f952c29"><div class="ttname"><a href="classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29">cx::Window::size</a></div><div class="ttdeci">const Vector2ui &amp; size() const</div><div class="ttdoc">获取窗口大小</div><div class="ttdef"><b>Definition:</b> window.h:142</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a8df43f3a832e712746440c0ed4090879"><div class="ttname"><a href="classcx_1_1_window.html#a8df43f3a832e712746440c0ed4090879">cx::Window::set_width</a></div><div class="ttdeci">void set_width(uint32_t width)</div><div class="ttdoc">设置窗口宽度</div><div class="ttdef"><b>Definition:</b> window.h:114</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a998807d6657a1a0b8c3467bc5091ffdd"><div class="ttname"><a href="classcx_1_1_window.html#a998807d6657a1a0b8c3467bc5091ffdd">cx::Window::close</a></div><div class="ttdeci">void close()</div><div class="ttdoc">关闭窗口，并不会释放窗口所占用的资源</div><div class="ttdef"><b>Definition:</b> window.h:214</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_a9f62a9bc735e60629d55b67ff56d6341"><div class="ttname"><a href="classcx_1_1_window.html#a9f62a9bc735e60629d55b67ff56d6341">cx::Window::set_position</a></div><div class="ttdeci">const void set_position(uint32_t x, uint32_t y)</div><div class="ttdoc">设置窗口位置</div><div class="ttdef"><b>Definition:</b> window.cpp:98</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_aa6e00ee86063731205ef54c0c1b94e6c"><div class="ttname"><a href="classcx_1_1_window.html#aa6e00ee86063731205ef54c0c1b94e6c">cx::Window::desktop_size</a></div><div class="ttdeci">const Vector2ui &amp; desktop_size() const</div><div class="ttdoc">获取桌面大小</div><div class="ttdef"><b>Definition:</b> window.h:135</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_ab9dc89b8a4b8aa8b04cb35c9de48d0b5"><div class="ttname"><a href="classcx_1_1_window.html#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">cx::Window::closed</a></div><div class="ttdeci">bool closed() const</div><div class="ttdoc">窗口是否已经关闭</div><div class="ttdef"><b>Definition:</b> window.h:208</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_aba901bb0434ad74b24ecfc25dd273b5a"><div class="ttname"><a href="classcx_1_1_window.html#aba901bb0434ad74b24ecfc25dd273b5a">cx::Window::check_error</a></div><div class="ttdeci">static void check_error(uint32_t result)</div><div class="ttdoc">检查错误</div><div class="ttdef"><b>Definition:</b> window.cpp:180</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_ac3385fe8a9851231024641c34a11c4f7"><div class="ttname"><a href="classcx_1_1_window.html#ac3385fe8a9851231024641c34a11c4f7">cx::Window::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">更新函数，更新窗口状态</div><div class="ttdef"><b>Definition:</b> window.cpp:83</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_acaf4685d49fc68b67c709890688174a4"><div class="ttname"><a href="classcx_1_1_window.html#acaf4685d49fc68b67c709890688174a4">cx::Window::aspect_ratio</a></div><div class="ttdeci">float aspect_ratio() const</div><div class="ttdoc">窗口的宽高比</div><div class="ttdef"><b>Definition:</b> window.h:230</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_adde1c8ac5da3faa39becfe1fed35f505"><div class="ttname"><a href="classcx_1_1_window.html#adde1c8ac5da3faa39becfe1fed35f505">cx::Window::get_inst_extensions</a></div><div class="ttdeci">std::vector&lt; const char * &gt; &amp;&amp; get_inst_extensions() const</div><div class="ttdoc">获取vulkan实例所需的扩展</div><div class="ttdef"><b>Definition:</b> window.cpp:122</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_af53d4a228959c4c34a9d8fd7ddcbd743"><div class="ttname"><a href="classcx_1_1_window.html#af53d4a228959c4c34a9d8fd7ddcbd743">cx::Window::set_title</a></div><div class="ttdeci">void set_title(const std::string &amp;title)</div><div class="ttdoc">设置窗口标题</div><div class="ttdef"><b>Definition:</b> window.cpp:78</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_afd692c0d955d1c3ae82f155930b7ebb5"><div class="ttname"><a href="classcx_1_1_window.html#afd692c0d955d1c3ae82f155930b7ebb5">cx::Window::get_inst_extensions_kv</a></div><div class="ttdeci">std::pair&lt; const char **, uint32_t &gt; get_inst_extensions_kv() const</div><div class="ttdoc">获取vulkan实例所需的扩展,以 k v 形式返回</div><div class="ttdef"><b>Definition:</b> window.cpp:116</div></div>
+<div class="ttc" id="aclasscx_1_1_window_html_afe987754e6b72dfa20c60cd35aea950c"><div class="ttname"><a href="classcx_1_1_window.html#afe987754e6b72dfa20c60cd35aea950c">cx::Window::resizeable</a></div><div class="ttdeci">bool resizeable() const</div><div class="ttdoc">窗口是否可以更改大小</div><div class="ttdef"><b>Definition:</b> window.h:200</div></div>
+<div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div><div class="ttdoc">定义通用结构</div></div>
+<div class="ttc" id="aflags_8h_html"><div class="ttname"><a href="flags_8h.html">flags.h</a></div><div class="ttdoc">通用标志类，配合enum class使用</div></div>
+<div class="ttc" id="ainternal_8h_html"><div class="ttname"><a href="internal_8h.html">internal.h</a></div><div class="ttdoc">引擎的宏定义</div></div>
+<div class="ttc" id="amodule_8h_html"><div class="ttname"><a href="module_8h.html">module.h</a></div><div class="ttdoc">模块的注册与管理</div></div>
+<div class="ttc" id="astructcx_1_1_window_1_1_attribute_html"><div class="ttname"><a href="structcx_1_1_window_1_1_attribute.html">cx::Window::Attribute</a></div><div class="ttdoc">窗口属性</div><div class="ttdef"><b>Definition:</b> window.h:51</div></div>
+<div class="ttc" id="avector2_8h_html"><div class="ttname"><a href="vector2_8h.html">vector2.h</a></div><div class="ttdoc">二维向量类</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+</small></address>
+</body>
+</html>

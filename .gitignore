@@ -8,4 +8,7 @@ build/
 #vscode cache
 .vscode/
 
+#doxygen file
+Doxyfile
+
 

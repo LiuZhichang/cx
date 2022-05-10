@@ -17,10 +17,12 @@ int MyApp::counter = 1;
 MyApp::MyApp(const Arguments& args) : App("CX Engine", args, {1, 0, 0}) {
   LOG_INFO(core) << "Application init";
   initEngine();
-  initWindow();
 }
 
-void MyApp::run() { LOG_INFO(engine) << "App Run"; }
+void MyApp::run() {
+  LOG_INFO(engine) << "App Run";
+  // initWindow();
+}
 
 void MyApp::update() {}
 

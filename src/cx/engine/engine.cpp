@@ -40,7 +40,11 @@ cx::Engine::Engine() : m_app(nullptr), m_version{1, 0, 0}, m_running(true) {
 }
 
 cx::Engine::~Engine() {
-  if (m_app) delete m_app;
+  if (m_app) {
+    delete m_app;
+    m_app = nullptr;
+  }
+  Module::Registry().clear();
 }
 
 void cx::Engine::load(App *app) {
@@ -57,20 +61,28 @@ void cx::Engine::load(App *app) {
 }
 
 void cx::Engine::run() {
+  Window *window = Window::Get();
   while (m_running) {
+    // 如果窗口关闭 则退出
+    if (window->closed()) {
+      stop();
+      continue;
+    }
+
     if (m_app) {
       if (!m_app->m_running) {
         m_app->run();
         m_app->m_running = true;
       }
-
       m_app->update();
     }
 
-    Window::Get()->update();
+    window->update();
   }
 
   m_running = false;
 }
+
+void cx::Engine::stop() { m_running = false; }
 
 void cx::Engine::stage_verdict(Module::Stage stage) {}

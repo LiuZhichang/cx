@@ -1,3 +1,13 @@
+/**
+ * @file vector2.h
+ * @author liuzhichang (lzc3318619633@163.com)
+ * @brief 二维向量类
+ * @version 0.1
+ * @date 2022-05-10
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 #pragma once
 
 #include <cx/common/internal.h>
@@ -9,6 +19,11 @@ namespace cx {
 template <typename T>
 class Vector3;
 
+/**
+ * @brief 二维向量类，用于数学计算
+ *
+ * @tparam T
+ */
 template <typename T>
 class Vector2 {
  public:

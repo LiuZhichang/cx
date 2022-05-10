@@ -15,41 +15,19 @@ std::string cx::LoggerManager::m_log_dir = "runtime_log";
 
 const std::string LogLevel::toString(Level level) {
   switch (level) {
-#define XX(lv)    \
-  case Level::lv: \
-    return #lv;   \
-    break;
-
-    XX(UNKNOWN);
-    XX(DEBUG);
-    XX(INFO);
-    XX(WARN);
-    XX(ERROR);
-    XX(FATAL);
-#undef XX
+    case LogLevel::Level::eInfo:
+      return "INFO";
+    case LogLevel::Level::eDebug:
+      return "DEBUG";
+    case LogLevel::Level::eWarn:
+      return "WARNING";
+    case LogLevel::Level::eError:
+      return "ERROR";
+    case LogLevel::Level::eFatal:
+      return "FATAL";
+    default:
+      return "UNKNOWN";
   }
-  return nullptr;
-}
-
-const LogLevel::Level LogLevel::fromString(const std::string& level) {
-#define XX(lv, str)             \
-  if (level == #str) {          \
-    return LogLevel::Level::lv; \
-  }
-
-  XX(DEBUG, debug);
-  XX(INFO, info);
-  XX(WARN, warn);
-  XX(ERROR, error);
-  XX(FATAL, fatal);
-
-  XX(DEBUG, DEBUG);
-  XX(INFO, INFO);
-  XX(WARN, WARN);
-  XX(ERROR, ERROR);
-  XX(FATAL, FATAL);
-#undef XX
-  return LogLevel::Level::UNKNOWN;
 }
 
 LogEvent::LogEvent(LogLevel::Level level, const char* file,
@@ -84,42 +62,42 @@ std::ostream& LogFormatter::format(std::ostream& ofs, LogEvent::ptr event) {
   return ofs;
 }
 
-class MessageFormatItem : implement LogFormatter::FormatItem {
+class MessageFormatItem : public LogFormatter::FormatItem {
  public:
   MessageFormatItem(const std::string&) {}
   void format(std::ostream& os, LogEvent::ptr event) override {
     os << event->getContent();
   }
 };
-class LineFormatItem : implement LogFormatter::FormatItem {
+class LineFormatItem : public LogFormatter::FormatItem {
  public:
   LineFormatItem(const std::string&) {}
   void format(std::ostream& os, LogEvent::ptr event) override {
     os << event->getLine();
   }
 };
-class LevelFormatItem : implement LogFormatter::FormatItem {
+class LevelFormatItem : public LogFormatter::FormatItem {
  public:
   LevelFormatItem(const std::string&) {}
   void format(std::ostream& os, LogEvent::ptr event) override {
     os << LogLevel::toString(event->getLevel());
   }
 };
-class ElapseFormatItem : implement LogFormatter::FormatItem {
+class ElapseFormatItem : public LogFormatter::FormatItem {
  public:
   ElapseFormatItem(const std::string&) {}
   void format(std::ostream& os, LogEvent::ptr event) override {
     os << event->getElapse();
   }
 };
-class NameFormatItem : implement LogFormatter::FormatItem {
+class NameFormatItem : public LogFormatter::FormatItem {
  public:
   NameFormatItem(const std::string&) {}
   void format(std::ostream& os, LogEvent::ptr event) override {
     os << event->getName();
   }
 };
-class ThreadIdFormatItem : implement LogFormatter::FormatItem {
+class ThreadIdFormatItem : public LogFormatter::FormatItem {
  public:
   ThreadIdFormatItem(const std::string&) {}
   void format(std::ostream& os, LogEvent::ptr event) override {
@@ -127,7 +105,7 @@ class ThreadIdFormatItem : implement LogFormatter::FormatItem {
   }
 };
 
-class DateTimeFormatItem : implement LogFormatter::FormatItem {
+class DateTimeFormatItem : public LogFormatter::FormatItem {
  public:
   DateTimeFormatItem(const std::string& format = "%Y:%m:%d %H:%M:%s")
       : m_format(format) {
@@ -147,7 +125,7 @@ class DateTimeFormatItem : implement LogFormatter::FormatItem {
   std::string m_format;
 };
 
-class FileNameFormatItem : implement LogFormatter::FormatItem {
+class FileNameFormatItem : public LogFormatter::FormatItem {
  public:
   FileNameFormatItem(const std::string& str = "") {}
   ~FileNameFormatItem() {}
@@ -156,21 +134,21 @@ class FileNameFormatItem : implement LogFormatter::FormatItem {
   }
 };
 
-class NewLineFormatItem : implement LogFormatter::FormatItem {
+class NewLineFormatItem : public LogFormatter::FormatItem {
  public:
   NewLineFormatItem(const std::string& str = "") {}
   ~NewLineFormatItem() {}
   void format(std::ostream& os, LogEvent::ptr event) override { os << "\n"; }
 };
 
-class TabFormatItem : implement LogFormatter::FormatItem {
+class TabFormatItem : public LogFormatter::FormatItem {
  public:
   TabFormatItem(const std::string& str = "") {}
   ~TabFormatItem() {}
   void format(std::ostream& os, LogEvent::ptr event) override { os << "\t"; }
 };
 
-class StringFormatItem : implement LogFormatter::FormatItem {
+class StringFormatItem : public LogFormatter::FormatItem {
  public:
   StringFormatItem(const std::string& str) : m_str(str) {}
   void format(std::ostream& os, LogEvent::ptr event) override { os << m_str; }
@@ -179,7 +157,7 @@ class StringFormatItem : implement LogFormatter::FormatItem {
   std::string m_str;
 };
 
-class FuncNameFormatItem : implement LogFormatter::FormatItem {
+class FuncNameFormatItem : public LogFormatter::FormatItem {
  public:
   FuncNameFormatItem(const std::string& str) {}
   void format(std::ostream& os, LogEvent::ptr event) override {
@@ -342,15 +320,15 @@ void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
   }
 }
 
-void Logger::debug(LogEvent::ptr event) { log(LogLevel::Level::DEBUG, event); }
+void Logger::debug(LogEvent::ptr event) { log(LogLevel::Level::eDebug, event); }
 
-void Logger::info(LogEvent::ptr event) { log(LogLevel::Level::INFO, event); }
+void Logger::info(LogEvent::ptr event) { log(LogLevel::Level::eInfo, event); }
 
-void Logger::warn(LogEvent::ptr event) { log(LogLevel::Level::WARN, event); }
+void Logger::warn(LogEvent::ptr event) { log(LogLevel::Level::eWarn, event); }
 
-void Logger::error(LogEvent::ptr event) { log(LogLevel::Level::ERROR, event); }
+void Logger::error(LogEvent::ptr event) { log(LogLevel::Level::eError, event); }
 
-void Logger::fatal(LogEvent::ptr event) { log(LogLevel::Level::FATAL, event); }
+void Logger::fatal(LogEvent::ptr event) { log(LogLevel::Level::eFatal, event); }
 
 void Logger::addAppender(LogAppender::ptr appender) {
   lock_guard lock(m_mutex);

@@ -51,7 +51,7 @@ class Flags {
 
   CX_CONSTEXPR Flags(const Flags<enum_type> &rhs) CX_NOEXCEPT = default;
 
-  CX_CONSTEXPR explicit Flags(under_type flags) CX_NOEXCEPT : m_value(flags) {}
+  CX_CONSTEXPR explicit Flags(under_type val) CX_NOEXCEPT : m_value(val) {}
 
  public:
   Flags &operator=(const enum_type &e) CX_NOEXCEPT {
@@ -130,7 +130,7 @@ class Flags {
   }
 
   CX_CONSTEXPR under_type underlying_value() const CX_NOEXCEPT {
-    return static_cast<under_type>(m_value);
+    return m_value;
   }
 
   CX_INLINE CX_CONSTEXPR CX_STATIC std::size_t bit_size() {

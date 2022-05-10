@@ -1,0 +1,940 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: cx::Window类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>cx</b></li><li class="navelem"><a class="el" href="classcx_1_1_window.html">Window</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="classcx_1_1_window-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">cx::Window类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>窗口类，引擎的主界面  
+ <a href="classcx_1_1_window.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="window_8h_source.html">window.h</a>&gt;</code></p>
+<div class="dynheader">
+类 cx::Window 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classcx_1_1_window.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcx_1_1_window_1_1_attribute.html">Attribute</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口属性  <a href="structcx_1_1_window_1_1_attribute.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a2bfb84762ae707c074096634092f3e07"><td class="memItemLeft" align="right" valign="top"><a id="a2bfb84762ae707c074096634092f3e07" name="a2bfb84762ae707c074096634092f3e07"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a2bfb84762ae707c074096634092f3e07">Status</a> : uint32_t { <br />
+&#160;&#160;<b>eFullScreen</b> = BIT(0)
+, <b>eResizeable</b> = BIT(1)
+, <b>eFocused</b> = BIT(2)
+, <b>eClosed</b> = BIT(3)
+, <br />
+&#160;&#160;<b>eAll</b> = eFullScreen | eResizeable | eFocused
+<br />
+ }</td></tr>
+<tr class="memdesc:a2bfb84762ae707c074096634092f3e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口状态 <br /></td></tr>
+<tr class="separator:a2bfb84762ae707c074096634092f3e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae21b8d51c384fe0c55f075e500109b8d"><td class="memItemLeft" align="right" valign="top"><a id="ae21b8d51c384fe0c55f075e500109b8d" name="ae21b8d51c384fe0c55f075e500109b8d"></a>
+typedef <a class="el" href="classcx_1_1_flags.html">Flags</a>&lt; <a class="el" href="classcx_1_1_window.html#a2bfb84762ae707c074096634092f3e07">Status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StatusFlags</b></td></tr>
+<tr class="separator:ae21b8d51c384fe0c55f075e500109b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae9d7122237e98bf0f57410afe193686b"><td class="memItemLeft" align="right" valign="top"><a id="ae9d7122237e98bf0f57410afe193686b" name="ae9d7122237e98bf0f57410afe193686b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Window</b> (const <a class="el" href="structcx_1_1_window_1_1_attribute.html">Attribute</a> &amp;<a class="el" href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">attribute</a>)</td></tr>
+<tr class="separator:ae9d7122237e98bf0f57410afe193686b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b32720dcfb97dec19d354a8cd7327c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a8b32720dcfb97dec19d354a8cd7327c3">set_attribute</a> (const <a class="el" href="structcx_1_1_window_1_1_attribute.html">Attribute</a> &amp;<a class="el" href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">attribute</a>)</td></tr>
+<tr class="memdesc:a8b32720dcfb97dec19d354a8cd7327c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口属性  <a href="classcx_1_1_window.html#a8b32720dcfb97dec19d354a8cd7327c3">更多...</a><br /></td></tr>
+<tr class="separator:a8b32720dcfb97dec19d354a8cd7327c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a581841dbb1870198c77eb064b0892dc5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structcx_1_1_window_1_1_attribute.html">Attribute</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">attribute</a> () const</td></tr>
+<tr class="memdesc:a581841dbb1870198c77eb064b0892dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取窗口属性  <a href="classcx_1_1_window.html#a581841dbb1870198c77eb064b0892dc5">更多...</a><br /></td></tr>
+<tr class="separator:a581841dbb1870198c77eb064b0892dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18299c05d05622e1ebf050fc0e5171da"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a18299c05d05622e1ebf050fc0e5171da">title</a> () const</td></tr>
+<tr class="memdesc:a18299c05d05622e1ebf050fc0e5171da"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取窗口标题  <a href="classcx_1_1_window.html#a18299c05d05622e1ebf050fc0e5171da">更多...</a><br /></td></tr>
+<tr class="separator:a18299c05d05622e1ebf050fc0e5171da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af53d4a228959c4c34a9d8fd7ddcbd743"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#af53d4a228959c4c34a9d8fd7ddcbd743">set_title</a> (const std::string &amp;<a class="el" href="classcx_1_1_window.html#a18299c05d05622e1ebf050fc0e5171da">title</a>)</td></tr>
+<tr class="memdesc:af53d4a228959c4c34a9d8fd7ddcbd743"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口标题  <a href="classcx_1_1_window.html#af53d4a228959c4c34a9d8fd7ddcbd743">更多...</a><br /></td></tr>
+<tr class="separator:af53d4a228959c4c34a9d8fd7ddcbd743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04623158d8192c12562cb39637eb7e7c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">width</a> () const</td></tr>
+<tr class="memdesc:a04623158d8192c12562cb39637eb7e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取窗口宽度  <a href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">更多...</a><br /></td></tr>
+<tr class="separator:a04623158d8192c12562cb39637eb7e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df43f3a832e712746440c0ed4090879"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a8df43f3a832e712746440c0ed4090879">set_width</a> (uint32_t <a class="el" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">width</a>)</td></tr>
+<tr class="memdesc:a8df43f3a832e712746440c0ed4090879"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口宽度  <a href="classcx_1_1_window.html#a8df43f3a832e712746440c0ed4090879">更多...</a><br /></td></tr>
+<tr class="separator:a8df43f3a832e712746440c0ed4090879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c2a9e97728ec186a5a5caf7e792f1ea"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">height</a> () const</td></tr>
+<tr class="memdesc:a8c2a9e97728ec186a5a5caf7e792f1ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取窗口高度  <a href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">更多...</a><br /></td></tr>
+<tr class="separator:a8c2a9e97728ec186a5a5caf7e792f1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4df9cd7ddcdc719dfdf585deb25102a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a4df9cd7ddcdc719dfdf585deb25102a7">set_height</a> (uint32_t <a class="el" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">height</a>)</td></tr>
+<tr class="memdesc:a4df9cd7ddcdc719dfdf585deb25102a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口高度  <a href="classcx_1_1_window.html#a4df9cd7ddcdc719dfdf585deb25102a7">更多...</a><br /></td></tr>
+<tr class="separator:a4df9cd7ddcdc719dfdf585deb25102a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e00ee86063731205ef54c0c1b94e6c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#aa6e00ee86063731205ef54c0c1b94e6c">desktop_size</a> () const</td></tr>
+<tr class="memdesc:aa6e00ee86063731205ef54c0c1b94e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取桌面大小  <a href="classcx_1_1_window.html#aa6e00ee86063731205ef54c0c1b94e6c">更多...</a><br /></td></tr>
+<tr class="separator:aa6e00ee86063731205ef54c0c1b94e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c6128e072dd1ee9a62d66815f952c29"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29">size</a> () const</td></tr>
+<tr class="memdesc:a8c6128e072dd1ee9a62d66815f952c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取窗口大小  <a href="classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29">更多...</a><br /></td></tr>
+<tr class="separator:a8c6128e072dd1ee9a62d66815f952c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5033101d20c418968cd9b84e09af4bf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a5033101d20c418968cd9b84e09af4bf6">resize</a> (uint32_t <a class="el" href="classcx_1_1_window.html#a04623158d8192c12562cb39637eb7e7c">width</a>, uint32_t <a class="el" href="classcx_1_1_window.html#a8c2a9e97728ec186a5a5caf7e792f1ea">height</a>)</td></tr>
+<tr class="memdesc:a5033101d20c418968cd9b84e09af4bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">重设窗口大小  <a href="classcx_1_1_window.html#a5033101d20c418968cd9b84e09af4bf6">更多...</a><br /></td></tr>
+<tr class="separator:a5033101d20c418968cd9b84e09af4bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a526521ac7e0960f4ef4f68cdf919b896"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a526521ac7e0960f4ef4f68cdf919b896">resize</a> (const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp;<a class="el" href="classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29">size</a>)</td></tr>
+<tr class="memdesc:a526521ac7e0960f4ef4f68cdf919b896"><td class="mdescLeft">&#160;</td><td class="mdescRight">重设窗口大小  <a href="classcx_1_1_window.html#a526521ac7e0960f4ef4f68cdf919b896">更多...</a><br /></td></tr>
+<tr class="separator:a526521ac7e0960f4ef4f68cdf919b896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa82f42d58cdc183d9c5a61c8e92555"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a5fa82f42d58cdc183d9c5a61c8e92555">position</a> () const</td></tr>
+<tr class="memdesc:a5fa82f42d58cdc183d9c5a61c8e92555"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取窗口位置  <a href="classcx_1_1_window.html#a5fa82f42d58cdc183d9c5a61c8e92555">更多...</a><br /></td></tr>
+<tr class="separator:a5fa82f42d58cdc183d9c5a61c8e92555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f62a9bc735e60629d55b67ff56d6341"><td class="memItemLeft" align="right" valign="top">const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a9f62a9bc735e60629d55b67ff56d6341">set_position</a> (uint32_t x, uint32_t y)</td></tr>
+<tr class="memdesc:a9f62a9bc735e60629d55b67ff56d6341"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口位置  <a href="classcx_1_1_window.html#a9f62a9bc735e60629d55b67ff56d6341">更多...</a><br /></td></tr>
+<tr class="separator:a9f62a9bc735e60629d55b67ff56d6341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09dfe72cc51670bf66ec758177b506d7"><td class="memItemLeft" align="right" valign="top">const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a09dfe72cc51670bf66ec758177b506d7">set_position</a> (const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp;pos)</td></tr>
+<tr class="memdesc:a09dfe72cc51670bf66ec758177b506d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口位置  <a href="classcx_1_1_window.html#a09dfe72cc51670bf66ec758177b506d7">更多...</a><br /></td></tr>
+<tr class="separator:a09dfe72cc51670bf66ec758177b506d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a818e7739af7f725e2ade9524c73e726c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a818e7739af7f725e2ade9524c73e726c">fullscreen</a> () const</td></tr>
+<tr class="memdesc:a818e7739af7f725e2ade9524c73e726c"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口是否充满屏幕  <a href="classcx_1_1_window.html#a818e7739af7f725e2ade9524c73e726c">更多...</a><br /></td></tr>
+<tr class="separator:a818e7739af7f725e2ade9524c73e726c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe987754e6b72dfa20c60cd35aea950c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#afe987754e6b72dfa20c60cd35aea950c">resizeable</a> () const</td></tr>
+<tr class="memdesc:afe987754e6b72dfa20c60cd35aea950c"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口是否可以更改大小  <a href="classcx_1_1_window.html#afe987754e6b72dfa20c60cd35aea950c">更多...</a><br /></td></tr>
+<tr class="separator:afe987754e6b72dfa20c60cd35aea950c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9dc89b8a4b8aa8b04cb35c9de48d0b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">closed</a> () const</td></tr>
+<tr class="memdesc:ab9dc89b8a4b8aa8b04cb35c9de48d0b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口是否已经关闭  <a href="classcx_1_1_window.html#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">更多...</a><br /></td></tr>
+<tr class="separator:ab9dc89b8a4b8aa8b04cb35c9de48d0b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a998807d6657a1a0b8c3467bc5091ffdd"><td class="memItemLeft" align="right" valign="top"><a id="a998807d6657a1a0b8c3467bc5091ffdd" name="a998807d6657a1a0b8c3467bc5091ffdd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
+<tr class="memdesc:a998807d6657a1a0b8c3467bc5091ffdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭窗口，并不会释放窗口所占用的资源 <br /></td></tr>
+<tr class="separator:a998807d6657a1a0b8c3467bc5091ffdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3385fe8a9851231024641c34a11c4f7"><td class="memItemLeft" align="right" valign="top"><a id="ac3385fe8a9851231024641c34a11c4f7" name="ac3385fe8a9851231024641c34a11c4f7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> () override</td></tr>
+<tr class="memdesc:ac3385fe8a9851231024641c34a11c4f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新函数，更新窗口状态 <br /></td></tr>
+<tr class="separator:ac3385fe8a9851231024641c34a11c4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaf4685d49fc68b67c709890688174a4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#acaf4685d49fc68b67c709890688174a4">aspect_ratio</a> () const</td></tr>
+<tr class="memdesc:acaf4685d49fc68b67c709890688174a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口的宽高比  <a href="classcx_1_1_window.html#acaf4685d49fc68b67c709890688174a4">更多...</a><br /></td></tr>
+<tr class="separator:acaf4685d49fc68b67c709890688174a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd692c0d955d1c3ae82f155930b7ebb5"><td class="memItemLeft" align="right" valign="top">std::pair&lt; const char **, uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#afd692c0d955d1c3ae82f155930b7ebb5">get_inst_extensions_kv</a> () const</td></tr>
+<tr class="memdesc:afd692c0d955d1c3ae82f155930b7ebb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取vulkan实例所需的扩展,以 k v 形式返回  <a href="classcx_1_1_window.html#afd692c0d955d1c3ae82f155930b7ebb5">更多...</a><br /></td></tr>
+<tr class="separator:afd692c0d955d1c3ae82f155930b7ebb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adde1c8ac5da3faa39becfe1fed35f505"><td class="memItemLeft" align="right" valign="top">std::vector&lt; const char * &gt; &amp;&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#adde1c8ac5da3faa39becfe1fed35f505">get_inst_extensions</a> () const</td></tr>
+<tr class="memdesc:adde1c8ac5da3faa39becfe1fed35f505"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取vulkan实例所需的扩展  <a href="classcx_1_1_window.html#adde1c8ac5da3faa39becfe1fed35f505">更多...</a><br /></td></tr>
+<tr class="separator:adde1c8ac5da3faa39becfe1fed35f505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a645deeb9b078b2b5e671af489d044efb"><td class="memItemLeft" align="right" valign="top">std::pair&lt; vk::SurfaceKHR, vk::Result &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a645deeb9b078b2b5e671af489d044efb">create_surface</a> (const vk::Instance &amp;inst, const vk::AllocationCallbacks *allocator=nullptr) const</td></tr>
+<tr class="memdesc:a645deeb9b078b2b5e671af489d044efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建surface，用于呈现图像  <a href="classcx_1_1_window.html#a645deeb9b078b2b5e671af489d044efb">更多...</a><br /></td></tr>
+<tr class="separator:a645deeb9b078b2b5e671af489d044efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa533ee7e77947417fb10afe00ee8695d"><td class="memItemLeft" align="right" valign="top">vk::Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#aa533ee7e77947417fb10afe00ee8695d">create_surface</a> (const vk::Instance &amp;inst, vk::SurfaceKHR &amp;surface, const vk::AllocationCallbacks *allocator=nullptr) const</td></tr>
+<tr class="memdesc:aa533ee7e77947417fb10afe00ee8695d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建surface，用于呈现图像  <a href="classcx_1_1_window.html#aa533ee7e77947417fb10afe00ee8695d">更多...</a><br /></td></tr>
+<tr class="separator:aa533ee7e77947417fb10afe00ee8695d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:aba901bb0434ad74b24ecfc25dd273b5a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#aba901bb0434ad74b24ecfc25dd273b5a">check_error</a> (uint32_t result)</td></tr>
+<tr class="memdesc:aba901bb0434ad74b24ecfc25dd273b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查错误  <a href="classcx_1_1_window.html#aba901bb0434ad74b24ecfc25dd273b5a">更多...</a><br /></td></tr>
+<tr class="separator:aba901bb0434ad74b24ecfc25dd273b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >窗口类，引擎的主界面 </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="acaf4685d49fc68b67c709890688174a4" name="acaf4685d49fc68b67c709890688174a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf4685d49fc68b67c709890688174a4">&#9670;&nbsp;</a></span>aspect_ratio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float cx::Window::aspect_ratio </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>窗口的宽高比 </p>
+<dl class="section return"><dt>返回</dt><dd>float 宽高比例 </dd></dl>
+
+</div>
+</div>
+<a id="a581841dbb1870198c77eb064b0892dc5" name="a581841dbb1870198c77eb064b0892dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a581841dbb1870198c77eb064b0892dc5">&#9670;&nbsp;</a></span>attribute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structcx_1_1_window_1_1_attribute.html">Attribute</a> &amp; cx::Window::attribute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取窗口属性 </p>
+<dl class="section return"><dt>返回</dt><dd>const <a class="el" href="structcx_1_1_window_1_1_attribute.html" title="窗口属性">Attribute</a>&amp; 窗口属性对象 </dd></dl>
+
+</div>
+</div>
+<a id="aba901bb0434ad74b24ecfc25dd273b5a" name="aba901bb0434ad74b24ecfc25dd273b5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba901bb0434ad74b24ecfc25dd273b5a">&#9670;&nbsp;</a></span>check_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cx::Window::check_error </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查错误 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">result</td><td>错误码 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab9dc89b8a4b8aa8b04cb35c9de48d0b5" name="ab9dc89b8a4b8aa8b04cb35c9de48d0b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">&#9670;&nbsp;</a></span>closed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cx::Window::closed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>窗口是否已经关闭 </p>
+<dl class="section return"><dt>返回</dt><dd>true 关闭 </dd>
+<dd>
+false 未关闭 </dd></dl>
+
+</div>
+</div>
+<a id="a645deeb9b078b2b5e671af489d044efb" name="a645deeb9b078b2b5e671af489d044efb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a645deeb9b078b2b5e671af489d044efb">&#9670;&nbsp;</a></span>create_surface() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; vk::SurfaceKHR, vk::Result &gt; cx::Window::create_surface </td>
+          <td>(</td>
+          <td class="paramtype">const vk::Instance &amp;&#160;</td>
+          <td class="paramname"><em>inst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vk::AllocationCallbacks *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建surface，用于呈现图像 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">inst</td><td>vulkan实例 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">allocator</td><td>内存分配器 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>std::pair&lt;vk::SurfaceKHR, vk::Result&gt; suface对象,以及创建状态 </dd></dl>
+
+</div>
+</div>
+<a id="aa533ee7e77947417fb10afe00ee8695d" name="aa533ee7e77947417fb10afe00ee8695d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa533ee7e77947417fb10afe00ee8695d">&#9670;&nbsp;</a></span>create_surface() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::Result cx::Window::create_surface </td>
+          <td>(</td>
+          <td class="paramtype">const vk::Instance &amp;&#160;</td>
+          <td class="paramname"><em>inst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vk::SurfaceKHR &amp;&#160;</td>
+          <td class="paramname"><em>surface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vk::AllocationCallbacks *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建surface，用于呈现图像 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">inst</td><td>vulkan实例 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">surface</td><td>surface对象引用 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">allocator</td><td>内存分配器 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>vk::Result 创建状态 </dd></dl>
+
+</div>
+</div>
+<a id="aa6e00ee86063731205ef54c0c1b94e6c" name="aa6e00ee86063731205ef54c0c1b94e6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6e00ee86063731205ef54c0c1b94e6c">&#9670;&nbsp;</a></span>desktop_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp; cx::Window::desktop_size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取桌面大小 </p>
+<dl class="section return"><dt>返回</dt><dd>const Vector2ui&amp; 桌面大小 </dd></dl>
+
+</div>
+</div>
+<a id="a818e7739af7f725e2ade9524c73e726c" name="a818e7739af7f725e2ade9524c73e726c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a818e7739af7f725e2ade9524c73e726c">&#9670;&nbsp;</a></span>fullscreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cx::Window::fullscreen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>窗口是否充满屏幕 </p>
+<dl class="section return"><dt>返回</dt><dd>true 充满屏幕 </dd>
+<dd>
+false 未充满屏幕 </dd></dl>
+
+</div>
+</div>
+<a id="adde1c8ac5da3faa39becfe1fed35f505" name="adde1c8ac5da3faa39becfe1fed35f505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adde1c8ac5da3faa39becfe1fed35f505">&#9670;&nbsp;</a></span>get_inst_extensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; const char * &gt; &amp;&amp; cx::Window::get_inst_extensions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取vulkan实例所需的扩展 </p>
+<dl class="section return"><dt>返回</dt><dd>std::vector&lt;const char*&gt;&amp;&amp; 具体扩展 </dd></dl>
+
+</div>
+</div>
+<a id="afd692c0d955d1c3ae82f155930b7ebb5" name="afd692c0d955d1c3ae82f155930b7ebb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd692c0d955d1c3ae82f155930b7ebb5">&#9670;&nbsp;</a></span>get_inst_extensions_kv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; const char **, uint32_t &gt; cx::Window::get_inst_extensions_kv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取vulkan实例所需的扩展,以 k v 形式返回 </p>
+<dl class="section return"><dt>返回</dt><dd>std::pair&lt;const char**, uint32_t&gt; 具体扩展与其个数 </dd></dl>
+
+</div>
+</div>
+<a id="a8c2a9e97728ec186a5a5caf7e792f1ea" name="a8c2a9e97728ec186a5a5caf7e792f1ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c2a9e97728ec186a5a5caf7e792f1ea">&#9670;&nbsp;</a></span>height()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t cx::Window::height </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取窗口高度 </p>
+<dl class="section return"><dt>返回</dt><dd>uint32_t 窗口高度 </dd></dl>
+
+</div>
+</div>
+<a id="a5fa82f42d58cdc183d9c5a61c8e92555" name="a5fa82f42d58cdc183d9c5a61c8e92555"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fa82f42d58cdc183d9c5a61c8e92555">&#9670;&nbsp;</a></span>position()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp; cx::Window::position </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取窗口位置 </p>
+<dl class="section return"><dt>返回</dt><dd>const Vector2ui&amp; 窗口位置 x y </dd></dl>
+
+</div>
+</div>
+<a id="a526521ac7e0960f4ef4f68cdf919b896" name="a526521ac7e0960f4ef4f68cdf919b896"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a526521ac7e0960f4ef4f68cdf919b896">&#9670;&nbsp;</a></span>resize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cx::Window::resize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>重设窗口大小 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">const</td><td>Vector2ui&amp; 窗口大小 w h </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5033101d20c418968cd9b84e09af4bf6" name="a5033101d20c418968cd9b84e09af4bf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5033101d20c418968cd9b84e09af4bf6">&#9670;&nbsp;</a></span>resize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cx::Window::resize </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重设窗口大小 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>宽度 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">height</td><td>高度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afe987754e6b72dfa20c60cd35aea950c" name="afe987754e6b72dfa20c60cd35aea950c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe987754e6b72dfa20c60cd35aea950c">&#9670;&nbsp;</a></span>resizeable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cx::Window::resizeable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>窗口是否可以更改大小 </p>
+<dl class="section return"><dt>返回</dt><dd>true 可以更改大小 </dd>
+<dd>
+false 不能更改大小 </dd></dl>
+
+</div>
+</div>
+<a id="a8b32720dcfb97dec19d354a8cd7327c3" name="a8b32720dcfb97dec19d354a8cd7327c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b32720dcfb97dec19d354a8cd7327c3">&#9670;&nbsp;</a></span>set_attribute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cx::Window::set_attribute </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcx_1_1_window_1_1_attribute.html">Attribute</a> &amp;&#160;</td>
+          <td class="paramname"><em>attribute</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置窗口属性 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">attribute</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4df9cd7ddcdc719dfdf585deb25102a7" name="a4df9cd7ddcdc719dfdf585deb25102a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4df9cd7ddcdc719dfdf585deb25102a7">&#9670;&nbsp;</a></span>set_height()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cx::Window::set_height </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>height</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置窗口高度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>窗口高度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a09dfe72cc51670bf66ec758177b506d7" name="a09dfe72cc51670bf66ec758177b506d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09dfe72cc51670bf66ec758177b506d7">&#9670;&nbsp;</a></span>set_position() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void cx::Window::set_position </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置窗口位置 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>窗口坐标 x y </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9f62a9bc735e60629d55b67ff56d6341" name="a9f62a9bc735e60629d55b67ff56d6341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f62a9bc735e60629d55b67ff56d6341">&#9670;&nbsp;</a></span>set_position() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void cx::Window::set_position </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置窗口位置 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>x轴坐标 </td></tr>
+    <tr><td class="paramname">y</td><td>y轴坐标 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af53d4a228959c4c34a9d8fd7ddcbd743" name="af53d4a228959c4c34a9d8fd7ddcbd743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af53d4a228959c4c34a9d8fd7ddcbd743">&#9670;&nbsp;</a></span>set_title()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cx::Window::set_title </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>title</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置窗口标题 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">title</td><td>窗口标题 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8df43f3a832e712746440c0ed4090879" name="a8df43f3a832e712746440c0ed4090879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df43f3a832e712746440c0ed4090879">&#9670;&nbsp;</a></span>set_width()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cx::Window::set_width </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置窗口宽度 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>窗口宽度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8c6128e072dd1ee9a62d66815f952c29" name="a8c6128e072dd1ee9a62d66815f952c29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c6128e072dd1ee9a62d66815f952c29">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classcx_1_1_vector2.html">Vector2ui</a> &amp; cx::Window::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取窗口大小 </p>
+<dl class="section return"><dt>返回</dt><dd>const Vector2ui&amp; 窗口大小 </dd></dl>
+
+</div>
+</div>
+<a id="a18299c05d05622e1ebf050fc0e5171da" name="a18299c05d05622e1ebf050fc0e5171da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18299c05d05622e1ebf050fc0e5171da">&#9670;&nbsp;</a></span>title()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; cx::Window::title </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取窗口标题 </p>
+<dl class="section return"><dt>返回</dt><dd>const std::string&amp; 窗口标题 </dd></dl>
+
+</div>
+</div>
+<a id="a04623158d8192c12562cb39637eb7e7c" name="a04623158d8192c12562cb39637eb7e7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04623158d8192c12562cb39637eb7e7c">&#9670;&nbsp;</a></span>width()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t cx::Window::width </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取窗口宽度 </p>
+<dl class="section return"><dt>返回</dt><dd>uint32_t 窗口宽度 </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/cx/window/<a class="el" href="window_8h_source.html">window.h</a></li>
+<li>src/cx/window/window.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+</small></address>
+</body>
+</html>

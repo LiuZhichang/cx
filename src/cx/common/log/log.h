@@ -32,19 +32,17 @@
                   std::this_thread::get_id(), time(0), logger->getName()))) \
       .getStrIO()
 
-#define LOG_DEBUG(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::DEBUG)
-#define LOG_INFO(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::INFO)
-#define LOG_WARN(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::WARN)
-#define LOG_ERROR(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::ERROR)
-#define LOG_FATAL(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::FATAL)
+#define LOG_DEBUG(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eDebug)
+#define LOG_INFO(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eInfo)
+#define LOG_WARN(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eWarn)
+#define LOG_ERROR(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eError)
+#define LOG_FATAL(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eFatal);
 
 #define CX_LOG_ROOT() cx::LogManager::Self()->getRoot()
 #define CX_LOGGER(name) cx::LogManager::Self()->getLogger(name)
 #define CX_SYS_LOG() cx::LogManager::Self()->getLogger("system")
 
 namespace cx {
-
-#define implement public
 
 #undef DEBUG
 
@@ -55,7 +53,14 @@ class Logger;
  */
 class LogLevel {
  public:
-  enum class Level { DEBUG, INFO, WARN, ERROR, FATAL, UNKNOWN };
+  enum class Level : uint8_t {
+    eDebug = 0x01,
+    eInfo = 0x02,
+    eWarn = 0x03,
+    eError = 0x04,
+    eFatal = 0x05,
+    eUnknown
+  };
 
   /**
    * @brief 将对应的日志等级转换为文本
@@ -65,15 +70,6 @@ class LogLevel {
    * @return 对应的日志等级文本
    */
   static const std::string toString(Level level);
-
-  /**
-   * @brief 将文本转换为对应的日志等级
-   *
-   * @param[in] level 日志等级
-   *
-   * @return 文本对应的日志等级
-   */
-  static const Level fromString(const std::string& level);
 };
 
 /**
@@ -318,16 +314,16 @@ class LogAppender {
   LogLevel::Level getLevel() const { return m_level; }
 
  protected:
-  LogFormatter::ptr m_formatter;                    // 日志格式器
-  LogLevel::Level m_level = LogLevel::Level::INFO;  // 日志等级
-  bool m_hasFormatter = false;  // 默认没有日志格式器
-  lock_t m_mutex;               // 互斥量
+  LogFormatter::ptr m_formatter;                // 日志格式器
+  LogLevel::Level m_level = LogLevel::Level();  // 日志等级
+  bool m_hasFormatter = false;                  // 默认没有日志格式器
+  lock_t m_mutex;                               // 互斥量
 };
 
 /**
  * @brief 标准输出流日志输出地
  */
-class StdOutLogAppender : implement LogAppender {
+class StdOutLogAppender : public LogAppender {
  public:
   typedef std::shared_ptr<StdOutLogAppender> ptr;
 
@@ -347,7 +343,7 @@ class StdOutLogAppender : implement LogAppender {
 /**
  * @brief 文件流日志输出地
  */
-class FileLogAppender : implement LogAppender {
+class FileLogAppender : public LogAppender {
  public:
   typedef std::shared_ptr<FileLogAppender> ptr;
 

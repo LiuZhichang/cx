@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: cx::LogFormatter::FormatItem类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>cx</b></li><li class="navelem"><a class="el" href="classcx_1_1_log_formatter.html">LogFormatter</a></li><li class="navelem"><a class="el" href="classcx_1_1_log_formatter_1_1_format_item.html">FormatItem</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="classcx_1_1_log_formatter_1_1_format_item-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">cx::LogFormatter::FormatItem类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>日志格式项  
+ <a href="classcx_1_1_log_formatter_1_1_format_item.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="log_8h_source.html">log.h</a>&gt;</code></p>
+<div class="dynheader">
+类 cx::LogFormatter::FormatItem 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classcx_1_1_log_formatter_1_1_format_item.png" usemap="#cx::LogFormatter::FormatItem_map" alt=""/>
+  <map id="cx::LogFormatter::FormatItem_map" name="cx::LogFormatter::FormatItem_map">
+<area href="classcx_1_1_date_time_format_item.html" alt="cx::DateTimeFormatItem" shape="rect" coords="183,56,356,80"/>
+<area href="classcx_1_1_elapse_format_item.html" alt="cx::ElapseFormatItem" shape="rect" coords="183,112,356,136"/>
+<area href="classcx_1_1_file_name_format_item.html" alt="cx::FileNameFormatItem" shape="rect" coords="183,168,356,192"/>
+<area href="classcx_1_1_func_name_format_item.html" alt="cx::FuncNameFormatItem" shape="rect" coords="183,224,356,248"/>
+<area href="classcx_1_1_level_format_item.html" alt="cx::LevelFormatItem" shape="rect" coords="183,280,356,304"/>
+<area href="classcx_1_1_line_format_item.html" alt="cx::LineFormatItem" shape="rect" coords="183,336,356,360"/>
+<area href="classcx_1_1_message_format_item.html" alt="cx::MessageFormatItem" shape="rect" coords="183,392,356,416"/>
+<area href="classcx_1_1_name_format_item.html" alt="cx::NameFormatItem" shape="rect" coords="183,448,356,472"/>
+<area href="classcx_1_1_new_line_format_item.html" alt="cx::NewLineFormatItem" shape="rect" coords="183,504,356,528"/>
+<area href="classcx_1_1_string_format_item.html" alt="cx::StringFormatItem" shape="rect" coords="183,560,356,584"/>
+<area href="classcx_1_1_tab_format_item.html" alt="cx::TabFormatItem" shape="rect" coords="183,616,356,640"/>
+<area href="classcx_1_1_thread_id_format_item.html" alt="cx::ThreadIdFormatItem" shape="rect" coords="183,672,356,696"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:af26ae3e238dd4b886273bb91b62d01e8"><td class="memItemLeft" align="right" valign="top"><a id="af26ae3e238dd4b886273bb91b62d01e8" name="af26ae3e238dd4b886273bb91b62d01e8"></a>
+typedef std::shared_ptr&lt; <a class="el" href="classcx_1_1_log_formatter_1_1_format_item.html">FormatItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ptr</b></td></tr>
+<tr class="separator:af26ae3e238dd4b886273bb91b62d01e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a96743958799f6e36497feb54f979596f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_log_formatter_1_1_format_item.html#a96743958799f6e36497feb54f979596f">format</a> (std::ostream &amp;os, LogEvent::ptr event)=0</td></tr>
+<tr class="memdesc:a96743958799f6e36497feb54f979596f"><td class="mdescLeft">&#160;</td><td class="mdescRight">格式化输出日志  <a href="classcx_1_1_log_formatter_1_1_format_item.html#a96743958799f6e36497feb54f979596f">更多...</a><br /></td></tr>
+<tr class="separator:a96743958799f6e36497feb54f979596f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >日志格式项 </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a96743958799f6e36497feb54f979596f" name="a96743958799f6e36497feb54f979596f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96743958799f6e36497feb54f979596f">&#9670;&nbsp;</a></span>format()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void cx::LogFormatter::FormatItem::format </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LogEvent::ptr&#160;</td>
+          <td class="paramname"><em>event</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>格式化输出日志 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">os</td><td>输出流 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">event</td><td>日志事件 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="classcx_1_1_message_format_item.html#a7fc4c803786a562b28c43f4077026622">cx::MessageFormatItem</a>, <a class="el" href="classcx_1_1_line_format_item.html#a87a2bc46bc273b4746b6eec0b9317b28">cx::LineFormatItem</a>, <a class="el" href="classcx_1_1_level_format_item.html#a052e7749912e1ed48c53743726286e5f">cx::LevelFormatItem</a>, <a class="el" href="classcx_1_1_elapse_format_item.html#a02f7740ec35af06ee39bcd533fab520d">cx::ElapseFormatItem</a>, <a class="el" href="classcx_1_1_name_format_item.html#a42bd4727ba596b6bb980c27e9dac0657">cx::NameFormatItem</a>, <a class="el" href="classcx_1_1_thread_id_format_item.html#a303f0f6b72d9912acdc35ad85de04d61">cx::ThreadIdFormatItem</a>, <a class="el" href="classcx_1_1_date_time_format_item.html#a034f2b1982a4dcf353e40137d89cae61">cx::DateTimeFormatItem</a>, <a class="el" href="classcx_1_1_file_name_format_item.html#a759241b71868e0a5d254b602434517df">cx::FileNameFormatItem</a>, <a class="el" href="classcx_1_1_new_line_format_item.html#ae70a00f1ff055d251024fdce75a2413a">cx::NewLineFormatItem</a>, <a class="el" href="classcx_1_1_tab_format_item.html#a43812b5de822f803f6c6fd94f104963f">cx::TabFormatItem</a>, <a class="el" href="classcx_1_1_string_format_item.html#a2e1331d56de47f0e10cb651e3b9a5476">cx::StringFormatItem</a> , 以及 <a class="el" href="classcx_1_1_func_name_format_item.html#a9cad4f29f73bb9c92c72513add3b80f0">cx::FuncNameFormatItem</a> 内被实现.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/cx/common/log/<a class="el" href="log_8h_source.html">log.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+</small></address>
+</body>
+</html>

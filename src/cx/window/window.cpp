@@ -7,6 +7,13 @@
 static auto engine = CX_LOGGER("engine");
 static auto core = CX_LOGGER("core");
 
+void cx::CallBackWindowClose(GLFWwindow* _window) {
+  LOG_DEBUG(engine) << "click close button";
+  cx::Window* window = cx::Window::Get();
+  if (window->onClose) window->onClose();
+  window->close();
+}
+
 void Debug_Error(uint32_t code, const char* info) {
   cx::Window::check_error(code);
   LOG_ERROR(engine) << "glfw error: " << info << ", code: " << code;
@@ -21,7 +28,23 @@ void Engine_error(cx::Error error) {
 cx::Window::Window() : Window(Attribute()) {}
 
 cx::Window::Window(const Attribute& attribute) : m_attribute(attribute) {
-  initWindow();
+#if defined(CX_DEBUG_MODE)
+  LOG_INFO(engine) << "\nWidnow Attribute:\n"
+                   << "\ttitle:" << m_attribute.title << "\n"
+                   << "\tposition: [" << m_attribute.pos.x << ","
+                   << m_attribute.pos.y << "]"
+                   << "\n"
+                   << "\tsize: [" << m_attribute.size.w << ","
+                   << m_attribute.size.h << "]"
+                   << "\n"
+                   << "\tresizeable: " << resizeable() << "\n"
+                   << "\tfullscreen: " << fullscreen() << "\n"
+                   << "\tflag bit: " << m_attribute.status.to_bitset() << "\n"
+                   << "\tflag under value: "
+                   << m_attribute.status.underlying_value();
+#endif
+  init_Window();
+  register_callback();
 }
 
 cx::Window::~Window() {
@@ -30,8 +53,8 @@ cx::Window::~Window() {
   ::glfwTerminate();
 }
 
-void cx::Window::initWindow() {
-  if (!::glfwInit()) {
+void cx::Window::init_Window() {
+  if (::glfwInit() == GLFW_FALSE) {
     Engine_error(Error::eGLFWInitFailed);
   }
 
@@ -39,7 +62,7 @@ void cx::Window::initWindow() {
     Engine_error(Error::eNoSupportVulkan);
   }
 
-  ::glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+  ::glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
   ::glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
   m_whandle =
@@ -55,14 +78,34 @@ void cx::Window::initWindow() {
   ::glfwShowWindow(m_whandle);
 }
 
+void cx::Window::update_window() {
+  set_title(m_attribute.title);
+  set_position(m_attribute.pos);
+  resize(m_attribute.size);
+}
+
+void cx::Window::register_callback() {
+  glfwSetWindowCloseCallback(m_whandle, CallBackWindowClose);
+}
+
+void cx::Window::set_attribute(const Attribute& attribute) {
+  m_attribute = attribute;
+}
+
 void cx::Window::set_title(const std::string& title) {
   m_attribute.title = title;
   ::glfwSetWindowTitle(m_whandle, title.c_str());
 }
 
-void cx::Window::update() { ::glfwPollEvents(); }
+bool cx::Window::closed() { return glfwWindowShouldClose(m_whandle); }
+
+void cx::Window::update() {
+  if (!closed()) ::glfwPollEvents();
+}
 
 void cx::Window::resize(const Vector2ui& size) {
+  if (!resizeable()) return;
+
   m_attribute.size = size;
   auto& w = m_attribute.size.w;
   auto& h = m_attribute.size.h;
@@ -89,6 +132,15 @@ const void cx::Window::set_position(uint32_t x, uint32_t y) {
 
 const void cx::Window::set_position(const Vector2ui& pos) {
   set_position(pos.x, pos.y);
+}
+
+void cx::Window::set_resizeable(bool enable) {
+  ::glfwSetWindowAttrib(m_whandle, GLFW_RESIZABLE, (int)enable);
+  if (enable) {
+    m_attribute.status |= Status::eFullScreen;
+  } else {
+    m_attribute.status ^= Status::eFullScreen;
+  }
 }
 
 std::pair<const char**, uint32_t> cx::Window::get_inst_extensions_kv() const {

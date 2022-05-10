@@ -1,0 +1,481 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: src/cx/common/log/log.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_2606237343c0a9efb8ef90c8768719c0.html">cx</a></li><li class="navelem"><a class="el" href="dir_88f0f7ac9d4fff1c011540caa48b1ee1.html">common</a></li><li class="navelem"><a class="el" href="dir_472b0238069414c84d6d3c4a19dcd221.html">log</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">log.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  log.hpp</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Test</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  Created by 刘致畅 on 2021/9/13.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef log_hpp</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define log_hpp</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="internal_8h.html">cx/common/internal.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="singleton_8h.html">cx/common/singleton.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="spink__lock_8h.html">cx/utils/sync/spink_lock.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;forward_list&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define CX_LOG_LEVEL(logger, level)                                         \</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">  if (logger-&gt;getLevel() &lt;= level)                                          \</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">  cx::LogWrap(logger,                                                       \</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">              cx::LogEvent::ptr(new cx::LogEvent(                           \</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">                  level, __FILE__, __func__, __LINE__, 0,                   \</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">                  std::this_thread::get_id(), time(0), logger-&gt;getName()))) \</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">      .getStrIO()</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#define LOG_DEBUG(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eDebug)</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define LOG_INFO(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eInfo)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define LOG_WARN(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eWarn)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#define LOG_ERROR(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eError)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define LOG_FATAL(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eFatal);</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define CX_LOG_ROOT() cx::LogManager::Self()-&gt;getRoot()</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define CX_LOGGER(name) cx::LogManager::Self()-&gt;getLogger(name)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define CX_SYS_LOG() cx::LogManager::Self()-&gt;getLogger(&quot;system&quot;</span>)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">namespace </span>cx {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#undef DEBUG</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">class </span>Logger;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classcx_1_1_log_level.html">   54</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_log_level.html">LogLevel</a> {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">enum class</span> Level : uint8_t {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    eDebug = 0x01,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    eInfo = 0x02,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    eWarn = 0x03,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    eError = 0x04,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    eFatal = 0x05,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    eUnknown</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  };</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keyword">static</span> <span class="keyword">const</span> std::string <a class="code hl_function" href="classcx_1_1_log_level.html#ab628806e15fdda6854418dcf8022219c">toString</a>(Level level);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html">   78</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_log_event.html">LogEvent</a> {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keyword">typedef</span> std::shared_ptr&lt;LogEvent&gt; ptr;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <a class="code hl_function" href="classcx_1_1_log_event.html#a4241262f5a4a0145d53c24e3147e2cd4">LogEvent</a>(LogLevel::Level level, <span class="keyword">const</span> <span class="keywordtype">char</span>* file, <span class="keyword">const</span> <span class="keywordtype">char</span>* funcName,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>           uint32_t line, uint32_t elapse, std::thread::id threadId,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>           uint64_t time, <span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#a690b1dc567f96f7285477214a1e6a823">  103</a></span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classcx_1_1_log_event.html#a690b1dc567f96f7285477214a1e6a823">getFile</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_file; }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#af1bb1e2749ab42af78a1bb4dd62d415e">  110</a></span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classcx_1_1_log_event.html#af1bb1e2749ab42af78a1bb4dd62d415e">getFuncName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_funcName; }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#a5c1d4179ff38d96e4586740d8bcde78b">  117</a></span>  uint32_t <a class="code hl_function" href="classcx_1_1_log_event.html#a5c1d4179ff38d96e4586740d8bcde78b">getLine</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_line; }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#a971b3064ccf2556bbc38e1c8793ccb7a">  124</a></span>  uint32_t <a class="code hl_function" href="classcx_1_1_log_event.html#a971b3064ccf2556bbc38e1c8793ccb7a">getElapse</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_elapse; }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#abd3ac36013d28fa61823b047100e0bc4">  131</a></span>  std::thread::id <a class="code hl_function" href="classcx_1_1_log_event.html#abd3ac36013d28fa61823b047100e0bc4">getThreadId</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_threadId; }</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#ae28bdfe8adbd9db45097b1d52ab9543f">  138</a></span>  uint64_t <a class="code hl_function" href="classcx_1_1_log_event.html#ae28bdfe8adbd9db45097b1d52ab9543f">getTime</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_time; }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#a42ae776f00afb6804294114bb1335aa4">  145</a></span>  LogLevel::Level <a class="code hl_function" href="classcx_1_1_log_event.html#a42ae776f00afb6804294114bb1335aa4">getLevel</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_level; }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#a262e4a80831a3136eeb9184683956b56">  152</a></span>  <span class="keyword">const</span> std::string <a class="code hl_function" href="classcx_1_1_log_event.html#a262e4a80831a3136eeb9184683956b56">getContent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_ss.str(); }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#a4a2f3eeb042004a0112a16a564d71dc1">  159</a></span>  std::stringstream&amp; <a class="code hl_function" href="classcx_1_1_log_event.html#a4a2f3eeb042004a0112a16a564d71dc1">getStrIO</a>() { <span class="keywordflow">return</span> m_ss; }</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classcx_1_1_log_event.html#a023237bae49db49f35ed727be3aae435">  166</a></span>  std::string <a class="code hl_function" href="classcx_1_1_log_event.html#a023237bae49db49f35ed727be3aae435">getName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_name; }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* m_file;          <span class="comment">// 文件名</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* m_funcName;      <span class="comment">// 函数名</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  std::thread::id m_threadId;  <span class="comment">// 线程id</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  uint32_t m_line;             <span class="comment">// 行号</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  uint32_t m_elapse;           <span class="comment">// 毫秒数</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  uint32_t m_coroutineId;   <span class="comment">// 协程id</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  uint64_t m_time;          <span class="comment">// 时间</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  std::string m_name;       <span class="comment">// 日志器名</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>  LogLevel::Level m_level;  <span class="comment">// 日志等级</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  std::stringstream m_ss;   <span class="comment">// 字符流</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>};</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classcx_1_1_log_formatter.html">  185</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_log_formatter.html">LogFormatter</a> {</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  <span class="keyword">typedef</span> std::shared_ptr&lt;LogFormatter&gt; ptr;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classcx_1_1_log_formatter_1_1_format_item.html">  192</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_log_formatter_1_1_format_item.html">FormatItem</a> {</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">typedef</span> std::shared_ptr&lt;FormatItem&gt; ptr;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="classcx_1_1_log_formatter_1_1_format_item.html#a96743958799f6e36497feb54f979596f">  202</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_log_formatter_1_1_format_item.html#a96743958799f6e36497feb54f979596f">format</a>(std::ostream&amp; os, LogEvent::ptr event) = 0;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  };</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  <a class="code hl_function" href="classcx_1_1_log_formatter.html#a9aad817e920d506b003729672b55e04a">LogFormatter</a>(<span class="keyword">const</span> std::string&amp; pattern);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  std::string <a class="code hl_function" href="classcx_1_1_log_formatter.html#abc78e721cb507a97d87c7c4653304ba1">format</a>(LogEvent::ptr event);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  std::ostream&amp; <a class="code hl_function" href="classcx_1_1_log_formatter.html#abc78e721cb507a97d87c7c4653304ba1">format</a>(std::ostream&amp; ofs, LogEvent::ptr event);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_log_formatter.html#a3411eab8d9316750a6c5675f2e7ce9bb">parse</a>();</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="classcx_1_1_log_formatter.html#a573b6904cfdd6d7f33cdc0b0c4b88858">  242</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classcx_1_1_log_formatter.html#a573b6904cfdd6d7f33cdc0b0c4b88858">isError</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_error; }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="classcx_1_1_log_formatter.html#a8149a54c6d2a81cdcefa1fadb742bab3">  249</a></span>  <span class="keyword">const</span> std::string <a class="code hl_function" href="classcx_1_1_log_formatter.html#a8149a54c6d2a81cdcefa1fadb742bab3">getPattern</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_pattern; }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  std::string m_pattern;                 <span class="comment">// 模式串</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  std::vector&lt;FormatItem::ptr&gt; m_items;  <span class="comment">// 格式项</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  <span class="keywordtype">bool</span> m_error;                          <span class="comment">// 错误</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>};</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html">  260</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_log_appender.html">LogAppender</a> {</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  <span class="keyword">typedef</span> std::shared_ptr&lt;LogAppender&gt; ptr;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="class_spink_lock.html">SpinkLock</a> <a class="code hl_class" href="class_spink_lock.html">lock_t</a>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  <span class="keyword">typedef</span> std::lock_guard&lt;lock_t&gt; lock_guard;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html#a087cc0937e218bb5f68e9df5bdb43e68">  272</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_log_appender.html#a087cc0937e218bb5f68e9df5bdb43e68">log</a>(LogLevel::Level level, LogEvent::ptr event) = 0;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html#ac0a60a3039a237bea074530c2c440491">  279</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_log_appender.html#ac0a60a3039a237bea074530c2c440491">setFormatter</a>(LogFormatter::ptr formatter) {</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    lock_guard lovk(m_mutex);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    m_formatter = formatter;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    m_hasFormatter = m_formatter ? true : <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  }</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html#a0ebeed8ac4badf8f83d504622f2b33bb">  290</a></span>  LogFormatter::ptr <a class="code hl_function" href="classcx_1_1_log_appender.html#a0ebeed8ac4badf8f83d504622f2b33bb">getFormatter</a>() {</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    lock_guard lock(m_mutex);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="keywordflow">return</span> m_formatter;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  }</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html#aca76c7489bdbc1ac92d7155d300d7ded">  300</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classcx_1_1_log_appender.html#aca76c7489bdbc1ac92d7155d300d7ded">hasFromatter</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_hasFormatter; }</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html#a4063b42e359a2aa1783d5ef3046c8d01">  307</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_log_appender.html#a4063b42e359a2aa1783d5ef3046c8d01">setLevel</a>(LogLevel::Level level) { m_level = level; }</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html#a049b8b206cf7d347e1cd9a86043bed53">  314</a></span>  LogLevel::Level <a class="code hl_function" href="classcx_1_1_log_appender.html#a049b8b206cf7d347e1cd9a86043bed53">getLevel</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_level; }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>  LogFormatter::ptr m_formatter;                <span class="comment">// 日志格式器</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>  LogLevel::Level m_level = LogLevel::Level();  <span class="comment">// 日志等级</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>  <span class="keywordtype">bool</span> m_hasFormatter = <span class="keyword">false</span>;                  <span class="comment">// 默认没有日志格式器</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>  lock_t m_mutex;                               <span class="comment">// 互斥量</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>};</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="classcx_1_1_std_out_log_appender.html">  326</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_std_out_log_appender.html">StdOutLogAppender</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcx_1_1_log_appender.html">LogAppender</a> {</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>  <span class="keyword">typedef</span> std::shared_ptr&lt;StdOutLogAppender&gt; ptr;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_std_out_log_appender.html#a8ca3007449fcaedd215bdd5f4d153490">log</a>(LogLevel::Level level, LogEvent::ptr event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>  <span class="keyword">static</span> ptr Create() { <span class="keywordflow">return</span> ptr(<span class="keyword">new</span> <a class="code hl_class" href="classcx_1_1_std_out_log_appender.html">StdOutLogAppender</a>); }</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>};</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="classcx_1_1_file_log_appender.html">  346</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_file_log_appender.html">FileLogAppender</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcx_1_1_log_appender.html">LogAppender</a> {</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>  <span class="keyword">typedef</span> std::shared_ptr&lt;FileLogAppender&gt; ptr;</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>  <a class="code hl_function" href="classcx_1_1_file_log_appender.html#afc23a3bcc31750d74aaf8c691b047928">FileLogAppender</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_file_log_appender.html#a28c4c819ad36a6cad737356d982721eb">log</a>(LogLevel::Level level, LogEvent::ptr event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classcx_1_1_file_log_appender.html#a2bfedd9d96a22a9fdabeaf9a6781602c">reopen</a>();</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>  <span class="keyword">static</span> ptr Create(<span class="keyword">const</span> <span class="keywordtype">char</span>* file) { <span class="keywordflow">return</span> ptr(<span class="keyword">new</span> <a class="code hl_function" href="classcx_1_1_file_log_appender.html#afc23a3bcc31750d74aaf8c691b047928">FileLogAppender</a>(file)); }</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  std::string m_filename;      <span class="comment">// 文件名</span></div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>  std::ofstream m_filestream;  <span class="comment">// 文件流</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>  uint64_t m_lastTime = 0;     <span class="comment">// 最后打开时间</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>};</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno"><a class="line" href="classcx_1_1_logger.html">  383</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_logger.html">Logger</a> {</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>  <span class="keyword">typedef</span> std::shared_ptr&lt;Logger&gt; ptr;</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="class_spink_lock.html">SpinkLock</a> <a class="code hl_class" href="class_spink_lock.html">lock_t</a>;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>  <span class="keyword">typedef</span> std::lock_guard&lt;lock_t&gt; lock_guard;</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>  <a class="code hl_function" href="classcx_1_1_logger.html#a3c6df1fa50fd63debafa6913b6af5a6e">Logger</a>(std::string name = <span class="stringliteral">&quot;root&quot;</span>);</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a224b860ae3766b5e86631c23ec1c09bd">log</a>(LogLevel::Level level, LogEvent::ptr event);</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a8b7a624e88975e029e4880733682249b">debug</a>(LogEvent::ptr event);</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> </div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a7cdb40f78770389920ea233e39847bb3">info</a>(LogEvent::ptr event);</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a6e24c0f063e6aacab6c2a45ba8609fcd">warn</a>(LogEvent::ptr event);</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span> </div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a8ef608db100a92e1876728d87a12b52c">error</a>(LogEvent::ptr event);</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a9a59cacee57739d79533440a45b5d713">fatal</a>(LogEvent::ptr event);</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#ad1920ca9668525765a9c1e86bee31e8e">addAppender</a>(LogAppender::ptr appender);</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#ae24d7e513cec78a5f6477830f59503ab">delAppender</a>(LogAppender::ptr appender);</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> </div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a348cf4eb7bfb126468543fa4f0908581">clearAppenders</a>();</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> </div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno"><a class="line" href="classcx_1_1_logger.html#ad7f5dc3ab9e6371464543702e4c50b3e">  463</a></span>  std::string <a class="code hl_function" href="classcx_1_1_logger.html#ad7f5dc3ab9e6371464543702e4c50b3e">configString</a>();</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> </div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno"><a class="line" href="classcx_1_1_logger.html#a4453cfdd887e806b6e8e02cf83eb6b28">  470</a></span>  LogLevel::Level <a class="code hl_function" href="classcx_1_1_logger.html#a4453cfdd887e806b6e8e02cf83eb6b28">getLevel</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_level; }</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span> </div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno"><a class="line" href="classcx_1_1_logger.html#ab3c4a3c9253789459561929d45520b33">  477</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#ab3c4a3c9253789459561929d45520b33">setLevel</a>(LogLevel::Level level) { m_level = level; }</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span> </div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a6e7c651762e43591f562e8d430e089fc">setFormatter</a>(LogFormatter::ptr formatter);</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span> </div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_logger.html#a6e7c651762e43591f562e8d430e089fc">setFormatter</a>(<span class="keyword">const</span> std::string&amp; foramtter);</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span> </div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>  LogFormatter::ptr <a class="code hl_function" href="classcx_1_1_logger.html#a4e91adc6afb8509181655d20a3b2a660">getFormatter</a>();</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span> </div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno"><a class="line" href="classcx_1_1_logger.html#a1f7779acb0420026e287f2c62139ed35">  505</a></span>  std::string <a class="code hl_function" href="classcx_1_1_logger.html#a1f7779acb0420026e287f2c62139ed35">getName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_name; }</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>  std::string m_name;                               <span class="comment">// 日志器名</span></div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>  LogLevel::Level m_level;                          <span class="comment">// 日志等级</span></div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>  std::forward_list&lt;LogAppender::ptr&gt; m_appenders;  <span class="comment">// 日志输出地</span></div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>  LogFormatter::ptr m_formatter;                    <span class="comment">// 日志格式器</span></div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>  Logger::ptr m_root;                               <span class="comment">// 主日志器</span></div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>  lock_t m_mutex;                                   <span class="comment">// 互斥量</span></div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>};</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span> </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno"><a class="line" href="classcx_1_1_log_wrap.html">  519</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_log_wrap.html">LogWrap</a> {</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno"><a class="line" href="classcx_1_1_log_wrap.html#af5cac090617eb605d3a6c3a8bdd3cd7a">  527</a></span>  <a class="code hl_function" href="classcx_1_1_log_wrap.html#af5cac090617eb605d3a6c3a8bdd3cd7a">LogWrap</a>(Logger::ptr logger, LogEvent::ptr event)</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>      : m_logger(logger), m_event(event){};</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span> </div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno"><a class="line" href="classcx_1_1_log_wrap.html#afed39ffc92d45b7de3e4e568d951aec8">  533</a></span>  <a class="code hl_function" href="classcx_1_1_log_wrap.html#afed39ffc92d45b7de3e4e568d951aec8">~LogWrap</a>() { m_logger-&gt;log(m_event-&gt;getLevel(), m_event); }</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span> </div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno"><a class="line" href="classcx_1_1_log_wrap.html#a8ec30be27693915f0cbb2215b1eae526">  540</a></span>  LogEvent::ptr <a class="code hl_function" href="classcx_1_1_log_wrap.html#a8ec30be27693915f0cbb2215b1eae526">getEvent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_event; }</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno"><a class="line" href="classcx_1_1_log_wrap.html#a0cf980656e784bbdac90ffdf6bcba9d8">  547</a></span>  std::stringstream&amp; <a class="code hl_function" href="classcx_1_1_log_wrap.html#a0cf980656e784bbdac90ffdf6bcba9d8">getStrIO</a>() { <span class="keywordflow">return</span> m_event-&gt;getStrIO(); }</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span> </div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>  Logger::ptr m_logger;   <span class="comment">// 日志器</span></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>  LogEvent::ptr m_event;  <span class="comment">// 日志事件</span></div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>};</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span> </div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno"><a class="line" href="classcx_1_1_logger_manager.html">  557</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_logger_manager.html">LoggerManager</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcx_1_1_singleton_ptr.html">SingletonPtr</a>&lt;LoggerManager&gt; {</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="class_spink_lock.html">SpinkLock</a> <a class="code hl_class" href="class_spink_lock.html">lock_t</a>;</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>  <span class="keyword">typedef</span> std::lock_guard&lt;lock_t&gt; lock_guard;</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno"><a class="line" href="classcx_1_1_logger_manager.html#ae2da0a5ddea7cfa9afe258e62984d91c">  565</a></span>  <a class="code hl_function" href="classcx_1_1_logger_manager.html#ae2da0a5ddea7cfa9afe258e62984d91c">LoggerManager</a>() {</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>    m_root.reset(<span class="keyword">new</span> <a class="code hl_class" href="classcx_1_1_logger.html">Logger</a>);</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>    m_root-&gt;addAppender(StdOutLogAppender::Create());</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    m_loggers[m_root-&gt;getName()] = m_root;</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>  }</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span> </div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno"><a class="line" href="classcx_1_1_logger_manager.html#adb26f406763fd22240e75d736e9e3fa4">  578</a></span>  Logger::ptr <a class="code hl_function" href="classcx_1_1_logger_manager.html#adb26f406763fd22240e75d736e9e3fa4">getLogger</a>(<span class="keyword">const</span> std::string&amp; name) {</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>    lock_guard lock(m_mutex);</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    <span class="keyword">auto</span> it = m_loggers.find(name);</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>    <span class="keywordflow">if</span> (it != m_loggers.end()) <span class="keywordflow">return</span> it-&gt;second;</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>    Logger::ptr logger = std::make_shared&lt;Logger&gt;(name);</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>    m_loggers[name] = logger;</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>    <span class="keywordflow">return</span> logger;</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>  }</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span> </div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno"><a class="line" href="classcx_1_1_logger_manager.html#acf0c449d95e9f16b682bd1bf5be73811">  592</a></span>  Logger::ptr <a class="code hl_function" href="classcx_1_1_logger_manager.html#acf0c449d95e9f16b682bd1bf5be73811">getRoot</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_root; }</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span> </div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> SetLogDir(<span class="keyword">const</span> std::string&amp; dir) { m_log_dir = dir; }</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span> </div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> EnableEngineLogger() {</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>    <span class="keyword">auto</span> core = Self()-&gt;getLogger(<span class="stringliteral">&quot;core&quot;</span>);</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>    <span class="keyword">auto</span> engine = Self()-&gt;getLogger(<span class="stringliteral">&quot;engine&quot;</span>);</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span> </div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>    std::string target_log = CheckLogDir();</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span> </div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span><span class="preprocessor">#if defined(CX_DEBUG_MODE)</span></div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;[Prompt]\t[LOG]\tINFO: log file save to &quot;</span> &lt;&lt; target_log</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>              &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span> </div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>    core-&gt;addAppender(FileLogAppender::Create(target_log.c_str()));</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>    engine-&gt;addAppender(StdOutLogAppender::Create());</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>  }</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span> </div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>  <span class="keyword">static</span> std::string CheckLogDir() {</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>    std::string cur_path = std::filesystem::current_path();</div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>    std::filesystem::path target_log(cur_path + <span class="stringliteral">&quot;/&quot;</span> + m_log_dir);</div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>    <span class="keywordflow">if</span> (!std::filesystem::exists(target_log)) {</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>      std::filesystem::create_directory(target_log);</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>    }</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> </div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>    std::chrono::time_point now = std::chrono::system_clock::now();</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>    time_t _now = std::chrono::system_clock::to_time_t(now);</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>    std::stringstream ss;</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>    ss &lt;&lt; std::put_time(std::localtime(&amp;_now), <span class="stringliteral">&quot;%Y_%m_%d&quot;</span>);</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span> </div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>    std::string cur_day_log = target_log.string() + <span class="stringliteral">&quot;/&quot;</span> + ss.str() + <span class="stringliteral">&quot;.log&quot;</span>;</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>    std::filesystem::path target_day_log(cur_day_log);</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>    <span class="keywordflow">if</span> (!std::filesystem::exists(target_day_log)) {</div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>      std::fstream fs;</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>      fs.open(cur_day_log, std::ios_base::out);</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>      fs.close();</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>    }</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span> </div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>    <span class="keywordflow">return</span> cur_day_log;</div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>  }</div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span> </div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>  Logger::ptr m_root;                            <span class="comment">// 主日志器</span></div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>  std::map&lt;std::string, Logger::ptr&gt; m_loggers;  <span class="comment">// 所有日志器</span></div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>  lock_t m_mutex;                                <span class="comment">// 互斥量</span></div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>  <span class="keyword">static</span> std::string m_log_dir;</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>};</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span> </div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span><span class="keyword">typedef</span> LoggerManager LogManager;</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span> </div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>}  <span class="comment">// namespace cx</span></div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span> </div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span><span class="preprocessor">#endif </span><span class="comment">/* log_hpp */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclass_spink_lock_html"><div class="ttname"><a href="class_spink_lock.html">SpinkLock</a></div><div class="ttdoc">自旋锁</div><div class="ttdef"><b>Definition:</b> spink_lock.h:21</div></div>
+<div class="ttc" id="aclasscx_1_1_file_log_appender_html"><div class="ttname"><a href="classcx_1_1_file_log_appender.html">cx::FileLogAppender</a></div><div class="ttdoc">文件流日志输出地</div><div class="ttdef"><b>Definition:</b> log.h:346</div></div>
+<div class="ttc" id="aclasscx_1_1_file_log_appender_html_a28c4c819ad36a6cad737356d982721eb"><div class="ttname"><a href="classcx_1_1_file_log_appender.html#a28c4c819ad36a6cad737356d982721eb">cx::FileLogAppender::log</a></div><div class="ttdeci">void log(LogLevel::Level level, LogEvent::ptr event) override</div><div class="ttdoc">生成日志</div><div class="ttdef"><b>Definition:</b> log.cpp:282</div></div>
+<div class="ttc" id="aclasscx_1_1_file_log_appender_html_a2bfedd9d96a22a9fdabeaf9a6781602c"><div class="ttname"><a href="classcx_1_1_file_log_appender.html#a2bfedd9d96a22a9fdabeaf9a6781602c">cx::FileLogAppender::reopen</a></div><div class="ttdeci">bool reopen()</div><div class="ttdoc">重新打开文件</div><div class="ttdef"><b>Definition:</b> log.cpp:292</div></div>
+<div class="ttc" id="aclasscx_1_1_file_log_appender_html_afc23a3bcc31750d74aaf8c691b047928"><div class="ttname"><a href="classcx_1_1_file_log_appender.html#afc23a3bcc31750d74aaf8c691b047928">cx::FileLogAppender::FileLogAppender</a></div><div class="ttdeci">FileLogAppender(const std::string &amp;filename)</div><div class="ttdoc">文件流日志输出地构造函数</div><div class="ttdef"><b>Definition:</b> log.cpp:277</div></div>
+<div class="ttc" id="aclasscx_1_1_log_appender_html"><div class="ttname"><a href="classcx_1_1_log_appender.html">cx::LogAppender</a></div><div class="ttdoc">日志输出地</div><div class="ttdef"><b>Definition:</b> log.h:260</div></div>
+<div class="ttc" id="aclasscx_1_1_log_appender_html_a049b8b206cf7d347e1cd9a86043bed53"><div class="ttname"><a href="classcx_1_1_log_appender.html#a049b8b206cf7d347e1cd9a86043bed53">cx::LogAppender::getLevel</a></div><div class="ttdeci">LogLevel::Level getLevel() const</div><div class="ttdoc">获取日志等级</div><div class="ttdef"><b>Definition:</b> log.h:314</div></div>
+<div class="ttc" id="aclasscx_1_1_log_appender_html_a087cc0937e218bb5f68e9df5bdb43e68"><div class="ttname"><a href="classcx_1_1_log_appender.html#a087cc0937e218bb5f68e9df5bdb43e68">cx::LogAppender::log</a></div><div class="ttdeci">virtual void log(LogLevel::Level level, LogEvent::ptr event)=0</div><div class="ttdoc">生成日志</div></div>
+<div class="ttc" id="aclasscx_1_1_log_appender_html_a0ebeed8ac4badf8f83d504622f2b33bb"><div class="ttname"><a href="classcx_1_1_log_appender.html#a0ebeed8ac4badf8f83d504622f2b33bb">cx::LogAppender::getFormatter</a></div><div class="ttdeci">LogFormatter::ptr getFormatter()</div><div class="ttdoc">获取日志格式器</div><div class="ttdef"><b>Definition:</b> log.h:290</div></div>
+<div class="ttc" id="aclasscx_1_1_log_appender_html_a4063b42e359a2aa1783d5ef3046c8d01"><div class="ttname"><a href="classcx_1_1_log_appender.html#a4063b42e359a2aa1783d5ef3046c8d01">cx::LogAppender::setLevel</a></div><div class="ttdeci">void setLevel(LogLevel::Level level)</div><div class="ttdoc">设置日志等级</div><div class="ttdef"><b>Definition:</b> log.h:307</div></div>
+<div class="ttc" id="aclasscx_1_1_log_appender_html_ac0a60a3039a237bea074530c2c440491"><div class="ttname"><a href="classcx_1_1_log_appender.html#ac0a60a3039a237bea074530c2c440491">cx::LogAppender::setFormatter</a></div><div class="ttdeci">void setFormatter(LogFormatter::ptr formatter)</div><div class="ttdoc">设置日志格式器</div><div class="ttdef"><b>Definition:</b> log.h:279</div></div>
+<div class="ttc" id="aclasscx_1_1_log_appender_html_aca76c7489bdbc1ac92d7155d300d7ded"><div class="ttname"><a href="classcx_1_1_log_appender.html#aca76c7489bdbc1ac92d7155d300d7ded">cx::LogAppender::hasFromatter</a></div><div class="ttdeci">bool hasFromatter() const</div><div class="ttdoc">是否有日志格式器</div><div class="ttdef"><b>Definition:</b> log.h:300</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html"><div class="ttname"><a href="classcx_1_1_log_event.html">cx::LogEvent</a></div><div class="ttdoc">日志事件</div><div class="ttdef"><b>Definition:</b> log.h:78</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_a023237bae49db49f35ed727be3aae435"><div class="ttname"><a href="classcx_1_1_log_event.html#a023237bae49db49f35ed727be3aae435">cx::LogEvent::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdoc">获取日志器名</div><div class="ttdef"><b>Definition:</b> log.h:166</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_a262e4a80831a3136eeb9184683956b56"><div class="ttname"><a href="classcx_1_1_log_event.html#a262e4a80831a3136eeb9184683956b56">cx::LogEvent::getContent</a></div><div class="ttdeci">const std::string getContent() const</div><div class="ttdoc">获取日志内容</div><div class="ttdef"><b>Definition:</b> log.h:152</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_a4241262f5a4a0145d53c24e3147e2cd4"><div class="ttname"><a href="classcx_1_1_log_event.html#a4241262f5a4a0145d53c24e3147e2cd4">cx::LogEvent::LogEvent</a></div><div class="ttdeci">LogEvent(LogLevel::Level level, const char *file, const char *funcName, uint32_t line, uint32_t elapse, std::thread::id threadId, uint64_t time, const std::string &amp;name)</div><div class="ttdoc">日志事件类的构造函数</div><div class="ttdef"><b>Definition:</b> log.cpp:33</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_a42ae776f00afb6804294114bb1335aa4"><div class="ttname"><a href="classcx_1_1_log_event.html#a42ae776f00afb6804294114bb1335aa4">cx::LogEvent::getLevel</a></div><div class="ttdeci">LogLevel::Level getLevel() const</div><div class="ttdoc">获取日志等级</div><div class="ttdef"><b>Definition:</b> log.h:145</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_a4a2f3eeb042004a0112a16a564d71dc1"><div class="ttname"><a href="classcx_1_1_log_event.html#a4a2f3eeb042004a0112a16a564d71dc1">cx::LogEvent::getStrIO</a></div><div class="ttdeci">std::stringstream &amp; getStrIO()</div><div class="ttdoc">获取字符流</div><div class="ttdef"><b>Definition:</b> log.h:159</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_a5c1d4179ff38d96e4586740d8bcde78b"><div class="ttname"><a href="classcx_1_1_log_event.html#a5c1d4179ff38d96e4586740d8bcde78b">cx::LogEvent::getLine</a></div><div class="ttdeci">uint32_t getLine() const</div><div class="ttdoc">获取行号</div><div class="ttdef"><b>Definition:</b> log.h:117</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_a690b1dc567f96f7285477214a1e6a823"><div class="ttname"><a href="classcx_1_1_log_event.html#a690b1dc567f96f7285477214a1e6a823">cx::LogEvent::getFile</a></div><div class="ttdeci">const char * getFile() const</div><div class="ttdoc">获取文件名</div><div class="ttdef"><b>Definition:</b> log.h:103</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_a971b3064ccf2556bbc38e1c8793ccb7a"><div class="ttname"><a href="classcx_1_1_log_event.html#a971b3064ccf2556bbc38e1c8793ccb7a">cx::LogEvent::getElapse</a></div><div class="ttdeci">uint32_t getElapse() const</div><div class="ttdoc">获取启动到现在的毫秒数</div><div class="ttdef"><b>Definition:</b> log.h:124</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_abd3ac36013d28fa61823b047100e0bc4"><div class="ttname"><a href="classcx_1_1_log_event.html#abd3ac36013d28fa61823b047100e0bc4">cx::LogEvent::getThreadId</a></div><div class="ttdeci">std::thread::id getThreadId() const</div><div class="ttdoc">获取线程id</div><div class="ttdef"><b>Definition:</b> log.h:131</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_ae28bdfe8adbd9db45097b1d52ab9543f"><div class="ttname"><a href="classcx_1_1_log_event.html#ae28bdfe8adbd9db45097b1d52ab9543f">cx::LogEvent::getTime</a></div><div class="ttdeci">uint64_t getTime() const</div><div class="ttdoc">获取当前时间</div><div class="ttdef"><b>Definition:</b> log.h:138</div></div>
+<div class="ttc" id="aclasscx_1_1_log_event_html_af1bb1e2749ab42af78a1bb4dd62d415e"><div class="ttname"><a href="classcx_1_1_log_event.html#af1bb1e2749ab42af78a1bb4dd62d415e">cx::LogEvent::getFuncName</a></div><div class="ttdeci">const char * getFuncName() const</div><div class="ttdoc">获取函数名</div><div class="ttdef"><b>Definition:</b> log.h:110</div></div>
+<div class="ttc" id="aclasscx_1_1_log_formatter_1_1_format_item_html"><div class="ttname"><a href="classcx_1_1_log_formatter_1_1_format_item.html">cx::LogFormatter::FormatItem</a></div><div class="ttdoc">日志格式项</div><div class="ttdef"><b>Definition:</b> log.h:192</div></div>
+<div class="ttc" id="aclasscx_1_1_log_formatter_1_1_format_item_html_a96743958799f6e36497feb54f979596f"><div class="ttname"><a href="classcx_1_1_log_formatter_1_1_format_item.html#a96743958799f6e36497feb54f979596f">cx::LogFormatter::FormatItem::format</a></div><div class="ttdeci">virtual void format(std::ostream &amp;os, LogEvent::ptr event)=0</div><div class="ttdoc">格式化输出日志</div></div>
+<div class="ttc" id="aclasscx_1_1_log_formatter_html"><div class="ttname"><a href="classcx_1_1_log_formatter.html">cx::LogFormatter</a></div><div class="ttdoc">日志格式器</div><div class="ttdef"><b>Definition:</b> log.h:185</div></div>
+<div class="ttc" id="aclasscx_1_1_log_formatter_html_a3411eab8d9316750a6c5675f2e7ce9bb"><div class="ttname"><a href="classcx_1_1_log_formatter.html#a3411eab8d9316750a6c5675f2e7ce9bb">cx::LogFormatter::parse</a></div><div class="ttdeci">void parse()</div><div class="ttdoc">模式串解析</div><div class="ttdef"><b>Definition:</b> log.cpp:168</div></div>
+<div class="ttc" id="aclasscx_1_1_log_formatter_html_a573b6904cfdd6d7f33cdc0b0c4b88858"><div class="ttname"><a href="classcx_1_1_log_formatter.html#a573b6904cfdd6d7f33cdc0b0c4b88858">cx::LogFormatter::isError</a></div><div class="ttdeci">bool isError() const</div><div class="ttdoc">格式串格式是否错误</div><div class="ttdef"><b>Definition:</b> log.h:242</div></div>
+<div class="ttc" id="aclasscx_1_1_log_formatter_html_a8149a54c6d2a81cdcefa1fadb742bab3"><div class="ttname"><a href="classcx_1_1_log_formatter.html#a8149a54c6d2a81cdcefa1fadb742bab3">cx::LogFormatter::getPattern</a></div><div class="ttdeci">const std::string getPattern() const</div><div class="ttdoc">获取模式串</div><div class="ttdef"><b>Definition:</b> log.h:249</div></div>
+<div class="ttc" id="aclasscx_1_1_log_formatter_html_a9aad817e920d506b003729672b55e04a"><div class="ttname"><a href="classcx_1_1_log_formatter.html#a9aad817e920d506b003729672b55e04a">cx::LogFormatter::LogFormatter</a></div><div class="ttdeci">LogFormatter(const std::string &amp;pattern)</div><div class="ttdoc">日志格式器构造函数</div><div class="ttdef"><b>Definition:</b> log.cpp:46</div></div>
+<div class="ttc" id="aclasscx_1_1_log_formatter_html_abc78e721cb507a97d87c7c4653304ba1"><div class="ttname"><a href="classcx_1_1_log_formatter.html#abc78e721cb507a97d87c7c4653304ba1">cx::LogFormatter::format</a></div><div class="ttdeci">std::string format(LogEvent::ptr event)</div><div class="ttdoc">格式化输出日志</div><div class="ttdef"><b>Definition:</b> log.cpp:50</div></div>
+<div class="ttc" id="aclasscx_1_1_log_level_html"><div class="ttname"><a href="classcx_1_1_log_level.html">cx::LogLevel</a></div><div class="ttdoc">日志等级</div><div class="ttdef"><b>Definition:</b> log.h:54</div></div>
+<div class="ttc" id="aclasscx_1_1_log_level_html_ab628806e15fdda6854418dcf8022219c"><div class="ttname"><a href="classcx_1_1_log_level.html#ab628806e15fdda6854418dcf8022219c">cx::LogLevel::toString</a></div><div class="ttdeci">static const std::string toString(Level level)</div><div class="ttdoc">将对应的日志等级转换为文本</div><div class="ttdef"><b>Definition:</b> log.cpp:16</div></div>
+<div class="ttc" id="aclasscx_1_1_log_wrap_html"><div class="ttname"><a href="classcx_1_1_log_wrap.html">cx::LogWrap</a></div><div class="ttdoc">日志外覆器</div><div class="ttdef"><b>Definition:</b> log.h:519</div></div>
+<div class="ttc" id="aclasscx_1_1_log_wrap_html_a0cf980656e784bbdac90ffdf6bcba9d8"><div class="ttname"><a href="classcx_1_1_log_wrap.html#a0cf980656e784bbdac90ffdf6bcba9d8">cx::LogWrap::getStrIO</a></div><div class="ttdeci">std::stringstream &amp; getStrIO()</div><div class="ttdoc">获取字符流</div><div class="ttdef"><b>Definition:</b> log.h:547</div></div>
+<div class="ttc" id="aclasscx_1_1_log_wrap_html_a8ec30be27693915f0cbb2215b1eae526"><div class="ttname"><a href="classcx_1_1_log_wrap.html#a8ec30be27693915f0cbb2215b1eae526">cx::LogWrap::getEvent</a></div><div class="ttdeci">LogEvent::ptr getEvent() const</div><div class="ttdoc">获取日志事件</div><div class="ttdef"><b>Definition:</b> log.h:540</div></div>
+<div class="ttc" id="aclasscx_1_1_log_wrap_html_af5cac090617eb605d3a6c3a8bdd3cd7a"><div class="ttname"><a href="classcx_1_1_log_wrap.html#af5cac090617eb605d3a6c3a8bdd3cd7a">cx::LogWrap::LogWrap</a></div><div class="ttdeci">LogWrap(Logger::ptr logger, LogEvent::ptr event)</div><div class="ttdoc">外覆器构造函数</div><div class="ttdef"><b>Definition:</b> log.h:527</div></div>
+<div class="ttc" id="aclasscx_1_1_log_wrap_html_afed39ffc92d45b7de3e4e568d951aec8"><div class="ttname"><a href="classcx_1_1_log_wrap.html#afed39ffc92d45b7de3e4e568d951aec8">cx::LogWrap::~LogWrap</a></div><div class="ttdeci">~LogWrap()</div><div class="ttdoc">外覆器析构函数</div><div class="ttdef"><b>Definition:</b> log.h:533</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html"><div class="ttname"><a href="classcx_1_1_logger.html">cx::Logger</a></div><div class="ttdoc">日志器</div><div class="ttdef"><b>Definition:</b> log.h:383</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a1f7779acb0420026e287f2c62139ed35"><div class="ttname"><a href="classcx_1_1_logger.html#a1f7779acb0420026e287f2c62139ed35">cx::Logger::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdoc">获取日志器名</div><div class="ttdef"><b>Definition:</b> log.h:505</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a224b860ae3766b5e86631c23ec1c09bd"><div class="ttname"><a href="classcx_1_1_logger.html#a224b860ae3766b5e86631c23ec1c09bd">cx::Logger::log</a></div><div class="ttdeci">void log(LogLevel::Level level, LogEvent::ptr event)</div><div class="ttdoc">生成日志</div><div class="ttdef"><b>Definition:</b> log.cpp:306</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a348cf4eb7bfb126468543fa4f0908581"><div class="ttname"><a href="classcx_1_1_logger.html#a348cf4eb7bfb126468543fa4f0908581">cx::Logger::clearAppenders</a></div><div class="ttdeci">void clearAppenders()</div><div class="ttdoc">清除日志输出地</div><div class="ttdef"><b>Definition:</b> log.cpp:346</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a3c6df1fa50fd63debafa6913b6af5a6e"><div class="ttname"><a href="classcx_1_1_logger.html#a3c6df1fa50fd63debafa6913b6af5a6e">cx::Logger::Logger</a></div><div class="ttdeci">Logger(std::string name=&quot;root&quot;)</div><div class="ttdoc">日志器构造函数</div><div class="ttdef"><b>Definition:</b> log.cpp:301</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a4453cfdd887e806b6e8e02cf83eb6b28"><div class="ttname"><a href="classcx_1_1_logger.html#a4453cfdd887e806b6e8e02cf83eb6b28">cx::Logger::getLevel</a></div><div class="ttdeci">LogLevel::Level getLevel() const</div><div class="ttdoc">获取日志等级</div><div class="ttdef"><b>Definition:</b> log.h:470</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a4e91adc6afb8509181655d20a3b2a660"><div class="ttname"><a href="classcx_1_1_logger.html#a4e91adc6afb8509181655d20a3b2a660">cx::Logger::getFormatter</a></div><div class="ttdeci">LogFormatter::ptr getFormatter()</div><div class="ttdoc">设置日志格式器</div><div class="ttdef"><b>Definition:</b> log.cpp:371</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a6e24c0f063e6aacab6c2a45ba8609fcd"><div class="ttname"><a href="classcx_1_1_logger.html#a6e24c0f063e6aacab6c2a45ba8609fcd">cx::Logger::warn</a></div><div class="ttdeci">void warn(LogEvent::ptr event)</div><div class="ttdoc">生成warn等级的日志</div><div class="ttdef"><b>Definition:</b> log.cpp:327</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a6e7c651762e43591f562e8d430e089fc"><div class="ttname"><a href="classcx_1_1_logger.html#a6e7c651762e43591f562e8d430e089fc">cx::Logger::setFormatter</a></div><div class="ttdeci">void setFormatter(LogFormatter::ptr formatter)</div><div class="ttdoc">设置日志格式器</div><div class="ttdef"><b>Definition:</b> log.cpp:348</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a7cdb40f78770389920ea233e39847bb3"><div class="ttname"><a href="classcx_1_1_logger.html#a7cdb40f78770389920ea233e39847bb3">cx::Logger::info</a></div><div class="ttdeci">void info(LogEvent::ptr event)</div><div class="ttdoc">生成info等级的日志</div><div class="ttdef"><b>Definition:</b> log.cpp:325</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a8b7a624e88975e029e4880733682249b"><div class="ttname"><a href="classcx_1_1_logger.html#a8b7a624e88975e029e4880733682249b">cx::Logger::debug</a></div><div class="ttdeci">void debug(LogEvent::ptr event)</div><div class="ttdoc">生成debug等级的日志</div><div class="ttdef"><b>Definition:</b> log.cpp:323</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a8ef608db100a92e1876728d87a12b52c"><div class="ttname"><a href="classcx_1_1_logger.html#a8ef608db100a92e1876728d87a12b52c">cx::Logger::error</a></div><div class="ttdeci">void error(LogEvent::ptr event)</div><div class="ttdoc">生成error等级的日志</div><div class="ttdef"><b>Definition:</b> log.cpp:329</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_a9a59cacee57739d79533440a45b5d713"><div class="ttname"><a href="classcx_1_1_logger.html#a9a59cacee57739d79533440a45b5d713">cx::Logger::fatal</a></div><div class="ttdeci">void fatal(LogEvent::ptr event)</div><div class="ttdoc">生成fatal等级的日志</div><div class="ttdef"><b>Definition:</b> log.cpp:331</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_ab3c4a3c9253789459561929d45520b33"><div class="ttname"><a href="classcx_1_1_logger.html#ab3c4a3c9253789459561929d45520b33">cx::Logger::setLevel</a></div><div class="ttdeci">void setLevel(LogLevel::Level level)</div><div class="ttdoc">设置日志等级</div><div class="ttdef"><b>Definition:</b> log.h:477</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_ad1920ca9668525765a9c1e86bee31e8e"><div class="ttname"><a href="classcx_1_1_logger.html#ad1920ca9668525765a9c1e86bee31e8e">cx::Logger::addAppender</a></div><div class="ttdeci">void addAppender(LogAppender::ptr appender)</div><div class="ttdoc">添加日志输出地</div><div class="ttdef"><b>Definition:</b> log.cpp:333</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_ad7f5dc3ab9e6371464543702e4c50b3e"><div class="ttname"><a href="classcx_1_1_logger.html#ad7f5dc3ab9e6371464543702e4c50b3e">cx::Logger::configString</a></div><div class="ttdeci">std::string configString()</div><div class="ttdoc">获取日志器配置</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_html_ae24d7e513cec78a5f6477830f59503ab"><div class="ttname"><a href="classcx_1_1_logger.html#ae24d7e513cec78a5f6477830f59503ab">cx::Logger::delAppender</a></div><div class="ttdeci">void delAppender(LogAppender::ptr appender)</div><div class="ttdoc">删除日志输出地</div><div class="ttdef"><b>Definition:</b> log.cpp:341</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_manager_html"><div class="ttname"><a href="classcx_1_1_logger_manager.html">cx::LoggerManager</a></div><div class="ttdoc">日志管理器</div><div class="ttdef"><b>Definition:</b> log.h:557</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_manager_html_acf0c449d95e9f16b682bd1bf5be73811"><div class="ttname"><a href="classcx_1_1_logger_manager.html#acf0c449d95e9f16b682bd1bf5be73811">cx::LoggerManager::getRoot</a></div><div class="ttdeci">Logger::ptr getRoot() const</div><div class="ttdoc">获取主日志器</div><div class="ttdef"><b>Definition:</b> log.h:592</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_manager_html_adb26f406763fd22240e75d736e9e3fa4"><div class="ttname"><a href="classcx_1_1_logger_manager.html#adb26f406763fd22240e75d736e9e3fa4">cx::LoggerManager::getLogger</a></div><div class="ttdeci">Logger::ptr getLogger(const std::string &amp;name)</div><div class="ttdoc">获取日志器</div><div class="ttdef"><b>Definition:</b> log.h:578</div></div>
+<div class="ttc" id="aclasscx_1_1_logger_manager_html_ae2da0a5ddea7cfa9afe258e62984d91c"><div class="ttname"><a href="classcx_1_1_logger_manager.html#ae2da0a5ddea7cfa9afe258e62984d91c">cx::LoggerManager::LoggerManager</a></div><div class="ttdeci">LoggerManager()</div><div class="ttdoc">日志管理器构造函数</div><div class="ttdef"><b>Definition:</b> log.h:565</div></div>
+<div class="ttc" id="aclasscx_1_1_singleton_ptr_html"><div class="ttname"><a href="classcx_1_1_singleton_ptr.html">cx::SingletonPtr</a></div><div class="ttdef"><b>Definition:</b> singleton.h:38</div></div>
+<div class="ttc" id="aclasscx_1_1_std_out_log_appender_html"><div class="ttname"><a href="classcx_1_1_std_out_log_appender.html">cx::StdOutLogAppender</a></div><div class="ttdoc">标准输出流日志输出地</div><div class="ttdef"><b>Definition:</b> log.h:326</div></div>
+<div class="ttc" id="aclasscx_1_1_std_out_log_appender_html_a8ca3007449fcaedd215bdd5f4d153490"><div class="ttname"><a href="classcx_1_1_std_out_log_appender.html#a8ca3007449fcaedd215bdd5f4d153490">cx::StdOutLogAppender::log</a></div><div class="ttdeci">void log(LogLevel::Level level, LogEvent::ptr event) override</div><div class="ttdoc">生成日志</div><div class="ttdef"><b>Definition:</b> log.cpp:267</div></div>
+<div class="ttc" id="ainternal_8h_html"><div class="ttname"><a href="internal_8h.html">internal.h</a></div><div class="ttdoc">引擎的宏定义</div></div>
+<div class="ttc" id="asingleton_8h_html"><div class="ttname"><a href="singleton_8h.html">singleton.h</a></div><div class="ttdoc">单例模板类</div></div>
+<div class="ttc" id="aspink__lock_8h_html"><div class="ttname"><a href="spink__lock_8h.html">spink_lock.h</a></div><div class="ttdoc">基于std::atomic_flag的自旋锁</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+</small></address>
+</body>
+</html>
