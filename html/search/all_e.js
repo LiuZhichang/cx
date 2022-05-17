@@ -1,11 +1,25 @@
 var searchData=
 [
-  ['tabformatitem_0',['TabFormatItem',['../classcx_1_1_tab_format_item.html',1,'cx']]],
-  ['threadidformatitem_1',['ThreadIdFormatItem',['../classcx_1_1_thread_id_format_item.html',1,'cx']]],
-  ['title_2',['title',['../classcx_1_1_window.html#a18299c05d05622e1ebf050fc0e5171da',1,'cx::Window']]],
-  ['tostring_3',['toString',['../classcx_1_1_log_level.html#ab628806e15fdda6854418dcf8022219c',1,'cx::LogLevel']]],
-  ['type_5fmeta_2eh_4',['type_meta.h',['../type__meta_8h.html',1,'']]],
-  ['typeid_5',['TypeID',['../type__meta_8h.html#a30046a9ff6762ea873e84ac9dafbee8f',1,'cx']]],
-  ['typemeta_6',['TypeMeta',['../classcx_1_1_type_meta.html',1,'cx']]],
-  ['typeval_7',['TypeVal',['../structcx_1_1_module_factory_1_1_type_val.html',1,'cx::ModuleFactory']]]
+  ['scopeguard_0',['ScopeGuard',['../classcx_1_1_scope_guard.html',1,'cx']]],
+  ['set_5fattribute_1',['set_attribute',['../classcx_1_1_window.html#a8b32720dcfb97dec19d354a8cd7327c3',1,'cx::Window']]],
+  ['set_5fheight_2',['set_height',['../classcx_1_1_window.html#a4df9cd7ddcdc719dfdf585deb25102a7',1,'cx::Window']]],
+  ['set_5fposition_3',['set_position',['../classcx_1_1_window.html#a9f62a9bc735e60629d55b67ff56d6341',1,'cx::Window::set_position(uint32_t x, uint32_t y)'],['../classcx_1_1_window.html#a09dfe72cc51670bf66ec758177b506d7',1,'cx::Window::set_position(const Vector2ui &amp;pos)']]],
+  ['set_5ftitle_4',['set_title',['../classcx_1_1_window.html#af53d4a228959c4c34a9d8fd7ddcbd743',1,'cx::Window']]],
+  ['set_5fwidth_5',['set_width',['../classcx_1_1_window.html#a8df43f3a832e712746440c0ed4090879',1,'cx::Window']]],
+  ['setformatter_6',['setFormatter',['../classcx_1_1_log_appender.html#ac0a60a3039a237bea074530c2c440491',1,'cx::LogAppender::setFormatter()'],['../classcx_1_1_logger.html#a6e7c651762e43591f562e8d430e089fc',1,'cx::Logger::setFormatter(LogFormatter::ptr formatter)'],['../classcx_1_1_logger.html#ad24d097a6f73779bfb94d08114aa262b',1,'cx::Logger::setFormatter(const std::string &amp;foramtter)']]],
+  ['setlevel_7',['setLevel',['../classcx_1_1_log_appender.html#a4063b42e359a2aa1783d5ef3046c8d01',1,'cx::LogAppender::setLevel()'],['../classcx_1_1_logger.html#ab3c4a3c9253789459561929d45520b33',1,'cx::Logger::setLevel()']]],
+  ['singleton_8',['Singleton',['../classcx_1_1_singleton.html',1,'cx']]],
+  ['singleton_2eh_9',['singleton.h',['../singleton_8h.html',1,'']]],
+  ['singleton_3c_20engine_20_3e_10',['Singleton&lt; Engine &gt;',['../classcx_1_1_singleton.html',1,'cx']]],
+  ['singletonptr_11',['SingletonPtr',['../classcx_1_1_singleton_ptr.html',1,'cx']]],
+  ['singletonptr_3c_20loggermanager_20_3e_12',['SingletonPtr&lt; LoggerManager &gt;',['../classcx_1_1_singleton_ptr.html',1,'cx']]],
+  ['size_13',['size',['../classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29',1,'cx::Window']]],
+  ['socket_14',['Socket',['../classcx_1_1net_1_1_socket.html',1,'cx::net']]],
+  ['socket_2eh_15',['socket.h',['../socket_8h.html',1,'']]],
+  ['spink_5flock_2eh_16',['spink_lock.h',['../spink__lock_8h.html',1,'']]],
+  ['spinklock_17',['SpinkLock',['../classcx_1_1sync_1_1_spink_lock.html',1,'cx::sync']]],
+  ['status_18',['Status',['../classcx_1_1_window.html#a2bfb84762ae707c074096634092f3e07',1,'cx::Window']]],
+  ['stdoutlogappender_19',['StdOutLogAppender',['../classcx_1_1_std_out_log_appender.html',1,'cx']]],
+  ['strerror_20',['strerror',['../error_8h.html#ac9ef2d229c4d5aa36c239912a7ffc4a7',1,'cx']]],
+  ['stringformatitem_21',['StringFormatItem',['../classcx_1_1_string_format_item.html',1,'cx']]]
 ];

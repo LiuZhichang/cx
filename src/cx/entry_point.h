@@ -19,19 +19,21 @@ extern cx::App* CX_API CX_CreateApp(int argc, char** argv);
  * @brief 入口函数
  */
 int CX_ENTRY_POINT main(int argc, char** argv) {
-  // 开启日志
-  cx::LogManager::EnableEngineLogger();
 #if !defined(CX_DEBUG_MODE)
-  CX_LOGGER("core")->setLevel(cx::LogLevel::Level::eError);
-  CX_LOGGER("engine")->setLevel(cx::LogLevel::Level::eUnknown);
+  CX_LOGGER("core")->setLevel(cx::log::Level::eError);
+  CX_LOGGER("engine")->setLevel(cx::log::Level::eUnknown);
 #else
   auto logger = CX_LOGGER("engine");
   LOG_INFO(logger) << "Entry point";
 #endif
 
-  cx::Engine* engine = cx::Engine::Self();
+  cx::Engine::ptr engine = cx::Engine::Self();
+  cx::App::ptr app = CX_CreateApp(argc, argv);
 
-  cx::App* app = CX_CreateApp(argc, argv);
+#if defined(CX_DEBUG_MODE)
+  LOG_DEBUG(logger) << "App version:" << app->version().to_string();
+#endif
+
   // 不需要释放app对象，由引擎对象托管
   engine->load(app);
   engine->run();

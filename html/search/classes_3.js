@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['elapseformatitem_0',['ElapseFormatItem',['../classcx_1_1_elapse_format_item.html',1,'cx']]],
-  ['engine_1',['Engine',['../classcx_1_1_engine.html',1,'cx']]]
+  ['datetimeformatitem_0',['DateTimeFormatItem',['../classcx_1_1_date_time_format_item.html',1,'cx']]]
 ];

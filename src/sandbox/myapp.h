@@ -4,7 +4,7 @@ class MyApp : public cx::App {
  public:
   MyApp(const Arguments& args);
 
-  void run() override;
+  void task() override;
   void update() override;
 
  private:

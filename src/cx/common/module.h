@@ -14,6 +14,7 @@
 #include <memory>
 #include <vector>
 
+#include "common.h"
 #include "internal.h"
 #include "log/log.h"
 #include "noncopyable.h"
@@ -48,9 +49,13 @@ class ModuleFactory {
    *
    * @tparam T 任意类型
    */
-  template <typename T>
+  template <typename T /*, bool Raw = true*/>
   class Registrar : public Base {
+    struct Generator {};
+
    public:
+    // typedef typename std::conditional<Raw, T*, std::unique_ptr<T>>::type ptr;
+
     /**
      * @brief 获取类型实例指针
      *

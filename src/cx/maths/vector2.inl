@@ -130,6 +130,11 @@ auto Vector2<T>::length() const {
 }
 
 template <typename T>
+CX_CONSTEXPR bool cx::Vector2<T>::operator==(const Vector2<T>& vec) {
+  return (vec.x == x) && (vec.y == y);
+}
+
+template <typename T>
 CX_CONSTEXPR Vector2<T>& cx::Vector2<T>::operator=(const Vector2<T>& vec) {
   x = vec.x;
   y = vec.y;

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: src/cx/common/log/log.h 源文件</title>
+<title>Cx Engine: src/cx/common/log/log.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Cx Engine
    </div>
   </td>
  </tr>
@@ -208,7 +208,7 @@ $(function() {
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html">  260</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_log_appender.html">LogAppender</a> {</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  <span class="keyword">typedef</span> std::shared_ptr&lt;LogAppender&gt; ptr;</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="class_spink_lock.html">SpinkLock</a> <a class="code hl_class" href="class_spink_lock.html">lock_t</a>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="classcx_1_1sync_1_1_spink_lock.html">sync::SpinkLock</a> <a class="code hl_class" href="classcx_1_1sync_1_1_spink_lock.html">lock_t</a>;</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  <span class="keyword">typedef</span> std::lock_guard&lt;lock_t&gt; lock_guard;</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="classcx_1_1_log_appender.html#a087cc0937e218bb5f68e9df5bdb43e68">  272</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcx_1_1_log_appender.html#a087cc0937e218bb5f68e9df5bdb43e68">log</a>(LogLevel::Level level, LogEvent::ptr event) = 0;</div>
@@ -269,7 +269,7 @@ $(function() {
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno"><a class="line" href="classcx_1_1_logger.html">  383</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_logger.html">Logger</a> {</div>
 <div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>  <span class="keyword">typedef</span> std::shared_ptr&lt;Logger&gt; ptr;</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="class_spink_lock.html">SpinkLock</a> <a class="code hl_class" href="class_spink_lock.html">lock_t</a>;</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="classcx_1_1sync_1_1_spink_lock.html">sync::SpinkLock</a> <a class="code hl_class" href="classcx_1_1sync_1_1_spink_lock.html">lock_t</a>;</div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>  <span class="keyword">typedef</span> std::lock_guard&lt;lock_t&gt; lock_guard;</div>
 <div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>  <a class="code hl_function" href="classcx_1_1_logger.html#a3c6df1fa50fd63debafa6913b6af5a6e">Logger</a>(std::string name = <span class="stringliteral">&quot;root&quot;</span>);</div>
@@ -333,7 +333,7 @@ $(function() {
 <div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span> </div>
 <div class="line"><a id="l00557" name="l00557"></a><span class="lineno"><a class="line" href="classcx_1_1_logger_manager.html">  557</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_logger_manager.html">LoggerManager</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcx_1_1_singleton_ptr.html">SingletonPtr</a>&lt;LoggerManager&gt; {</div>
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="class_spink_lock.html">SpinkLock</a> <a class="code hl_class" href="class_spink_lock.html">lock_t</a>;</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>  <span class="keyword">typedef</span> <a class="code hl_class" href="classcx_1_1sync_1_1_spink_lock.html">sync::SpinkLock</a> <a class="code hl_class" href="classcx_1_1sync_1_1_spink_lock.html">lock_t</a>;</div>
 <div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>  <span class="keyword">typedef</span> std::lock_guard&lt;lock_t&gt; lock_guard;</div>
 <div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
 <div class="line"><a id="l00565" name="l00565"></a><span class="lineno"><a class="line" href="classcx_1_1_logger_manager.html#ae2da0a5ddea7cfa9afe258e62984d91c">  565</a></span>  <a class="code hl_function" href="classcx_1_1_logger_manager.html#ae2da0a5ddea7cfa9afe258e62984d91c">LoggerManager</a>() {</div>
@@ -406,7 +406,6 @@ $(function() {
 <div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>}  <span class="comment">// namespace cx</span></div>
 <div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span> </div>
 <div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span><span class="preprocessor">#endif </span><span class="comment">/* log_hpp */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclass_spink_lock_html"><div class="ttname"><a href="class_spink_lock.html">SpinkLock</a></div><div class="ttdoc">自旋锁</div><div class="ttdef"><b>Definition:</b> spink_lock.h:21</div></div>
 <div class="ttc" id="aclasscx_1_1_file_log_appender_html"><div class="ttname"><a href="classcx_1_1_file_log_appender.html">cx::FileLogAppender</a></div><div class="ttdoc">文件流日志输出地</div><div class="ttdef"><b>Definition:</b> log.h:346</div></div>
 <div class="ttc" id="aclasscx_1_1_file_log_appender_html_a28c4c819ad36a6cad737356d982721eb"><div class="ttname"><a href="classcx_1_1_file_log_appender.html#a28c4c819ad36a6cad737356d982721eb">cx::FileLogAppender::log</a></div><div class="ttdeci">void log(LogLevel::Level level, LogEvent::ptr event) override</div><div class="ttdoc">生成日志</div><div class="ttdef"><b>Definition:</b> log.cpp:282</div></div>
 <div class="ttc" id="aclasscx_1_1_file_log_appender_html_a2bfedd9d96a22a9fdabeaf9a6781602c"><div class="ttname"><a href="classcx_1_1_file_log_appender.html#a2bfedd9d96a22a9fdabeaf9a6781602c">cx::FileLogAppender::reopen</a></div><div class="ttdeci">bool reopen()</div><div class="ttdoc">重新打开文件</div><div class="ttdef"><b>Definition:</b> log.cpp:292</div></div>
@@ -469,6 +468,7 @@ $(function() {
 <div class="ttc" id="aclasscx_1_1_singleton_ptr_html"><div class="ttname"><a href="classcx_1_1_singleton_ptr.html">cx::SingletonPtr</a></div><div class="ttdef"><b>Definition:</b> singleton.h:38</div></div>
 <div class="ttc" id="aclasscx_1_1_std_out_log_appender_html"><div class="ttname"><a href="classcx_1_1_std_out_log_appender.html">cx::StdOutLogAppender</a></div><div class="ttdoc">标准输出流日志输出地</div><div class="ttdef"><b>Definition:</b> log.h:326</div></div>
 <div class="ttc" id="aclasscx_1_1_std_out_log_appender_html_a8ca3007449fcaedd215bdd5f4d153490"><div class="ttname"><a href="classcx_1_1_std_out_log_appender.html#a8ca3007449fcaedd215bdd5f4d153490">cx::StdOutLogAppender::log</a></div><div class="ttdeci">void log(LogLevel::Level level, LogEvent::ptr event) override</div><div class="ttdoc">生成日志</div><div class="ttdef"><b>Definition:</b> log.cpp:267</div></div>
+<div class="ttc" id="aclasscx_1_1sync_1_1_spink_lock_html"><div class="ttname"><a href="classcx_1_1sync_1_1_spink_lock.html">cx::sync::SpinkLock</a></div><div class="ttdoc">自旋锁</div><div class="ttdef"><b>Definition:</b> spink_lock.h:22</div></div>
 <div class="ttc" id="ainternal_8h_html"><div class="ttname"><a href="internal_8h.html">internal.h</a></div><div class="ttdoc">引擎的宏定义</div></div>
 <div class="ttc" id="asingleton_8h_html"><div class="ttname"><a href="singleton_8h.html">singleton.h</a></div><div class="ttdoc">单例模板类</div></div>
 <div class="ttc" id="aspink__lock_8h_html"><div class="ttname"><a href="spink__lock_8h.html">spink_lock.h</a></div><div class="ttdoc">基于std::atomic_flag的自旋锁</div></div>

@@ -10,15 +10,15 @@
  */
 #pragma once
 
-#include <cx/common/common.h>
-#include <cx/common/flags.h>
-#include <cx/common/internal.h>
-#include <cx/common/module.h>
-#include <cx/maths/vector2.h>
-
 #include <cstdint>
 #include <cstring>
 #include <vulkan/vulkan.hpp>
+
+#include "cx/common/common.h"
+#include "cx/common/flags.h"
+#include "cx/common/internal.h"
+#include "cx/common/module.h"
+#include "cx/maths/vector2.h"
 
 struct GLFWwindow;
 namespace cx {
@@ -30,9 +30,10 @@ namespace cx {
 class Window : public Module::Registrar<Window> {
   CX_INLINE CX_STATIC const bool Rgistered = Register(Stage::ePre);
 
-  friend void CallBackWindowClose(GLFWwindow* window);
-
  public:
+  typedef Window* ptr;
+
+  enum class Action { eMove, eResize, eClose };
   /**
    * @brief 窗口状态
    *
@@ -45,7 +46,6 @@ class Window : public Module::Registrar<Window> {
     eAll = eFullScreen | eResizeable | eFocused
   };
   typedef Flags<Status> StatusFlags;
-
   /**
    * @brief 窗口属性
    *
@@ -113,7 +113,7 @@ class Window : public Module::Registrar<Window> {
    *
    * @param[in] width 窗口宽度
    */
-  void set_width(uint32_t width) { m_attribute.size.w = width; }
+  void set_width(uint32_t width);
 
   /**
    * @brief 获取窗口高度
@@ -127,7 +127,7 @@ class Window : public Module::Registrar<Window> {
    *
    * @param[in] width 窗口高度
    */
-  void set_height(uint32_t height) { m_attribute.size.h = height; }
+  void set_height(uint32_t height);
 
   /**
    * @brief 获取桌面大小
@@ -149,10 +149,7 @@ class Window : public Module::Registrar<Window> {
    * @param[in] width 宽度
    * @param[in] height 高度
    */
-  void resize(uint32_t width, uint32_t height) {
-    m_attribute.size.w = width;
-    m_attribute.size.y = height;
-  }
+  void resize(uint32_t width, uint32_t height) { resize({width, height}); }
 
   /**
    * @brief 重设窗口大小
@@ -249,9 +246,9 @@ class Window : public Module::Registrar<Window> {
   /**
    * @brief 获取vulkan实例所需的扩展
    *
-   * @return std::vector<const char*>&& 具体扩展
+   * @return std::vector<const char*> 具体扩展
    */
-  std::vector<const char*>&& get_inst_extensions() const;
+  std::vector<const char*> get_inst_extensions() const;
 
   /**
    * @brief 创建surface，用于呈现图像
@@ -282,9 +279,7 @@ class Window : public Module::Registrar<Window> {
    */
   static void check_error(uint32_t result);
 
-  void action_close(const std::function<void()>& close_callback) {
-    onClose = std::move(close_callback);
-  }
+  std::string attr_info();
 
  private:
   void init_Window();
@@ -297,10 +292,6 @@ class Window : public Module::Registrar<Window> {
   Attribute m_attribute;
 
   Vector2ui m_desktop_size;
-
- private:
-  // action callback
-  std::function<void()> onClose;
 };
 
 }  // namespace cx

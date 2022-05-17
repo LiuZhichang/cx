@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['datetimeformatitem_0',['DateTimeFormatItem',['../classcx_1_1_date_time_format_item.html',1,'cx']]]
+  ['config_0',['Config',['../classcx_1_1_config.html',1,'cx']]]
 ];

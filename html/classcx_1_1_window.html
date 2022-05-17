@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: cx::Window类 参考</title>
+<title>Cx Engine: cx::Window类 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Cx Engine
    </div>
   </td>
  </tr>
@@ -71,6 +71,7 @@ $(function() {
 <a href="#pub-types">Public 类型</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#friends">友元</a> &#124;
 <a href="classcx_1_1_window-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">cx::Window类 参考</div></div>
 </div><!--header-->
@@ -96,10 +97,10 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public 类型</h2></td></tr>
 <tr class="memitem:a2bfb84762ae707c074096634092f3e07"><td class="memItemLeft" align="right" valign="top"><a id="a2bfb84762ae707c074096634092f3e07" name="a2bfb84762ae707c074096634092f3e07"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a2bfb84762ae707c074096634092f3e07">Status</a> : uint32_t { <br />
-&#160;&#160;<b>eFullScreen</b> = BIT(0)
-, <b>eResizeable</b> = BIT(1)
-, <b>eFocused</b> = BIT(2)
-, <b>eClosed</b> = BIT(3)
+&#160;&#160;<b>eClosed</b> = BIT(0)
+, <b>eFullScreen</b> = BIT(1)
+, <b>eResizeable</b> = BIT(2)
+, <b>eFocused</b> = BIT(3)
 , <br />
 &#160;&#160;<b>eAll</b> = eFullScreen | eResizeable | eFocused
 <br />
@@ -166,9 +167,15 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:afe987754e6b72dfa20c60cd35aea950c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#afe987754e6b72dfa20c60cd35aea950c">resizeable</a> () const</td></tr>
 <tr class="memdesc:afe987754e6b72dfa20c60cd35aea950c"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口是否可以更改大小  <a href="classcx_1_1_window.html#afe987754e6b72dfa20c60cd35aea950c">更多...</a><br /></td></tr>
 <tr class="separator:afe987754e6b72dfa20c60cd35aea950c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9dc89b8a4b8aa8b04cb35c9de48d0b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">closed</a> () const</td></tr>
-<tr class="memdesc:ab9dc89b8a4b8aa8b04cb35c9de48d0b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口是否已经关闭  <a href="classcx_1_1_window.html#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">更多...</a><br /></td></tr>
-<tr class="separator:ab9dc89b8a4b8aa8b04cb35c9de48d0b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d14dc98f8d6e85838bd1db166a0ecae"><td class="memItemLeft" align="right" valign="top"><a id="a4d14dc98f8d6e85838bd1db166a0ecae" name="a4d14dc98f8d6e85838bd1db166a0ecae"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_resizeable</b> (bool enable)</td></tr>
+<tr class="separator:a4d14dc98f8d6e85838bd1db166a0ecae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce72a08f24a23339daeff5556494a50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#a8ce72a08f24a23339daeff5556494a50">closed</a> ()</td></tr>
+<tr class="memdesc:a8ce72a08f24a23339daeff5556494a50"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口是否已经关闭  <a href="classcx_1_1_window.html#a8ce72a08f24a23339daeff5556494a50">更多...</a><br /></td></tr>
+<tr class="separator:a8ce72a08f24a23339daeff5556494a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04a0d363cb63627792a46b0c1aa1eecd"><td class="memItemLeft" align="right" valign="top"><a id="a04a0d363cb63627792a46b0c1aa1eecd" name="a04a0d363cb63627792a46b0c1aa1eecd"></a>
+const <a class="el" href="classcx_1_1_flags.html">StatusFlags</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> () const</td></tr>
+<tr class="separator:a04a0d363cb63627792a46b0c1aa1eecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a998807d6657a1a0b8c3467bc5091ffdd"><td class="memItemLeft" align="right" valign="top"><a id="a998807d6657a1a0b8c3467bc5091ffdd" name="a998807d6657a1a0b8c3467bc5091ffdd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
 <tr class="memdesc:a998807d6657a1a0b8c3467bc5091ffdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭窗口，并不会释放窗口所占用的资源 <br /></td></tr>
@@ -192,12 +199,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> () overrid
 <tr class="memitem:aa533ee7e77947417fb10afe00ee8695d"><td class="memItemLeft" align="right" valign="top">vk::Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#aa533ee7e77947417fb10afe00ee8695d">create_surface</a> (const vk::Instance &amp;inst, vk::SurfaceKHR &amp;surface, const vk::AllocationCallbacks *allocator=nullptr) const</td></tr>
 <tr class="memdesc:aa533ee7e77947417fb10afe00ee8695d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建surface，用于呈现图像  <a href="classcx_1_1_window.html#aa533ee7e77947417fb10afe00ee8695d">更多...</a><br /></td></tr>
 <tr class="separator:aa533ee7e77947417fb10afe00ee8695d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e99efe68b029dcc6c9a8291a7ee520"><td class="memItemLeft" align="right" valign="top"><a id="a43e99efe68b029dcc6c9a8291a7ee520" name="a43e99efe68b029dcc6c9a8291a7ee520"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>action_close</b> (const std::function&lt; void()&gt; &amp;close_callback)</td></tr>
+<tr class="separator:a43e99efe68b029dcc6c9a8291a7ee520"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
 <tr class="memitem:aba901bb0434ad74b24ecfc25dd273b5a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcx_1_1_window.html#aba901bb0434ad74b24ecfc25dd273b5a">check_error</a> (uint32_t result)</td></tr>
 <tr class="memdesc:aba901bb0434ad74b24ecfc25dd273b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查错误  <a href="classcx_1_1_window.html#aba901bb0434ad74b24ecfc25dd273b5a">更多...</a><br /></td></tr>
 <tr class="separator:aba901bb0434ad74b24ecfc25dd273b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:ac6c31bf4daf97f895b2afa031e4b0b9d"><td class="memItemLeft" align="right" valign="top"><a id="ac6c31bf4daf97f895b2afa031e4b0b9d" name="ac6c31bf4daf97f895b2afa031e4b0b9d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>CallBackWindowClose</b> (GLFWwindow *window)</td></tr>
+<tr class="separator:ac6c31bf4daf97f895b2afa031e4b0b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p >窗口类，引擎的主界面 </p>
@@ -292,27 +308,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> () overrid
 
 </div>
 </div>
-<a id="ab9dc89b8a4b8aa8b04cb35c9de48d0b5" name="ab9dc89b8a4b8aa8b04cb35c9de48d0b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9dc89b8a4b8aa8b04cb35c9de48d0b5">&#9670;&nbsp;</a></span>closed()</h2>
+<a id="a8ce72a08f24a23339daeff5556494a50" name="a8ce72a08f24a23339daeff5556494a50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ce72a08f24a23339daeff5556494a50">&#9670;&nbsp;</a></span>closed()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool cx::Window::closed </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>窗口是否已经关闭 </p>

@@ -1,13 +1,27 @@
 #include "engine.h"
 
-#include <cx/common/internal.h>
-#include <cx/window/window.h>
-
 #include "application.h"
+#include "cx/common/internal.h"
+#include "cx/common/logger.h"
+#include "cx/window/window.h"
 
-static auto engine = CX_LOGGER("engine");
+namespace cx {
 
-cx::Engine::Engine() : m_app(nullptr), m_version{1, 0, 0}, m_running(true) {
+Engine::Engine() : m_app(nullptr), m_version{1, 0, 0}, m_running(true) {
+  // 开启日志
+  log::LogManager::EnableEngineLogger();
+  init_module();
+}
+
+Engine::~Engine() {
+  if (m_app) {
+    delete m_app;
+    m_app = nullptr;
+  }
+  Module::Registry().clear();
+}
+
+void Engine::init_module() {
   // 记录已经创建的模块
   std::vector<TypeID> created;
   for (;;) {
@@ -32,6 +46,7 @@ cx::Engine::Engine() : m_app(nullptr), m_version{1, 0, 0}, m_running(true) {
       // 生成模块
       auto &&module = moduleVal.generator();
       m_modules.emplace_back(std::move(module));
+      // LOG_DEBUG(engine) << "add module";
       // 记录已经生成的模块
       created.emplace_back(moduleId);
     }
@@ -39,29 +54,22 @@ cx::Engine::Engine() : m_app(nullptr), m_version{1, 0, 0}, m_running(true) {
   }
 }
 
-cx::Engine::~Engine() {
-  if (m_app) {
-    delete m_app;
-    m_app = nullptr;
-  }
-  Module::Registry().clear();
-}
-
-void cx::Engine::load(App *app) {
+void Engine::load(App *app) {
   if (m_app == app) return;
-  if (m_app) {
+  if (m_app != nullptr) {
     delete m_app;
     m_app = nullptr;
 #if defined(CX_DEBUG_MODE)
-    LOG_WARN(engine) << "旧的app对象是有效的，但是现在需要加载新的app，注意：旧"
-                        "的app将会被释放!";
+    LOG_WARN(log::Loggers::engine)
+        << "旧的app对象是有效的，但是现在需要加载新的app，注意：旧"
+           "的app将会被释放!";
 #endif
   }
   m_app = app;
 }
 
-void cx::Engine::run() {
-  Window *window = Window::Get();
+void Engine::run() {
+  Window::ptr window = Window::Get();
   while (m_running) {
     // 如果窗口关闭 则退出
     if (window->closed()) {
@@ -70,9 +78,8 @@ void cx::Engine::run() {
     }
 
     if (m_app) {
-      if (!m_app->m_running) {
+      if (!m_app->is_running()) {
         m_app->run();
-        m_app->m_running = true;
       }
       m_app->update();
     }
@@ -83,6 +90,8 @@ void cx::Engine::run() {
   m_running = false;
 }
 
-void cx::Engine::stop() { m_running = false; }
+void Engine::stop() { m_running = false; }
 
-void cx::Engine::stage_verdict(Module::Stage stage) {}
+void Engine::stage_verdict(Module::Stage stage) {}
+
+}  // namespace cx

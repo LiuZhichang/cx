@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: src/cx/graphics/instance/instance.h 源文件</title>
+<title>Cx Engine: src/cx/graphics/instance/instance.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Cx Engine
    </div>
   </td>
  </tr>
@@ -77,22 +77,22 @@ $(function() {
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;vulkan/vulkan.hpp&gt;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>cx {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>cx::graphics {</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classcx_1_1_g_instance.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1_g_instance.html">GInstance</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classcx_1_1graphics_1_1_instance.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classcx_1_1graphics_1_1_instance.html">Instance</a> {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_class" href="classcx_1_1_g_instance.html">GInstance</a>();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_class" href="classcx_1_1_g_instance.html">GInstance</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>** extensions, uint8_t extensions_count);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_class" href="classcx_1_1graphics_1_1_instance.html">Instance</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_class" href="classcx_1_1graphics_1_1_instance.html">Instance</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>** extensions, uint8_t extensions_count);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = const <span class="keywordtype">char</span>*, <span class="keyword">typename</span> Container = std::vector&lt;T&gt;&gt;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_class" href="classcx_1_1_g_instance.html">GInstance</a>(<span class="keyword">const</span> Container&amp; extensions) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_class" href="classcx_1_1graphics_1_1_instance.html">Instance</a>(<span class="keyword">const</span> Container&amp; extensions) {</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">static_assert</span>(std::is_same&lt;T, const char*&gt;::value,</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                  <span class="stringliteral">&quot;type must be [const char*]&quot;</span>);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    init(extensions);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  }</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <a class="code hl_class" href="classcx_1_1_g_instance.html">~GInstance</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <a class="code hl_class" href="classcx_1_1graphics_1_1_instance.html">~Instance</a>();</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">const</span> vk::Instance&amp; handle()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_instance; }</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
@@ -107,7 +107,7 @@ $(function() {
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}  <span class="comment">// namespace cx</span></div>
-<div class="ttc" id="aclasscx_1_1_g_instance_html"><div class="ttname"><a href="classcx_1_1_g_instance.html">cx::GInstance</a></div><div class="ttdef"><b>Definition:</b> instance.h:20</div></div>
+<div class="ttc" id="aclasscx_1_1graphics_1_1_instance_html"><div class="ttname"><a href="classcx_1_1graphics_1_1_instance.html">cx::graphics::Instance</a></div><div class="ttdef"><b>Definition:</b> instance.h:20</div></div>
 <div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div><div class="ttdoc">定义通用结构</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

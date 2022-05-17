@@ -9,31 +9,30 @@
 
 #include <functional>
 
-namespace cx {
+namespace cx::log {
 
-std::string cx::LoggerManager::m_log_dir = "runtime_log";
+std::string cx::log::LoggerManager::m_log_dir = "runtime_log";
 
 const std::string LogLevel::toString(Level level) {
   switch (level) {
-    case LogLevel::Level::eInfo:
+    case Level::eInfo:
       return "INFO";
-    case LogLevel::Level::eDebug:
+    case Level::eDebug:
       return "DEBUG";
-    case LogLevel::Level::eWarn:
+    case Level::eWarn:
       return "WARNING";
-    case LogLevel::Level::eError:
+    case Level::eError:
       return "ERROR";
-    case LogLevel::Level::eFatal:
+    case Level::eFatal:
       return "FATAL";
     default:
       return "UNKNOWN";
   }
 }
 
-LogEvent::LogEvent(LogLevel::Level level, const char* file,
-                   const char* funcName, uint32_t line, uint32_t elapse,
-                   std::thread::id threadId, uint64_t time,
-                   const std::string& name)
+LogEvent::LogEvent(Level level, const char* file, const char* funcName,
+                   uint32_t line, uint32_t elapse, std::thread::id threadId,
+                   uint64_t time, const std::string& name)
     : m_file(file),
       m_funcName(funcName),
       m_line(line),
@@ -264,7 +263,7 @@ void LogFormatter::parse() {
   }
 }
 
-void StdOutLogAppender::log(LogLevel::Level level, LogEvent::ptr event) {
+void StdOutLogAppender::log(Level level, LogEvent::ptr event) {
   if (level >= m_level) {
     lock_guard lock(m_mutex);
     if (!m_formatter->format(std::cout, event)) {
@@ -279,7 +278,7 @@ FileLogAppender::FileLogAppender(const std::string& filename)
   reopen();
 }
 
-void FileLogAppender::log(LogLevel::Level level, LogEvent::ptr event) {
+void FileLogAppender::log(Level level, LogEvent::ptr event) {
   if (level >= m_level) {
     lock_guard lock(m_mutex);
     if (!m_formatter->format(m_filestream, event)) {
@@ -298,12 +297,12 @@ bool FileLogAppender::reopen() {
   return !!m_filestream;
 }
 
-Logger::Logger(std::string name) : m_name(name), m_level(LogLevel::Level()) {
+Logger::Logger(std::string name) : m_name(name), m_level(Level()) {
   m_formatter.reset(new LogFormatter(
       "[%d{%Y-%m-%d %H:%M:%S}]%T%t%%T[%p]%T[%c]%T[%f:%l:%w]%T%m%n"));
 }
 
-void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
+void Logger::log(Level level, LogEvent::ptr event) {
   if (level >= m_level) {
     lock_guard lock(m_mutex);
     if (!m_appenders.empty())
@@ -320,15 +319,15 @@ void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
   }
 }
 
-void Logger::debug(LogEvent::ptr event) { log(LogLevel::Level::eDebug, event); }
+void Logger::debug(LogEvent::ptr event) { log(Level::eDebug, event); }
 
-void Logger::info(LogEvent::ptr event) { log(LogLevel::Level::eInfo, event); }
+void Logger::info(LogEvent::ptr event) { log(Level::eInfo, event); }
 
-void Logger::warn(LogEvent::ptr event) { log(LogLevel::Level::eWarn, event); }
+void Logger::warn(LogEvent::ptr event) { log(Level::eWarn, event); }
 
-void Logger::error(LogEvent::ptr event) { log(LogLevel::Level::eError, event); }
+void Logger::error(LogEvent::ptr event) { log(Level::eError, event); }
 
-void Logger::fatal(LogEvent::ptr event) { log(LogLevel::Level::eFatal, event); }
+void Logger::fatal(LogEvent::ptr event) { log(Level::eFatal, event); }
 
 void Logger::addAppender(LogAppender::ptr appender) {
   lock_guard lock(m_mutex);
@@ -373,4 +372,4 @@ LogFormatter::ptr Logger::getFormatter() {
   return m_formatter;
 }
 
-}  // namespace cx
+}  // namespace cx::log

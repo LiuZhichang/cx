@@ -11,24 +11,38 @@
 
 #pragma once
 
-#include <cx/common/common.h>
-#include <cx/common/internal.h>
-#include <cx/common/noncopyable.h>
-#include <cx/engine/engine.h>
-
 #include <string>
+
+#include "cx/common/common.h"
+#include "cx/common/internal.h"
+#include "cx/common/noncopyable.h"
+#include "version.h"
 
 namespace cx {
 
+/**
+ * @brief app抽象类，用于实现自定义程序
+ *
+ */
 class App : public Noncopyable {
-  friend Engine;
-
  public:
+  typedef App* ptr;
+  /**
+   * @brief 程序执行参数
+   *
+   */
   struct Arguments {
     int argc;
     char** argv;
   };
 
+  /**
+   * @brief 应用程序构造函数
+   *
+   * @param name 程序名称
+   * @param arg 参数
+   * @param version 版本号
+   */
   explicit App(const std::string name, const Arguments& arg,
                const Version& version = {1, 0, 0})
       : m_name(std::move(name)),
@@ -38,7 +52,7 @@ class App : public Noncopyable {
 
   virtual ~App() {}
 
-  virtual CX_API void run() = 0;
+  virtual CX_API void task() = 0;
   virtual CX_API void update() = 0;
 
   const std::string& name() const { return m_name; }
@@ -51,14 +65,21 @@ class App : public Noncopyable {
 
   const Arguments& arguments() const { return m_arguments; }
 
-  bool is_running() const { return m_running; }
+  const bool& is_running() const { return m_running; }
+
   void stop() { m_running = false; }
+
+  void run() {
+    task();
+    m_running = true;
+  }
 
  protected:
   std::string m_name;
   Version m_version;
   Arguments m_arguments;
 
+ private:
   bool m_running;
 };
 }  // namespace cx

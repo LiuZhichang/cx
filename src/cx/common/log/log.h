@@ -26,42 +26,37 @@
 
 #define CX_LOG_LEVEL(logger, level)                                         \
   if (logger->getLevel() <= level)                                          \
-  cx::LogWrap(logger,                                                       \
-              cx::LogEvent::ptr(new cx::LogEvent(                           \
+  cx::log::details::LogWrap(                                                \
+      logger, cx::log::LogEvent::ptr(new cx::log::LogEvent(                 \
                   level, __FILE__, __func__, __LINE__, 0,                   \
                   std::this_thread::get_id(), time(0), logger->getName()))) \
       .getStrIO()
 
-#define LOG_DEBUG(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eDebug)
-#define LOG_INFO(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eInfo)
-#define LOG_WARN(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eWarn)
-#define LOG_ERROR(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eError)
-#define LOG_FATAL(logger) CX_LOG_LEVEL(logger, cx::LogLevel::Level::eFatal);
+#define LOG_DEBUG(logger) CX_LOG_LEVEL(logger, cx::log::Level::eDebug)
+#define LOG_INFO(logger) CX_LOG_LEVEL(logger, cx::log::Level::eInfo)
+#define LOG_WARN(logger) CX_LOG_LEVEL(logger, cx::log::Level::eWarn)
+#define LOG_ERROR(logger) CX_LOG_LEVEL(logger, cx::log::Level::eError)
+#define LOG_FATAL(logger) CX_LOG_LEVEL(logger, cx::log::Level::eFatal);
 
-#define CX_LOG_ROOT() cx::LogManager::Self()->getRoot()
-#define CX_LOGGER(name) cx::LogManager::Self()->getLogger(name)
-#define CX_SYS_LOG() cx::LogManager::Self()->getLogger("system")
+#define CX_LOGGER(name) cx::log::LogManager::Self()->getLogger(name)
 
-namespace cx {
-
-#undef DEBUG
+namespace cx::log {
 
 class Logger;
 
 /**
  * @brief 日志等级
  */
+enum class Level : uint8_t {
+  eDebug = 0x01,
+  eInfo = 0x02,
+  eWarn = 0x03,
+  eError = 0x04,
+  eFatal = 0x05,
+  eUnknown
+};
 class LogLevel {
  public:
-  enum class Level : uint8_t {
-    eDebug = 0x01,
-    eInfo = 0x02,
-    eWarn = 0x03,
-    eError = 0x04,
-    eFatal = 0x05,
-    eUnknown
-  };
-
   /**
    * @brief 将对应的日志等级转换为文本
    *
@@ -91,7 +86,7 @@ class LogEvent {
    * @param[in] time            当前时间
    * @param[in] name            日志器名
    */
-  LogEvent(LogLevel::Level level, const char* file, const char* funcName,
+  LogEvent(log::Level level, const char* file, const char* funcName,
            uint32_t line, uint32_t elapse, std::thread::id threadId,
            uint64_t time, const std::string& name);
 
@@ -142,7 +137,7 @@ class LogEvent {
    *
    * @return 日志等级
    */
-  LogLevel::Level getLevel() const { return m_level; }
+  Level getLevel() const { return m_level; }
 
   /**
    * @brief 获取日志内容
@@ -172,11 +167,11 @@ class LogEvent {
   uint32_t m_line;             // 行号
   uint32_t m_elapse;           // 毫秒数
 
-  uint32_t m_coroutineId;   // 协程id
-  uint64_t m_time;          // 时间
-  std::string m_name;       // 日志器名
-  LogLevel::Level m_level;  // 日志等级
-  std::stringstream m_ss;   // 字符流
+  uint32_t m_coroutineId;  // 协程id
+  uint64_t m_time;         // 时间
+  std::string m_name;      // 日志器名
+  Level m_level;           // 日志等级
+  std::stringstream m_ss;  // 字符流
 };
 
 /**
@@ -260,7 +255,7 @@ class LogFormatter {
 class LogAppender {
  public:
   typedef std::shared_ptr<LogAppender> ptr;
-  typedef SpinkLock lock_t;
+  typedef sync::SpinkLock lock_t;
   typedef std::lock_guard<lock_t> lock_guard;
 
   /**
@@ -269,7 +264,7 @@ class LogAppender {
    * @param[in] level 日志等级
    * @param[in] event 日志事件
    */
-  virtual void log(LogLevel::Level level, LogEvent::ptr event) = 0;
+  virtual void log(Level level, LogEvent::ptr event) = 0;
 
   /**
    * @brief 设置日志格式器
@@ -304,20 +299,20 @@ class LogAppender {
    *
    * @param[in] level 日志等级
    */
-  void setLevel(LogLevel::Level level) { m_level = level; }
+  void setLevel(Level level) { m_level = level; }
 
   /**
    * @brief 获取日志等级
    *
    * @return 日志等级
    */
-  LogLevel::Level getLevel() const { return m_level; }
+  Level getLevel() const { return m_level; }
 
  protected:
-  LogFormatter::ptr m_formatter;                // 日志格式器
-  LogLevel::Level m_level = LogLevel::Level();  // 日志等级
-  bool m_hasFormatter = false;                  // 默认没有日志格式器
-  lock_t m_mutex;                               // 互斥量
+  LogFormatter::ptr m_formatter;  // 日志格式器
+  Level m_level = Level();        // 日志等级
+  bool m_hasFormatter = false;    // 默认没有日志格式器
+  lock_t m_mutex;                 // 互斥量
 };
 
 /**
@@ -333,7 +328,7 @@ class StdOutLogAppender : public LogAppender {
    * @param[in] level 日志等级
    * @param[in] event 日志事件
    */
-  void log(LogLevel::Level level, LogEvent::ptr event) override;
+  void log(Level level, LogEvent::ptr event) override;
 
   static ptr Create() { return ptr(new StdOutLogAppender); }
 
@@ -360,7 +355,7 @@ class FileLogAppender : public LogAppender {
    * @param[in] level 日志等级
    * @param[in] event 日志事件
    */
-  void log(LogLevel::Level level, LogEvent::ptr event) override;
+  void log(Level level, LogEvent::ptr event) override;
 
   /**
    * @brief 重新打开文件
@@ -383,7 +378,7 @@ class FileLogAppender : public LogAppender {
 class Logger {
  public:
   typedef std::shared_ptr<Logger> ptr;
-  typedef SpinkLock lock_t;
+  typedef sync::SpinkLock lock_t;
   typedef std::lock_guard<lock_t> lock_guard;
 
   /**
@@ -399,7 +394,7 @@ class Logger {
    * @param[in] level 日志等级
    * @param[in] event 日志事件
    */
-  void log(LogLevel::Level level, LogEvent::ptr event);
+  void log(Level level, LogEvent::ptr event);
 
   /**
    * @brief 生成debug等级的日志
@@ -467,14 +462,14 @@ class Logger {
    *
    * @return 日志等级
    */
-  LogLevel::Level getLevel() const { return m_level; }
+  Level getLevel() const { return m_level; }
 
   /**
    * @brief 设置日志等级
    *
    * @param[in] val 日志等级
    */
-  void setLevel(LogLevel::Level level) { m_level = level; }
+  void setLevel(Level level) { m_level = level; }
 
   /**
    * @brief 设置日志格式器
@@ -506,13 +501,14 @@ class Logger {
 
  private:
   std::string m_name;                               // 日志器名
-  LogLevel::Level m_level;                          // 日志等级
+  Level m_level;                                    // 日志等级
   std::forward_list<LogAppender::ptr> m_appenders;  // 日志输出地
   LogFormatter::ptr m_formatter;                    // 日志格式器
   Logger::ptr m_root;                               // 主日志器
   lock_t m_mutex;                                   // 互斥量
 };
 
+namespace details {
 /**
  * @brief 日志外覆器
  */
@@ -551,12 +547,14 @@ class LogWrap {
   LogEvent::ptr m_event;  // 日志事件
 };
 
+}  // namespace details
+
 /**
  * @brief 日志管理器
  */
 class LoggerManager : public SingletonPtr<LoggerManager> {
  public:
-  typedef SpinkLock lock_t;
+  typedef sync::SpinkLock lock_t;
   typedef std::lock_guard<lock_t> lock_guard;
 
   /**
@@ -641,6 +639,6 @@ class LoggerManager : public SingletonPtr<LoggerManager> {
 
 typedef LoggerManager LogManager;
 
-}  // namespace cx
+}  // namespace cx::log
 
 #endif /* log_hpp */

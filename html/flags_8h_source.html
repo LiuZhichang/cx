@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: src/cx/common/flags.h 源文件</title>
+<title>Cx Engine: src/cx/common/flags.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Cx Engine
    </div>
   </td>
  </tr>
@@ -103,7 +103,7 @@ $(function() {
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  CX_CONSTEXPR Flags(<span class="keyword">const</span> Flags&lt;enum_type&gt; &amp;rhs) CX_NOEXCEPT = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  CX_CONSTEXPR <span class="keyword">explicit</span> Flags(under_type flags) CX_NOEXCEPT : m_value(flags) {}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  CX_CONSTEXPR <span class="keyword">explicit</span> Flags(under_type val) CX_NOEXCEPT : m_value(val) {}</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  Flags &amp;operator=(<span class="keyword">const</span> <a class="code hl_typedef" href="classcx_1_1_flags.html#a3d4c535a648b9346514848fc5afa1aa0">enum_type</a> &amp;e) CX_NOEXCEPT {</div>
@@ -182,7 +182,7 @@ $(function() {
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  }</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  CX_CONSTEXPR under_type underlying_value() const CX_NOEXCEPT {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>under_type<span class="keyword">&gt;</span>(m_value);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">return</span> m_value;</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  }</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  CX_INLINE CX_CONSTEXPR CX_STATIC std::size_t bit_size() {</div>

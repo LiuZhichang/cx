@@ -1,25 +1,9 @@
 var searchData=
 [
-  ['scopeguard_0',['ScopeGuard',['../classcx_1_1_scope_guard.html',1,'cx']]],
-  ['set_5fattribute_1',['set_attribute',['../classcx_1_1_window.html#a8b32720dcfb97dec19d354a8cd7327c3',1,'cx::Window']]],
-  ['set_5fheight_2',['set_height',['../classcx_1_1_window.html#a4df9cd7ddcdc719dfdf585deb25102a7',1,'cx::Window']]],
-  ['set_5fposition_3',['set_position',['../classcx_1_1_window.html#a9f62a9bc735e60629d55b67ff56d6341',1,'cx::Window::set_position(uint32_t x, uint32_t y)'],['../classcx_1_1_window.html#a09dfe72cc51670bf66ec758177b506d7',1,'cx::Window::set_position(const Vector2ui &amp;pos)']]],
-  ['set_5ftitle_4',['set_title',['../classcx_1_1_window.html#af53d4a228959c4c34a9d8fd7ddcbd743',1,'cx::Window']]],
-  ['set_5fwidth_5',['set_width',['../classcx_1_1_window.html#a8df43f3a832e712746440c0ed4090879',1,'cx::Window']]],
-  ['setformatter_6',['setFormatter',['../classcx_1_1_log_appender.html#ac0a60a3039a237bea074530c2c440491',1,'cx::LogAppender::setFormatter()'],['../classcx_1_1_logger.html#a6e7c651762e43591f562e8d430e089fc',1,'cx::Logger::setFormatter(LogFormatter::ptr formatter)'],['../classcx_1_1_logger.html#ad24d097a6f73779bfb94d08114aa262b',1,'cx::Logger::setFormatter(const std::string &amp;foramtter)']]],
-  ['setlevel_7',['setLevel',['../classcx_1_1_log_appender.html#a4063b42e359a2aa1783d5ef3046c8d01',1,'cx::LogAppender::setLevel()'],['../classcx_1_1_logger.html#ab3c4a3c9253789459561929d45520b33',1,'cx::Logger::setLevel()']]],
-  ['singleton_8',['Singleton',['../classcx_1_1_singleton.html',1,'cx']]],
-  ['singleton_2eh_9',['singleton.h',['../singleton_8h.html',1,'']]],
-  ['singleton_3c_20engine_20_3e_10',['Singleton&lt; Engine &gt;',['../classcx_1_1_singleton.html',1,'cx']]],
-  ['singletonptr_11',['SingletonPtr',['../classcx_1_1_singleton_ptr.html',1,'cx']]],
-  ['singletonptr_3c_20loggermanager_20_3e_12',['SingletonPtr&lt; LoggerManager &gt;',['../classcx_1_1_singleton_ptr.html',1,'cx']]],
-  ['size_13',['size',['../classcx_1_1_window.html#a8c6128e072dd1ee9a62d66815f952c29',1,'cx::Window']]],
-  ['socket_14',['Socket',['../classcx_1_1net_1_1_socket.html',1,'cx::net']]],
-  ['socket_2eh_15',['socket.h',['../socket_8h.html',1,'']]],
-  ['spink_5flock_2eh_16',['spink_lock.h',['../spink__lock_8h.html',1,'']]],
-  ['spinklock_17',['SpinkLock',['../class_spink_lock.html',1,'']]],
-  ['status_18',['Status',['../classcx_1_1_window.html#a2bfb84762ae707c074096634092f3e07',1,'cx::Window']]],
-  ['stdoutlogappender_19',['StdOutLogAppender',['../classcx_1_1_std_out_log_appender.html',1,'cx']]],
-  ['strerror_20',['strerror',['../error_8h.html#ac9ef2d229c4d5aa36c239912a7ffc4a7',1,'cx']]],
-  ['stringformatitem_21',['StringFormatItem',['../classcx_1_1_string_format_item.html',1,'cx']]]
+  ['register_0',['Register',['../classcx_1_1_module_factory_1_1_registrar.html#a4a7760e4edb5c1e64740543eb1855e74',1,'cx::ModuleFactory::Registrar']]],
+  ['registrar_1',['Registrar',['../classcx_1_1_module_factory_1_1_registrar.html',1,'cx::ModuleFactory']]],
+  ['reopen_2',['reopen',['../classcx_1_1_file_log_appender.html#a2bfedd9d96a22a9fdabeaf9a6781602c',1,'cx::FileLogAppender']]],
+  ['requires_3',['Requires',['../structcx_1_1_module_factory_1_1_requires.html',1,'cx::ModuleFactory']]],
+  ['resize_4',['resize',['../classcx_1_1_window.html#a5033101d20c418968cd9b84e09af4bf6',1,'cx::Window::resize(uint32_t width, uint32_t height)'],['../classcx_1_1_window.html#a526521ac7e0960f4ef4f68cdf919b896',1,'cx::Window::resize(const Vector2ui &amp;size)']]],
+  ['resizeable_5',['resizeable',['../classcx_1_1_window.html#afe987754e6b72dfa20c60cd35aea950c',1,'cx::Window']]]
 ];

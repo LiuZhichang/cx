@@ -13,17 +13,14 @@
 
 #include <memory>
 
-#define CX_SINGLETON_FRIEND(cls) friend Singleton<cls>;
-
 namespace cx {
 
 template <typename T>
 class Singleton {
  public:
-  static T* Self() {
-    static T self;
-    return &self;
-  }
+  typedef T* ptr;
+
+  static ptr Self() { return &self; }
 
   Singleton(T&&) = delete;
   Singleton(const T&) = delete;
@@ -32,15 +29,15 @@ class Singleton {
  protected:
   Singleton() = default;
   virtual ~Singleton() = default;
+
+  inline static T self;
 };
 
 template <class T>
 class SingletonPtr {
  public:
-  static std::shared_ptr<T> Self() {
-    static std::shared_ptr<T> ptr = std::make_shared<T>();
-    return ptr;
-  }
+  typedef std::shared_ptr<T> ptr;
+  static ptr Self() { return m_inst_ptr; }
 
   SingletonPtr(T&&) = delete;
   SingletonPtr(const T&) = delete;
@@ -49,6 +46,8 @@ class SingletonPtr {
  protected:
   SingletonPtr() = default;
   virtual ~SingletonPtr() = default;
+
+  inline static ptr m_inst_ptr = ptr(new T());
 };
 
 }  // namespace cx

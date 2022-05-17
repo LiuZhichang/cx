@@ -1,65 +1,47 @@
 #include "window.h"
 
 #include <GLFW/glfw3.h>
-#include <cx/common/error.h>
-#include <cx/common/log/log.h>
 
-static auto engine = CX_LOGGER("engine");
-static auto core = CX_LOGGER("core");
+#include "attach/action.h"
+#include "cx/common/error.h"
+#include "cx/common/logger.h"
 
-void cx::CallBackWindowClose(GLFWwindow* _window) {
-  LOG_DEBUG(engine) << "click close button";
-  cx::Window* window = cx::Window::Get();
-  if (window->onClose) window->onClose();
-  window->close();
-}
+namespace cx {
+
+using namespace log;
 
 void Debug_Error(uint32_t code, const char* info) {
-  cx::Window::check_error(code);
-  LOG_ERROR(engine) << "glfw error: " << info << ", code: " << code;
+  Window::check_error(code);
+  LOG_ERROR(Loggers::engine) << "glfw error: " << info << ", code: " << code;
 }
 
-void Engine_error(cx::Error error) {
-  const char* err_str = strerror(error);
-  LOG_ERROR(core) << err_str;
-  throw std::runtime_error(err_str);
+void Engine_error(Error::Code error) {
+  Error::Output(Loggers::core, log::Level::eError, error);
+
+  throw std::runtime_error(Error::ToString(error));
 }
 
-cx::Window::Window() : Window(Attribute()) {}
+Window::Window() : Window(Attribute()) {}
 
-cx::Window::Window(const Attribute& attribute) : m_attribute(attribute) {
-#if defined(CX_DEBUG_MODE)
-  LOG_INFO(engine) << "\nWidnow Attribute:\n"
-                   << "\ttitle:" << m_attribute.title << "\n"
-                   << "\tposition: [" << m_attribute.pos.x << ","
-                   << m_attribute.pos.y << "]"
-                   << "\n"
-                   << "\tsize: [" << m_attribute.size.w << ","
-                   << m_attribute.size.h << "]"
-                   << "\n"
-                   << "\tresizeable: " << resizeable() << "\n"
-                   << "\tfullscreen: " << fullscreen() << "\n"
-                   << "\tflag bit: " << m_attribute.status.to_bitset() << "\n"
-                   << "\tflag under value: "
-                   << m_attribute.status.underlying_value();
-#endif
+Window::Window(const Attribute& attribute)
+    : m_attribute(attribute), m_desktop_size{2560, 1600} {
   init_Window();
   register_callback();
 }
 
-cx::Window::~Window() {
+Window::~Window() {
   close();
   ::glfwDestroyWindow(m_whandle);
   ::glfwTerminate();
 }
 
-void cx::Window::init_Window() {
+void Window::init_Window() {
   if (::glfwInit() == GLFW_FALSE) {
-    Engine_error(Error::eGLFWInitFailed);
+    Engine_error(Error::Code::eGLFWInitFailed);
   }
 
   if (::glfwVulkanSupported() == GLFW_FALSE) {
-    Engine_error(Error::eNoSupportVulkan);
+    Engine_error(Error::Code::eNoSupportVulkan);
   }
 
   ::glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
@@ -69,7 +51,7 @@ void cx::Window::init_Window() {
       ::glfwCreateWindow(width(), height(), title().c_str(), nullptr, nullptr);
 
   if (!m_whandle) {
-    Engine_error(Error::eWindowCreateFailed);
+    Engine_error(Error::Code::eWindowCreateFailed);
     ::glfwTerminate();
   }
 
@@ -78,32 +60,49 @@ void cx::Window::init_Window() {
   ::glfwShowWindow(m_whandle);
 }
 
-void cx::Window::update_window() {
+void Window::update_window() {
   set_title(m_attribute.title);
   set_position(m_attribute.pos);
   resize(m_attribute.size);
 }
 
-void cx::Window::register_callback() {
-  glfwSetWindowCloseCallback(m_whandle, CallBackWindowClose);
+void Window::register_callback() {
+  ::glfwSetWindowCloseCallback(m_whandle, window::action::CallBackWindowClose);
+  ::glfwSetWindowSizeCallback(m_whandle, window::action::CallBackWindowResize);
+  ::glfwSetWindowPosCallback(m_whandle, window::action::CallBackWindowMove);
 }
 
-void cx::Window::set_attribute(const Attribute& attribute) {
+void Window::set_attribute(const Attribute& attribute) {
   m_attribute = attribute;
+  update_window();
 }
 
-void cx::Window::set_title(const std::string& title) {
+void Window::set_title(const std::string& title) {
   m_attribute.title = title;
   ::glfwSetWindowTitle(m_whandle, title.c_str());
 }
 
-bool cx::Window::closed() { return glfwWindowShouldClose(m_whandle); }
+void Window::set_width(uint32_t width) {
+  m_attribute.size.w = width;
+  auto& w = m_attribute.size.w;
+  auto& h = m_attribute.size.h;
+  ::glfwSetWindowSize(m_whandle, w, h);
+}
 
-void cx::Window::update() {
+void Window::set_height(uint32_t height) {
+  m_attribute.size.h = height;
+  auto& w = m_attribute.size.w;
+  auto& h = m_attribute.size.h;
+  ::glfwSetWindowSize(m_whandle, w, h);
+}
+
+bool Window::closed() { return glfwWindowShouldClose(m_whandle); }
+
+void Window::update() {
   if (!closed()) ::glfwPollEvents();
 }
 
-void cx::Window::resize(const Vector2ui& size) {
+void Window::resize(const Vector2ui& size) {
   if (!resizeable()) return;
 
   m_attribute.size = size;
@@ -116,7 +115,7 @@ void cx::Window::resize(const Vector2ui& size) {
   ::glfwSetWindowSize(m_whandle, w, h);
 }
 
-const void cx::Window::set_position(uint32_t x, uint32_t y) {
+const void Window::set_position(uint32_t x, uint32_t y) {
   m_attribute.pos = Vector2ui(x, y);
 
   if (x < 0) {
@@ -130,11 +129,11 @@ const void cx::Window::set_position(uint32_t x, uint32_t y) {
   ::glfwSetWindowPos(m_whandle, m_attribute.pos.x, m_attribute.pos.y);
 }
 
-const void cx::Window::set_position(const Vector2ui& pos) {
+const void Window::set_position(const Vector2ui& pos) {
   set_position(pos.x, pos.y);
 }
 
-void cx::Window::set_resizeable(bool enable) {
+void Window::set_resizeable(bool enable) {
   ::glfwSetWindowAttrib(m_whandle, GLFW_RESIZABLE, (int)enable);
   if (enable) {
     m_attribute.status |= Status::eFullScreen;
@@ -143,31 +142,47 @@ void cx::Window::set_resizeable(bool enable) {
   }
 }
 
-std::pair<const char**, uint32_t> cx::Window::get_inst_extensions_kv() const {
+std::string Window::attr_info() {
+  std::stringstream ss;
+  ss << "\nWidnow Attribute:\n"
+     << "\ttitle:" << m_attribute.title << "\n"
+     << "\tposition: [" << m_attribute.pos.x << "," << m_attribute.pos.y << "]"
+     << "\n"
+     << "\tsize: [" << m_attribute.size.w << "," << m_attribute.size.h << "]"
+     << "\n"
+     << "\tresizeable: " << resizeable() << "\n"
+     << "\tfullscreen: " << fullscreen() << "\n"
+     << "\tflag bit: " << m_attribute.status.to_bitset() << "\n"
+     << "\tflag under value: " << m_attribute.status.underlying_value();
+  return ss.str();
+}
+
+std::pair<const char**, uint32_t> Window::get_inst_extensions_kv() const {
   std::pair<const char**, uint32_t> result;
   result.first = ::glfwGetRequiredInstanceExtensions(&result.second);
   return result;
 }
 
-std::vector<const char*>&& cx::Window::get_inst_extensions() const {
+std::vector<const char*> Window::get_inst_extensions() const {
   uint32_t count = 0;
   const char** extensions = ::glfwGetRequiredInstanceExtensions(&count);
 
-  return std::move(std::vector<const char*>(extensions, extensions + count));
+  return std::vector<const char*>(extensions, extensions + count);
 }
 
-std::pair<vk::SurfaceKHR, vk::Result> cx::Window::create_surface(
+std::pair<vk::SurfaceKHR, vk::Result> Window::create_surface(
     const vk::Instance& inst, const vk::AllocationCallbacks* allocator) const {
   VkSurfaceKHR sf;
-  VkAllocationCallbacks alloc = *allocator;
+  // VkAllocationCallbacks alloc = (allocator == nullptr) ? *allocator :
+  // nullptr;
 
-  vk::Result vk_res = static_cast<vk::Result>(
-      ::glfwCreateWindowSurface(inst, m_whandle, &alloc, &sf));
+  vk::Result vkRes = static_cast<vk::Result>(
+      ::glfwCreateWindowSurface(inst, m_whandle, VK_NULL_HANDLE, &sf));
 
-  return std::make_pair(sf, vk_res);
+  return std::make_pair(sf, vkRes);
 }
 
-vk::Result cx::Window::create_surface(
+vk::Result Window::create_surface(
     const vk::Instance& inst, vk::SurfaceKHR& surface,
     const vk::AllocationCallbacks* allocator) const {
   auto pair = create_surface(inst, allocator);
@@ -176,7 +191,7 @@ vk::Result cx::Window::create_surface(
   return pair.second;
 }
 
-const char* cx::Window::result_tostring(uint32_t result) {
+const char* Window::result_tostring(uint32_t result) {
   switch (result) {
     case GLFW_TRUE:
       return "Success";
@@ -191,7 +206,8 @@ const char* cx::Window::result_tostring(uint32_t result) {
     case GLFW_OUT_OF_MEMORY:
       return "A memory allocation failed";
     case GLFW_API_UNAVAILABLE:
-      return "GLFW could not find support for the requested API on the system";
+      return "GLFW could not find support for the requested API on the "
+             "system";
     case GLFW_VERSION_UNAVAILABLE:
       return "The requested OpenGL or OpenGL ES version is not available";
     case GLFW_PLATFORM_ERROR:
@@ -207,10 +223,12 @@ const char* cx::Window::result_tostring(uint32_t result) {
   }
 }
 
-void cx::Window::check_error(uint32_t result) {
+void Window::check_error(uint32_t result) {
   if (result) return;
 
-  const char* error_msg = result_tostring(result);
-  LOG_ERROR(core) << "glfw error:" << error_msg;
-  throw std::runtime_error(error_msg);
+  const char* errorMsg = result_tostring(result);
+  LOG_ERROR(Loggers::engine) << "glfw error:" << errorMsg;
+  throw std::runtime_error(errorMsg);
 }
+
+}  // namespace cx

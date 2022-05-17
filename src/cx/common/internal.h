@@ -26,17 +26,45 @@
 #elif defined(__MACOS__)
 #if !defined(CX_PLATFORM_MAC)
 #define CX_PLATFORM_MAC
+#else
+#error "unknown platform, no support currnet platform."
 #endif
 #endif
 
-#if defined(CX_PLATFORM_WINDOWS)
-
+// define compiler macro
+#if defined(__clang__)
+#define CX_COMPILER_CLANG
+#elif defined(__GUNC__)
+#define CX_COMPILER_GNUNC
+#elif defined(_MSC_VER)
+#define CX_COMPILER_MSVC
+#else
+#error "unknown compiler, no support current compiler."
 #endif
 
-#define CX_API
-#define CX_C_API extern "C"
-#define CX_INLINE inline
-#define CX_STATIC static
-#define CX_NOEXCEPT noexcept
+#if defined(CX_COMPILER_CLANG) || defined(CX_COMPILER_GNUNC)
+#define CX_DLL_INPORT __attribute__((visibility("default")))
+#define CX_DLL_EXPORT __attribute__((visibility("default")))
+#define CX_DLL_LOCAL __attribute__((visibility("hiden")))
+
+#define CX_DECLARE_CMETAOBJ __attribute__((__constructor__))
+#define CX_DECLARE_DMETAOBJ __attribute__((__destructor__))
+
+#elif defined(CX_COMPILER_MSVC)
+#define CX_DLL_INPORT _declspec(dllimport))
+#define CX_DLL_EXPORT _declspec(dllexport))
+#define CX_DLL_LOCAL
+
+#define CX_DECLARE_CMETAOBJ
+#define CX_DECLARE_DMETAOBJ
+#endif
+
 #define CX_CONSTEXPR constexpr
+#define CX_STATIC static
+#define CX_STATIC_CONSTEXPR static constexpr
+#define CX_NOEXCEPT noexcept
+#define CX_INLINE inline
+#define CX_C_API extern "C"
 #define CX_ENTRY_POINT
+#define CX_CORE
+#define CX_API

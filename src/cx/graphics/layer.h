@@ -10,9 +10,9 @@
  */
 #pragma once
 
-namespace cx {
+namespace cx::graphics {
 
-class GLayer {
+class Layer {
  public:
   virtual void onAttach() = 0;
   virtual void OnDetach() = 0;

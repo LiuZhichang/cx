@@ -14,6 +14,7 @@
 
 #include <atomic>
 
+namespace cx::sync {
 /**
  * @brief 自旋锁
  *
@@ -36,3 +37,5 @@ class SpinkLock {
  private:
   std::atomic_flag flag;
 };
+
+}  // namespace cx

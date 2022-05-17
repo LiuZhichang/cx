@@ -10,22 +10,33 @@
  */
 #pragma once
 
-#include <cx/common/common.h>
-#include <cx/common/module.h>
-#include <cx/common/noncopyable.h>
-#include <cx/common/singleton.h>
+#include "application.h"
+#include "cx/common/module.h"
+#include "cx/common/noncopyable.h"
+#include "cx/common/singleton.h"
+#include "version.h"
 
 namespace cx {
 
 class App;
-class Engine : public Noncopyable, public Singleton<Engine> {
-  CX_SINGLETON_FRIEND(Engine);
+class Engine : public Noncopyable, public SingletonPtr<Engine> {
+  friend SingletonPtr<Engine>;
 
  public:
   ~Engine();
 
+  /**
+   * @brief 加载app 仅加载一次
+   *
+   * @param app app对象指针即 App::ptr/App* 类型
+   */
   void load(App* app);
 
+  /**
+   * @brief 获取当前的app对象指针
+   *
+   * @return App* app对象指针
+   */
   App* app() { return m_app; }
 
   void run();
@@ -36,6 +47,7 @@ class Engine : public Noncopyable, public Singleton<Engine> {
 
  private:
   Engine();
+  void init_module();
   void stage_verdict(Module::Stage stage);
 
  private:
