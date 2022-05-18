@@ -2,8 +2,8 @@
 
 #include "cx/common/error.h"
 #include "cx/common/logger.h"
-#include "instance.h"
-#include "logical_device.h"
+#include "cx/graphics/component/instance.h"
+#include "cx/graphics/component/logical_device.h"
 
 namespace cx::graphics {
 
@@ -61,9 +61,9 @@ vk::SampleCountFlagBits PhysicalDevice::max_usable_sample_count() const {
     if (flag & bit) {
       return bit;
     }
-
-    return vk::SampleCountFlagBits::e1;
   }
+
+  return vk::SampleCountFlagBits::e1;
 }
 
 uint32_t PhysicalDevice::score_physical_device(

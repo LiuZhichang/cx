@@ -1,6 +1,6 @@
 #pragma once
 
-#include "log/log.h"
+#include "cx/common/log/log.h"
 
 namespace cx::log {
 

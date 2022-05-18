@@ -9,8 +9,10 @@ using namespace graphics;
 Graphics::Graphics()
     : m_instance(std::make_unique<Instance>()),
       m_physical_device(std::make_unique<PhysicalDevice>(m_instance.get())),
-      m_surface(std::make_unique<Surface>(m_instance.get(),
-                                          m_physical_device.get())) {}
+      m_surface(
+          std::make_unique<Surface>(m_instance.get(), m_physical_device.get())),
+      m_logical_device(std::make_unique<LogicalDevice>(
+          m_instance.get(), m_physical_device.get(), m_surface.get())) {}
 
 Graphics::~Graphics() {}
 

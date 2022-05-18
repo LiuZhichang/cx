@@ -1,20 +1,12 @@
 #include "instance.h"
 
-#include <cx/common/internal.h>
-#include <cx/common/logger.h>
-#include <cx/engine/application.h>
-#include <cx/engine/engine.h>
-#include <cx/window/window.h>
+#include "cx/common/internal.h"
+#include "cx/common/logger.h"
+#include "cx/engine/application.h"
+#include "cx/engine/engine.h"
+#include "cx/window/window.h"
 
 using namespace cx::log;
-
-#if defined(CX_DEBUG_MODE)
-const std::vector<const char*> g_validationLayers = {
-    "VK_LAYER_KHRONOS_validation"};
-#else
-const std::vector<const char*> g_validationLayers = {
-    "VK_LAYER_LUNARG_standard_validation"};
-#endif
 
 VKAPI_ATTR VkBool32 VKAPI_CALL debugUtilsMessengerCallback(
     VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
@@ -96,6 +88,14 @@ VKAPI_ATTR VkBool32 VKAPI_CALL debugUtilsMessengerCallback(
 
 namespace cx::graphics {
 
+#if defined(CX_DEBUG_MODE)
+const std::vector<const char*> Instance::s_validationLayers = {
+    "VK_LAYER_KHRONOS_validation"};
+#else
+const std::vector<const char*> Instance::s_validationLayers = {
+    "VK_LAYER_LUNARG_standard_validation"};
+#endif
+
 Instance::Instance() : m_instance(VK_NULL_HANDLE) {
   std::vector<const char*> extensions = Window::Get()->get_inst_extensions();
   init(extensions);
@@ -123,7 +123,7 @@ void Instance::init(const std::vector<const char*>& extensions) {
                               engineVersion, VK_API_VERSION_1_1);
 
   if (is_enable_validations() &&
-      !check_validation_layer_support(g_validationLayers)) {
+      !check_validation_layer_support(s_validationLayers)) {
 #if defined(CX_DEBUG_MODE)
     LOG_ERROR(Loggers::engine) << "validation layer not enable or invalid!";
 #endif
@@ -131,7 +131,7 @@ void Instance::init(const std::vector<const char*>& extensions) {
 
 #if defined(CX_DEBUG_MODE)
   vk::StructureChain<vk::InstanceCreateInfo> instanceCreateInfo(
-      {{}, &appInfo, g_validationLayers, extensions});
+      {{}, &appInfo, s_validationLayers, extensions});
 #else
   vk::DebugUtilsMessageSeverityFlagsEXT severityFlags(
       vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning |
@@ -143,14 +143,14 @@ void Instance::init(const std::vector<const char*>& extensions) {
   vk::StructureChain<vk::InstanceCreateInfo,
                      vk::DebugUtilsMessengerCreateInfoEXT>
       instanceCreateInfo(
-          {{}, &appInfo, g_validationLayers, extensions},
+          {{}, &appInfo, s_validationLayers, extensions},
           {{}, severityFlags, messageTypeFlags, &debugUtilsMessengerCallback});
 #endif
   m_instance =
       vk::createInstance(instanceCreateInfo.get<vk::InstanceCreateInfo>());
 
 #if defined(CX_DEBUG_MODE)
-  LOG_INFO(Loggers::engine) << "Vulkan instance create succeeded.";
+  LOG_INFO(Loggers::engine) << "The vulkan instance is created successfully.";
 #endif
 }
 

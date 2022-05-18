@@ -1,6 +1,5 @@
 #include "engine.h"
 
-#include "application.h"
 #include "cx/common/internal.h"
 #include "cx/common/logger.h"
 #include "cx/window/window.h"

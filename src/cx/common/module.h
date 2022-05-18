@@ -14,11 +14,11 @@
 #include <memory>
 #include <vector>
 
-#include "common.h"
-#include "internal.h"
-#include "log/log.h"
-#include "noncopyable.h"
-#include "type_meta.h"
+#include "cx/common/common.h"
+#include "cx/common/internal.h"
+#include "cx/common/log/log.h"
+#include "cx/common/noncopyable.h"
+#include "cx/common/type_meta.h"
 
 namespace cx {
 

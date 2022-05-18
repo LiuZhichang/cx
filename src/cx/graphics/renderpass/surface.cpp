@@ -1,20 +1,18 @@
 #include "surface.h"
 
 #include "cx/common/logger.h"
+#include "cx/graphics/component/instance.h"
+#include "cx/graphics/component/physical_device.h"
 #include "cx/graphics/graphics.h"
 #include "cx/window/window.h"
-#include "instance.h"
-#include "physical_device.h"
 
 namespace cx::graphics {
 
 Surface::Surface(const Instance* instance, const PhysicalDevice* device)
     : m_instance(instance) {
-  auto result = Window::Get()->create_surface(instance->handle());
+  auto result = Window::Get()->create_surface(*instance, m_surface);
 
-  Graphics::Check(result.second);
-
-  m_surface = result.first;
+  Graphics::Check(result);
 
   m_capabilities = device->handle().getSurfaceCapabilitiesKHR(m_surface);
 
@@ -44,9 +42,7 @@ Surface::Surface(const Instance* instance, const PhysicalDevice* device)
 
 #if defined(CX_DEBUG_MODE)
   if (m_surface) {
-    LOG_INFO(log::Loggers::engine) << "surface create successed";
-  } else {
-    LOG_INFO(log::Loggers::engine) << "surface create failed";
+    LOG_INFO(log::Loggers::engine) << "The surface is created successfully.";
   }
 #endif
 }

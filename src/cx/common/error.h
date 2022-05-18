@@ -12,7 +12,7 @@
 
 #include <string>
 
-#include "log/log.h"
+#include "cx/common/log/log.h"
 
 namespace cx {
 
@@ -34,7 +34,11 @@ class Error {
     eWindowCreateFailed,
     eNoSupportExtension,
     eInstanceCreateFailed,
-    eNoSupportPhysicalDevice
+    eNoSupportPhysicalDevice,
+    eLogicalDeviceCreateFailed,
+    eNotFoundGraphicsQueue,
+    eSirfaceCreateFailed,
+    eSwapchainCreateFailed
   };
 
   static std::string ToString(Code code) {
@@ -49,6 +53,8 @@ class Error {
         return "There are unsupported extensions in Instance!";
       case Code::eNoSupportPhysicalDevice:
         return "No Gpu supporting Vulkan was found!";
+      case Code::eNotFoundGraphicsQueue:
+        return "Graphics queue family not found!";
       default:
         return "unknown error";
         break;
@@ -61,6 +67,13 @@ class Error {
     CX_LOG_LEVEL(logger, level) << err_msg;
     if (exception) throw std::runtime_error(err_msg);
   }
+
+  static void Catch(std::exception* exception) {}
+
+ private:
+  enum class ExceptionStage {
+
+  };
 };
 
 }  // namespace cx

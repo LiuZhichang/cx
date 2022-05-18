@@ -10,10 +10,10 @@
  */
 #pragma once
 
-#include <cx/common/common.h>
-
 #include <vector>
 #include <vulkan/vulkan.hpp>
+
+#include "cx/common/common.h"
 
 namespace cx::graphics {
 
@@ -75,6 +75,10 @@ class Instance {
 
   bool is_valid() const { return m_instance; }
 
+  static const std::vector<const char*>& GetValidationLayers() {
+    return s_validationLayers;
+  }
+
  private:
   /**
    * @brief 初始化实例
@@ -94,6 +98,8 @@ class Instance {
 
  private:
   vk::Instance m_instance;  // vulkan实例
+
+  static const std::vector<const char*> s_validationLayers;
 };
 
 }  // namespace cx::graphics

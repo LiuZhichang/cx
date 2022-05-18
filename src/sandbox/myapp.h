@@ -4,6 +4,8 @@ class MyApp : public cx::App {
  public:
   MyApp(const Arguments& args);
 
+  ~MyApp();
+
   void task() override;
   void update() override;
 

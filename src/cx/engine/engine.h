@@ -10,11 +10,11 @@
  */
 #pragma once
 
-#include "application.h"
 #include "cx/common/module.h"
 #include "cx/common/noncopyable.h"
 #include "cx/common/singleton.h"
-#include "version.h"
+#include "cx/engine/application.h"
+#include "cx/engine/version.h"
 
 namespace cx {
 

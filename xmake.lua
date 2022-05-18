@@ -21,7 +21,7 @@ elseif  is_plat("macos") then
 -- TODO check android platform
 end
 
-add_rpathdirs("src/cx/trd/lib")
+add_rpathdirs("src/cx/vendor/lib")
 
 add_includedirs("src")
 

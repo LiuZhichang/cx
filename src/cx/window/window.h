@@ -254,17 +254,6 @@ class Window : public Module::Registrar<Window> {
    * @brief 创建surface，用于呈现图像
    *
    * @param[in] inst vulkan实例
-   * @param[in] allocator 内存分配器
-   * @return std::pair<vk::SurfaceKHR, vk::Result> suface对象,以及创建状态
-   */
-  std::pair<vk::SurfaceKHR, vk::Result> create_surface(
-      const vk::Instance& inst,
-      const vk::AllocationCallbacks* allocator = nullptr) const;
-
-  /**
-   * @brief 创建surface，用于呈现图像
-   *
-   * @param[in] inst vulkan实例
    * @param[out] surface surface对象引用
    * @param[in] allocator 内存分配器
    * @return vk::Result 创建状态

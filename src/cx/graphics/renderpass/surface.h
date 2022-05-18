@@ -11,7 +11,7 @@ class Surface {
   Surface(const Instance* instance, const PhysicalDevice* device);
   ~Surface();
 
-  operator const vk::SurfaceKHR&() { return m_surface; }
+  operator const vk::SurfaceKHR&() const { return m_surface; }
 
   const vk::SurfaceKHR& handle() const { return m_surface; }
 

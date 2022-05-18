@@ -12,7 +12,7 @@
 
 #include <cstdint>
 
-#include "internal.h"
+#include "cx/common/internal.h"
 
 namespace cx {
 

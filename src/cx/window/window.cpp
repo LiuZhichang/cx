@@ -170,25 +170,14 @@ std::vector<const char*> Window::get_inst_extensions() const {
   return std::vector<const char*>(extensions, extensions + count);
 }
 
-std::pair<vk::SurfaceKHR, vk::Result> Window::create_surface(
-    const vk::Instance& inst, const vk::AllocationCallbacks* allocator) const {
-  VkSurfaceKHR sf;
-  // VkAllocationCallbacks alloc = (allocator == nullptr) ? *allocator :
-  // nullptr;
-
-  vk::Result vkRes = static_cast<vk::Result>(
-      ::glfwCreateWindowSurface(inst, m_whandle, VK_NULL_HANDLE, &sf));
-
-  return std::make_pair(sf, vkRes);
-}
-
 vk::Result Window::create_surface(
     const vk::Instance& inst, vk::SurfaceKHR& surface,
     const vk::AllocationCallbacks* allocator) const {
-  auto pair = create_surface(inst, allocator);
-
-  surface = pair.first;
-  return pair.second;
+  VkSurfaceKHR sf;
+  vk::Result vkRes = static_cast<vk::Result>(::glfwCreateWindowSurface(
+      static_cast<VkInstance>(inst), m_whandle, VK_NULL_HANDLE, &sf));
+  surface = vk::SurfaceKHR(sf);
+  return vkRes;
 }
 
 const char* Window::result_tostring(uint32_t result) {

@@ -17,7 +17,7 @@
 #include <iostream>
 #include <type_traits>
 
-#include "internal.h"
+#include "cx/common/internal.h"
 
 namespace cx {
 
