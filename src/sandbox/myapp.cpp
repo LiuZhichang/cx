@@ -18,12 +18,15 @@ MyApp::~MyApp() { LOG_INFO(log::Loggers::core) << "App Stop"; }
 
 void MyApp::task() { LOG_INFO(log::Loggers::engine) << "App Do work"; }
 
-void MyApp::update() {}
+void MyApp::update() {
+  // LOG_INFO(log::Loggers::engine) << Engine::Self()->fps();
+}
 
 void MyApp::initWindow() {
+  std::string version = Engine::Self()->version().to_string();
   auto device = Graphics::Get()->physical_device();
   std::string gpu = device->properties().deviceName;
-  std::string title = "Cx Engine\tGPU:" + gpu;
+  std::string title = "Cx Engine:" + version + "\tGPU:" + gpu;
   Window::ptr window = Window::Get();
   window->set_title(title.c_str());
   window->resize(1024, 768);

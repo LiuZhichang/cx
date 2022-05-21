@@ -14,6 +14,8 @@
 #include <typeindex>
 #include <unordered_map>
 
+#include "cx/common/internal.h"
+
 namespace cx {
 
 /**
@@ -55,10 +57,10 @@ class TypeMeta {
   }
 
  private:
-  static TypeID m_nextTypeId;
+  CX_STATIC TypeID m_nextTypeId;
 
-  static TypeMapper& GetTypeMapper() {
-    static TypeMapper s_typeMapper;
+  CX_STATIC TypeMapper& GetTypeMapper() {
+    CX_STATIC TypeMapper s_typeMapper;
     return s_typeMapper;
   }
 };

@@ -14,9 +14,55 @@ Graphics::Graphics()
       m_logical_device(std::make_unique<LogicalDevice>(
           m_instance.get(), m_physical_device.get(), m_surface.get())) {}
 
-Graphics::~Graphics() {}
+Graphics::~Graphics() {
+  vk::Queue graphics_queue = m_logical_device->graphics_queue();
+
+  if (graphics_queue) graphics_queue.waitIdle();
+
+  m_command_pool.clear();
+  m_command_buffers.clear();
+}
 
 void Graphics::update() {}
+
+const Descriptor* Graphics::attachment(const std::string& name) const {
+  if (auto it = m_attachments.find(name); it != m_attachments.end())
+    return it->second;
+  return nullptr;
+}
+
+void Graphics::setup_pipeline_cache() {
+  vk::PipelineCacheCreateInfo pipeline_cache_create_info = {};
+  vk::Device device = *m_logical_device;
+  vk::Result result = device.createPipelineCache(&pipeline_cache_create_info,
+                                                 nullptr, &m_pipeline_cache);
+  Graphics::Check(result);
+}
+
+void Graphics::rebuild_swapchain() {
+  vk::Device device = *m_logical_device;
+  device.waitIdle();
+  VkExtent2D display_extent = {Window::Get()->size().x,
+                               Window::Get()->size().y};
+  m_swapchain = std::make_unique<Swapchain>(display_extent, m_swapchain.get());
+  regenerate_command_buffers();
+}
+
+void Graphics::reset_render_stage() { rebuild_swapchain(); 
+}
+
+void Graphics::regenerate_command_buffers() {}
+
+const std::shared_ptr<graphics::CommandPool>& Graphics::command_pool(
+    const std::thread::id& id) {
+  auto it = m_command_pool.find(id);
+  if (it != m_command_pool.end()) {
+    return it->second;
+  }
+
+  return m_command_pool.emplace(id, std::make_shared<graphics::CommandPool>(id))
+      .first->second;
+}
 
 std::string Graphics::VulkanResultToString(vk::Result result) {
   switch (result) {

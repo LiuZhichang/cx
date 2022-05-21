@@ -24,7 +24,7 @@ namespace cx {
  * @brief app抽象类，用于实现自定义程序
  *
  */
-class App : public Noncopyable {
+class CX_CORE App : public Noncopyable {
  public:
   typedef App* ptr;
   /**

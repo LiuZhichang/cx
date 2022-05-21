@@ -16,5 +16,7 @@ class FileOp {
   static void remove_file(const std::string& file);
 
   static bool file_exists(const std::string& file);
+
+  static void read(const std::filesystem::path& path, std::string& buf);
 };
 }  // namespace cx

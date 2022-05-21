@@ -236,6 +236,8 @@ class Window : public Module::Registrar<Window> {
            static_cast<float>(m_attribute.size.h);
   }
 
+  float content_scale() const;
+
   /**
    * @brief 获取vulkan实例所需的扩展,以 k v 形式返回
    *
@@ -269,6 +271,8 @@ class Window : public Module::Registrar<Window> {
   static void check_error(uint32_t result);
 
   std::string attr_info();
+
+  GLFWwindow* const handle() const { return m_whandle; }
 
  private:
   void init_Window();

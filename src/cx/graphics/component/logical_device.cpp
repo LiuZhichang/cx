@@ -207,8 +207,8 @@ void LogicalDevice::init_device(const Instance *instance,
 
   vk::DeviceCreateInfo device_create_info(
       {}, queue_create_infos, layers, s_device_extensions, &m_enable_features);
-
-  m_device = physical_device->handle().createDevice(device_create_info);
+  vk::PhysicalDevice phy_device = physical_device->handle();
+  m_device = phy_device.createDevice(device_create_info);
 }
 
 }  // namespace cx::graphics

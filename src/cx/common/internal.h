@@ -23,16 +23,16 @@
 #if !defined(CX_PLATFORM_LINUX)
 #define CX_PLATFORM_LINUX
 #endif
-#elif defined(__MACOS__)
+#elif defined(__MACOSX__) || defined(__APPLE__)
 #if !defined(CX_PLATFORM_MAC)
 #define CX_PLATFORM_MAC
+#endif
 #else
 #error "unknown platform, no support currnet platform."
 #endif
-#endif
 
 // define compiler macro
-#if defined(__clang__)
+#if defined(__clang__) || defined(__llvm__)
 #define CX_COMPILER_CLANG
 #elif defined(__GUNC__)
 #define CX_COMPILER_GNUNC
@@ -57,6 +57,14 @@
 
 #define CX_DECLARE_CMETAOBJ
 #define CX_DECLARE_DMETAOBJ
+#endif
+
+#if defined(CX_COMPILER_CLANG)
+#define CX_LICKLY(x) __builtin_expect(!!(x), 1)
+#define CX_UNLICKLY(x) __builtin_expect(!!(x), 0)
+#else
+#define CX_LICKLY(x) (x)
+#define CX_UNLICKLY(x) (x)
 #endif
 
 #define CX_CONSTEXPR constexpr

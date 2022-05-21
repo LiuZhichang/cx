@@ -4,6 +4,7 @@
 
 #include "cx/common/logger.h"
 #include "cx/graphics/graphics.h"
+#include "cx/graphics/image/image.h"
 
 namespace cx::graphics {
 
@@ -97,20 +98,26 @@ Swapchain::Swapchain(const vk::Extent2D& extent, const Swapchain* old_swapchain)
     swapchain_create_info.pQueueFamilyIndices = queue_family.data();
   }
 
-  m_swapchain =
-      logical_device->handle().createSwapchainKHR(swapchain_create_info);
+  vk::Device device = logical_device->handle();
+  m_swapchain = device.createSwapchainKHR(swapchain_create_info);
 
 #if defined(CX_DEBUG_MODE)
   if (m_swapchain)
     LOG_INFO(log::Loggers::engine) << "The swapchain is created successfully.";
 #endif
 
-  m_images = logical_device->handle().getSwapchainImagesKHR(m_swapchain);
+  m_images = device.getSwapchainImagesKHR(m_swapchain);
   size_t image_count = m_images.size();
-  m_image_views.reserve(image_count);
+  m_image_views.resize(image_count);
 
   for (int i = 0; i < image_count; ++i) {
+    Image::GenerateView(m_images[i], m_image_views[i], vk::ImageViewType::e2D,
+                        surface_format.format, vk::ImageAspectFlagBits::eColor,
+                        1, 0, 1, 0);
   }
+
+  vk::FenceCreateInfo fence_create_info{};
+  m_image_fence = device.createFence(fence_create_info);
 }
 
 Swapchain::~Swapchain() {
@@ -120,6 +127,18 @@ Swapchain::~Swapchain() {
 
 vk::Result Swapchain::acquired_next_image(
     const vk::Semaphore& present_complete_sem, vk::Fence fence) {
-  return vk::Result::eSuccess;
+  const vk::Device device = *Graphics::Get()->logical_device();
+  vk::Result result;
+  if (fence) {
+    result = device.waitForFences(1, &fence, true,
+                                  std::numeric_limits<uint64_t>::max());
+    Graphics::Check(result);
+  }
+  result = device.acquireNextImageKHR(
+      m_swapchain, std::numeric_limits<uint64_t>::max(), present_complete_sem,
+      {}, &m_active_image_index);
+  Graphics::Check(result);
+
+  return result;
 }
 }  // namespace cx::graphics

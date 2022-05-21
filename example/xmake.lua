@@ -17,3 +17,6 @@ target("example_entry_point")
 
 target("example_window")
   add_files("example_window.cpp")
+
+  target("example_socket")
+  add_files("example_socket.cpp")

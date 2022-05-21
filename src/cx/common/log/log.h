@@ -12,6 +12,7 @@
 #include <cx/common/singleton.h>
 #include <cx/utils/sync/spink_lock.h>
 
+#include <chrono>
 #include <forward_list>
 #include <fstream>
 #include <functional>
@@ -24,12 +25,13 @@
 #include <unordered_map>
 #include <vector>
 
-#define CX_LOG_LEVEL(logger, level)                                         \
-  if (logger->getLevel() <= level)                                          \
-  cx::log::details::LogWrap(                                                \
-      logger, cx::log::LogEvent::ptr(new cx::log::LogEvent(                 \
-                  level, __FILE__, __func__, __LINE__, 0,                   \
-                  std::this_thread::get_id(), time(0), logger->getName()))) \
+#define CX_LOG_LEVEL(logger, level)                                           \
+  if (logger->getLevel() <= level)                                            \
+  cx::log::details::LogWrap(                                                  \
+      logger,                                                                 \
+      cx::log::LogEvent::ptr(new cx::log::LogEvent(                           \
+          level, __FILE__, __func__, __LINE__, 0, std::this_thread::get_id(), \
+          std::chrono::system_clock::now(), logger->getName())))              \
       .getStrIO()
 
 #define LOG_DEBUG(logger) CX_LOG_LEVEL(logger, cx::log::Level::eDebug)
@@ -88,7 +90,7 @@ class LogEvent {
    */
   LogEvent(log::Level level, const char* file, const char* funcName,
            uint32_t line, uint32_t elapse, std::thread::id threadId,
-           uint64_t time, const std::string& name);
+           std::chrono::system_clock::time_point time, const std::string& name);
 
   /**
    * @brief 获取文件名
@@ -130,7 +132,7 @@ class LogEvent {
    *
    * @return 时间
    */
-  uint64_t getTime() const { return m_time; }
+  std::chrono::system_clock::time_point getTime() const { return m_time; }
 
   /**
    * @brief 获取日志等级
@@ -167,11 +169,11 @@ class LogEvent {
   uint32_t m_line;             // 行号
   uint32_t m_elapse;           // 毫秒数
 
-  uint32_t m_coroutineId;  // 协程id
-  uint64_t m_time;         // 时间
-  std::string m_name;      // 日志器名
-  Level m_level;           // 日志等级
-  std::stringstream m_ss;  // 字符流
+  uint32_t m_coroutineId;                        // 协程id
+  std::string m_name;                            // 日志器名
+  Level m_level;                                 // 日志等级
+  std::stringstream m_ss;                        // 字符流
+  std::chrono::system_clock::time_point m_time;  // 时间
 };
 
 /**

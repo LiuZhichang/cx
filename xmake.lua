@@ -25,7 +25,7 @@ add_rpathdirs("src/cx/vendor/lib")
 
 add_includedirs("src")
 
--- includes("example")
+includes("example")
 includes("src/cx")
 includes("src/sandbox")
 

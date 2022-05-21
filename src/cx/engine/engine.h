@@ -10,11 +10,15 @@
  */
 #pragma once
 
+#include <map>
+
 #include "cx/common/module.h"
 #include "cx/common/noncopyable.h"
 #include "cx/common/singleton.h"
 #include "cx/engine/application.h"
 #include "cx/engine/version.h"
+#include "cx/utils/time/delta.h"
+#include "cx/utils/time/elapsed_time.h"
 
 namespace cx {
 
@@ -45,17 +49,39 @@ class Engine : public Noncopyable, public SingletonPtr<Engine> {
   void set_version(const Version& version) { m_version = version; }
   const Version& version() const { return m_version; }
 
+  float fps_limit() const { return m_fps_limit; }
+  void set_fps_limit(float fps_limit) { m_fps_limit = fps_limit; }
+
+  const time::TimePoint delta() const { return m_delat_update.m_change; }
+
+  const time::TimePoint delta_render() const { return m_delat_render.m_change; }
+
+  uint32_t upd() const { return m_ups.m_value; }
+
+  uint32_t fps() const { return m_fps.m_value; }
+
  private:
   Engine();
   void init_module();
   void stage_verdict(Module::Stage stage);
 
  private:
+  typedef std::pair<Module::Stage, std::size_t> StageInfo;
+
   App* m_app;
   Version m_version;
 
-  std::vector<std::unique_ptr<Module>> m_modules;
+  std::multimap<StageInfo, std::unique_ptr<Module>> m_modules;
   bool m_running;
+
+  float m_fps_limit;
+
+  time::Delta m_delat_update;
+  time::Delta m_delat_render;
+  time::ElapsedTime m_elapse_update;
+  time::ElapsedTime m_elapse_render;
+  time::ChangePerSecond m_ups;
+  time::ChangePerSecond m_fps;
 };
 
 }  // namespace cx

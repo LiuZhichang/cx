@@ -8,16 +8,18 @@
 
 namespace cx::graphics {
 
-Surface::Surface(const Instance* instance, const PhysicalDevice* device)
+Surface::Surface(const Instance* instance,
+                 const PhysicalDevice* physical_device)
     : m_instance(instance) {
   auto result = Window::Get()->create_surface(*instance, m_surface);
 
   Graphics::Check(result);
 
-  m_capabilities = device->handle().getSurfaceCapabilitiesKHR(m_surface);
+  vk::PhysicalDevice device = physical_device->handle();
+  m_capabilities = device.getSurfaceCapabilitiesKHR(m_surface);
 
   std::vector<vk::SurfaceFormatKHR> formats =
-      device->handle().getSurfaceFormatsKHR(m_surface);
+      device.getSurfaceFormatsKHR(m_surface);
 
   if (formats.size() == 1 && formats[0].format == vk::Format::eUndefined) {
     m_format.format = vk::Format::eB8G8R8A8Unorm;
@@ -47,6 +49,9 @@ Surface::Surface(const Instance* instance, const PhysicalDevice* device)
 #endif
 }
 
-Surface::~Surface() { m_instance->handle().destroySurfaceKHR(m_surface); }
+Surface::~Surface() {
+  vk::Instance instance = m_instance->handle();
+  instance.destroySurfaceKHR(m_surface);
+}
 
 }  // namespace cx::graphics

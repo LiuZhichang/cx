@@ -12,6 +12,7 @@
 
 #include <string>
 
+#include "cx/common/internal.h"
 #include "cx/common/log/log.h"
 
 namespace cx {
@@ -38,10 +39,11 @@ class Error {
     eLogicalDeviceCreateFailed,
     eNotFoundGraphicsQueue,
     eSirfaceCreateFailed,
-    eSwapchainCreateFailed
+    eSwapchainCreateFailed,
+    eNotFoundMemoryType
   };
 
-  static std::string ToString(Code code) {
+  CX_STATIC std::string ToString(Code code) {
     switch (code) {
       case Code::eGLFWInitFailed:
         return "GLFW init failed!";
@@ -55,20 +57,22 @@ class Error {
         return "No Gpu supporting Vulkan was found!";
       case Code::eNotFoundGraphicsQueue:
         return "Graphics queue family not found!";
+      case Code::eNotFoundMemoryType:
+        return "Failed to find a valid memory type for buffer!";
       default:
         return "unknown error";
         break;
     }
   }
 
-  static void Output(log::Logger::ptr logger, log::Level level, Code code,
-                     bool exception = true) {
+  CX_STATIC void Output(log::Logger::ptr logger, log::Level level, Code code,
+                        bool exception = true) {
     std::string err_msg = ToString(code);
     CX_LOG_LEVEL(logger, level) << err_msg;
     if (exception) throw std::runtime_error(err_msg);
   }
 
-  static void Catch(std::exception* exception) {}
+  CX_STATIC void Catch(std::exception* exception) {}
 
  private:
   enum class ExceptionStage {

@@ -6,7 +6,15 @@
 
 namespace cx {
 
-Engine::Engine() : m_app(nullptr), m_version{1, 0, 0}, m_running(true) {
+using namespace time;
+
+Engine::Engine()
+    : m_app(nullptr),
+      m_version{1, 0, 0},
+      m_running(true),
+      m_fps_limit(-1.0f),
+      m_elapse_update(std::chrono::milliseconds(15)),
+      m_elapse_render(std::chrono::seconds(-1)) {
   // 开启日志
   log::LogManager::EnableEngineLogger();
   init_module();
@@ -44,7 +52,8 @@ void Engine::init_module() {
       }
       // 生成模块
       auto &&module = moduleVal.generator();
-      m_modules.emplace_back(std::move(module));
+      m_modules.emplace(StageInfo(moduleVal.Stage, moduleId),
+                        std::move(module));
       // LOG_DEBUG(engine) << "add module";
       // 记录已经生成的模块
       created.emplace_back(moduleId);
@@ -86,11 +95,32 @@ void Engine::run() {
     window->update();
   }
 
-  m_running = false;
+  m_elapse_render.set_interval(TimePoint::Seconds(1.0f / m_fps_limit));
+
+  stage_verdict(Module::Stage::eInvariably);
+  if (m_elapse_update.elpased() != 0) {
+    m_ups.update(TimePoint::Now());
+
+    stage_verdict(Module::Stage::ePre);
+    stage_verdict(Module::Stage::eNormal);
+    stage_verdict(Module::Stage::ePost);
+
+    m_delat_update.update();
+  }
+
+  if (m_elapse_render.elpased() != 0) {
+    m_fps.update(TimePoint::Now());
+    stage_verdict(Module::Stage::eRender);
+    m_delat_render.update();
+  }
 }
 
 void Engine::stop() { m_running = false; }
 
-void Engine::stage_verdict(Module::Stage stage) {}
+void Engine::stage_verdict(Module::Stage stage) {
+  for (auto &[stage_idx, module] : m_modules) {
+    if (stage_idx.first == stage) module->update();
+  }
+}
 
 }  // namespace cx

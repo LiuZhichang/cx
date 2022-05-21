@@ -30,7 +30,7 @@ class Singleton {
   Singleton() = default;
   virtual ~Singleton() = default;
 
-  inline static T self;
+  CX_INLINE static T self;
 };
 
 template <class T>
@@ -47,7 +47,7 @@ class SingletonPtr {
   SingletonPtr() = default;
   virtual ~SingletonPtr() = default;
 
-  inline static ptr m_inst_ptr = ptr(new T());
+  CX_INLINE static ptr m_inst_ptr = ptr(new T());
 };
 
 }  // namespace cx

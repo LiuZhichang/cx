@@ -102,6 +102,12 @@ void Window::update() {
   if (!closed()) ::glfwPollEvents();
 }
 
+float Window::content_scale() const {
+  float x_scale, y_scale;
+  glfwGetWindowContentScale(m_whandle, &x_scale, &y_scale);
+  return fmaxf(1.0f, fmaxf(x_scale, y_scale));
+}
+
 void Window::resize(const Vector2ui& size) {
   if (!resizeable()) return;
 

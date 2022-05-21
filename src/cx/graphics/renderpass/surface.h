@@ -8,7 +8,7 @@ class Instance;
 class PhysicalDevice;
 class Surface {
  public:
-  Surface(const Instance* instance, const PhysicalDevice* device);
+  Surface(const Instance* instance, const PhysicalDevice* physical_device);
   ~Surface();
 
   operator const vk::SurfaceKHR&() const { return m_surface; }

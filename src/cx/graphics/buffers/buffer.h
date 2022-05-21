@@ -2,6 +2,8 @@
 
 #include <vulkan/vulkan.hpp>
 
+#include "cx/common/internal.h"
+
 namespace cx::graphics {
 /**
  * @brief vulkan缓冲区
@@ -18,7 +20,7 @@ class Buffer {
    * @param data 存放的数据
    */
   Buffer(vk::DeviceSize size, vk::BufferUsageFlags usage,
-         vk::MemoryPropertyFlags properties, const void* data = nullptr);
+         vk::MemoryPropertyFlags properties, void* data = nullptr);
 
   /**
    * @brief 析构函数
@@ -31,7 +33,7 @@ class Buffer {
    *
    * @param data 数据
    */
-  void map_memory(void* data) const;
+  void map_memory(void** data) const;
 
   /**
    * @brief 解除内存映射
@@ -43,11 +45,12 @@ class Buffer {
 
   const vk::Buffer handle() const { return m_buffer; }
 
-  static uint32_t FindMemoryType(
+  CX_STATIC uint32_t FindMemoryType(
       uint32_t type_filter, const vk::MemoryPropertyFlags& required_properties);
 
   // static void InsertBufferMemoryBarrier(const vk::CommandBuffer&
   // command_buffer, const vk:)
+  operator const vk::Buffer&() const { return m_buffer; }
 
  private:
   vk::DeviceSize m_size;

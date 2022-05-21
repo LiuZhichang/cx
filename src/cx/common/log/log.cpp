@@ -32,7 +32,8 @@ const std::string LogLevel::toString(Level level) {
 
 LogEvent::LogEvent(Level level, const char* file, const char* funcName,
                    uint32_t line, uint32_t elapse, std::thread::id threadId,
-                   uint64_t time, const std::string& name)
+                   std::chrono::system_clock::time_point time,
+                   const std::string& name)
     : m_file(file),
       m_funcName(funcName),
       m_line(line),
@@ -119,7 +120,7 @@ class DateTimeFormatItem : public LogFormatter::FormatItem {
     // strftime(buf, sizeof(buf), m_format.c_str(), &tm);
     // os << buf;
 
-    auto now = std::chrono::system_clock::now();
+    auto now = event->getTime();
     //通过不同精度获取相差的毫秒数
     uint64_t dis_millseconds =
         std::chrono::duration_cast<std::chrono::milliseconds>(

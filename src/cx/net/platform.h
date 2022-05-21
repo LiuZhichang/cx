@@ -10,6 +10,24 @@
  */
 #pragma once
 
+#include "cx/common/internal.h"
+
+#if defined(CX_PLATFORM_WINDOWS)
+#include <WS2tcpip.h>
+#include <windows.h>
+#include <winsock2.h>
+#pragma comment(lib, "ws2_32.lib")
+#elif defined(CX_PLATFORM_MAC) || defined(CX_PLATFORM_LINUX)
+#include <arpa/inet.h>
+#include <ifaddrs.h>
+#include <netdb.h>
+#include <netinet/tcp.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <sys/un.h>
+#include <unistd.h>
+#endif
+
 #if defined(CX_PLATFORM_WINDOWS)
 
 typedef SOCKET socket_type;
@@ -19,16 +37,3 @@ typedef SOCKET socket_type;
 typedef int socket_type;
 
 #endif
-
-inline void cx_init_socket() {
-#if defined(CX_PLATFORM_WINDOWS)
-  WSADATA wsaData;
-  WSAStartup(MAKEWORD(2, 2), &wsaData);
-#endif
-}
-
-inline void cx_cleanup_socket() {
-#if defined(CX_PLATFORM_WINDOWS)
-  WSACleanup();
-#endif
-}

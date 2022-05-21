@@ -27,7 +27,7 @@ class ModuleFactory {
  public:
   virtual ~ModuleFactory() = default;
 
-  struct TypeVal {
+  struct TypeAttr {
     std::function<std::unique_ptr<Base>()> generator;
     typename Base::Stage Stage;
     std::vector<TypeID> require;
@@ -94,7 +94,7 @@ class ModuleFactory {
   };
 
  public:
-  typedef std::unordered_map<TypeID, TypeVal> TypeRegMapper;
+  typedef std::unordered_map<TypeID, TypeAttr> TypeRegMapper;
 
  public:
   // 注册器实例
